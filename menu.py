@@ -48,7 +48,7 @@ import registrar_comanda as rc
 while True:
     print("Menu de opciones Tacos del norte ")
     print("1.-Registrar nueva comanda")
-    print("2.-")
+    print("2.-Actualizar una comanda existente")
     print("3.-")
     print("4.-")
     print("5.-")
