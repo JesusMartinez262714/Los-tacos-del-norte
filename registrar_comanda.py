@@ -164,7 +164,7 @@ def Calculos_Comandas(platillo, cantidad_platillo):
 
 
 def comandas_abiertas():
-    #formateo
+    #formateo y hacer que se muestre al registrar una comanda
     print("")
 
 if __name__ == "__main__":
