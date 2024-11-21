@@ -27,6 +27,7 @@ def imprimirPlatillos():
     """
     Muestra el menú de platillos disponibles, incluyendo sus precios.
     """
+    #formateo
     print("Menu platillos: ")
     print("1.-Tacos de asada - $20")
     print("2.-Tacos de pastor - $18")
@@ -130,6 +131,8 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
     - num_mesas (int): Número de la mesa asignada.
     - total (float): Total acumulado de la comanda.
     """
+
+    #formateo
     print("\n--- Comanda ---")
     print(f"Cliente: {nombre_cliente}")
     print(f"Mesa: {num_mesas}")
@@ -156,6 +159,13 @@ def Calculos_Comandas(platillo, cantidad_platillo):
     subtotal += costo
     return costo, subtotal
 
+
+
+
+
+def comandas_abiertas():
+    #formateo
+    print("")
 
 if __name__ == "__main__":
     # Ejemplo de inicialización de estructuras
