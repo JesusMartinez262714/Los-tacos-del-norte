@@ -1,7 +1,9 @@
 """
-
+Desarrolladores:Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
 
 """
+folio=0
 mesas={
         1:"Disponible",
         2:"Disponible",
@@ -20,6 +22,11 @@ mesas={
         15:"Disponible"
 
 }
+
+Comandas={}
+
+
+
 
 platillos=(
     (
@@ -41,7 +48,10 @@ platillos=(
 
 empleados={
     1:"juan",
-    2:"ramses"
+    2:"ramses",
+    3:"Paola",
+    4:"Fabian"
+
 }
 #Estructuras de almacenamiento
 import registrar_comanda as rc
@@ -62,7 +72,7 @@ while True:
     if opcion==10:
         break
     elif opcion==1:
-        rc.crear_comanda(mesas,platillos,empleados)
+        rc.crear_comanda(mesas,platillos,empleados,Comandas,folio)
     elif opcion==2:
         print("Opcion 2")
     elif opcion==3:
