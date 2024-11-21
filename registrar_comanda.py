@@ -4,6 +4,8 @@ Objetivo:
 El objetivo del programa es gestionar comandas en un restaurante. Esto incluye validar la disponibilidad de mesas, 
 registrar los pedidos de clientes, asignar empleados a comandas, calcular costos y mostrar detalles de las comandas.
 """
+lista_Temporal_Comandas_Abiertas=[]
+folio=0
 
 def validar_mesa(mesas, num_mesas) -> bool:
     """
@@ -20,6 +22,7 @@ def validar_mesa(mesas, num_mesas) -> bool:
         return True
     else:
         return False
+    
 
 
 def imprimirPlatillos():
@@ -53,7 +56,7 @@ def validar_empleado(empleados) -> int:
             print("Empleado no válido, intente nuevamente")
 
 
-def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict, folio, lista_Temporal_Comandas_Abiertas):
+def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict):
     """
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
@@ -68,7 +71,7 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
         num_mesas = int(input("Ingrese el número de la mesa: "))
         if num_mesas<0:
             break
-        if not validar_mesa(mesas, num_mesas):
+        if validar_mesa(mesas, num_mesas):
             print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada.")
         else:
              break
@@ -83,7 +86,7 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
     imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
-    folio+=1
+    folio += 1
     mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total,folio)
 
     continuar = input("Desea registrar esta comanda? s/n ").lower()
@@ -181,19 +184,72 @@ def Calculos_Comandas(platillo, cantidad_platillo):
 
 
 
-def comandas_abiertas(lista_temporal):
+def comandas_abiertas(lista_Temporal_Comandas_Abiertas):
     #formateo y hacer que se muestre al registrar una comanda
     contador=0
     print("Comandas Abiertas:")
     print(f"{"":-^65}")
     print(f"{"Mesa":<9}{"Cliente":<16}{"Empleado":<17}Total ($)")
     print(f"{"":-^65}")
-    for pocision in lista_temporal:
+    for pocision in lista_Temporal_Comandas_Abiertas:
         print(f"{pocision[0]:<9}{pocision[1]:<16}{pocision[2]:<17}{pocision[3]}")
         contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")
 
+if __name__ == "__main__":
+    # Ejemplo de inicialización de estructuras
+    mesas = {
+    1: "disponible",
+    2: "disponible",
+    3: "disponible",
+    4: "disponible",
+    5: "disponible",
+    6: "disponible",
+    7: "disponible",
+    8: "disponible"
+}
+    Comandas = {
+    1:{
+    "mesa": 3,
+    "cliente": "Juan Pérez",
+    "empleado": "María López",
+    "platillos": [
+        ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+        ("Refresco", 2, 30.00)
+    ],
+    "total": 90.00,
+    "propina":0,
+    "estado" : "No pagada" #Pueden ser pagadas o no pagadas
+}
+
+}
+    empleados = {
+    101: {
+        "nombre": "María López",
+        "telefono": "6441234567",
+        "estado": "activo"
+    },
+    102: {
+        "nombre": "Pedro Martínez",
+        "telefono": "6449876543",
+        "estado": "inactivo"
+    }
+}
+    platillos = (
+    (1, "Tacos de Asada", 20.00),
+    (2, "Tacos de Pastor", 18.00),
+    (3, "Quesadilla", 25.00),
+    (4, "Refresco", 15.00),
+    (5, "Burrito de Asada", 40.00),
+    (6, "Burrito de Pastor", 38.00),
+    (7, "Torta de Asada", 45.00),
+    (8, "Torta de Pastor", 43.00),
+    (9, "Agua Fresca (1L)", 20.00),
+    (10, "Flautas (3 piezas)", 30.00)
+)
+    crear_comanda(mesas, empleados, Comandas, platillos)
+"""
 if __name__ == "__main__":
     # Ejemplo de inicialización de estructuras
     listaPlatillos = []
@@ -205,3 +261,4 @@ if __name__ == "__main__":
     )
 
     registrar_platillos(listaPlatillos, platillos)
+"""
