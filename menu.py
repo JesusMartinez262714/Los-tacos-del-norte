@@ -53,6 +53,7 @@ empleados={
     4:"Fabian"
 
 }
+lista_Temporal_Comandas_Abiertas=[]
 #Estructuras de almacenamiento
 import registrar_comanda as rc
 while True:
@@ -68,11 +69,11 @@ while True:
     print("9.-")
     print("10.-Salir")
     opcion=int(input("Ingrese la opcion : "))
-
+    
     if opcion==10:
         break
     elif opcion==1:
-        rc.crear_comanda(mesas,platillos,empleados,Comandas,folio)
+        rc.crear_comanda(mesas,platillos,empleados,Comandas,folio,lista_Temporal_Comandas_Abiertas)
     elif opcion==2:
         print("Opcion 2")
     elif opcion==3:

@@ -19,7 +19,6 @@ def validar_mesa(mesas, num_mesas) -> bool:
     if mesas[num_mesas] == "Disponible":
         return True
     else:
-        print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada")
         return False
 
 
@@ -29,6 +28,7 @@ def imprimirPlatillos():
     """
     #formateo
     print("Menu platillos: ")
+    print(f"{"":-^24}")
     print("1.-Tacos de asada - $20")
     print("2.-Tacos de pastor - $18")
     print("3.- Quesadillas -  $25")
@@ -53,7 +53,7 @@ def validar_empleado(empleados) -> int:
             print("Empleado no válido, intente nuevamente")
 
 
-def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict, folio):
+def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict, folio, lista_Temporal_Comandas_Abiertas):
     """
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
@@ -64,9 +64,17 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
     - Comandas (dict): Diccionario que almacena las comandas registradas.
     - folio (int): Número único que identifica cada comanda.
     """
-    num_mesas = int(input("Ingrese el número de la mesa "))
-    if not validar_mesa(mesas, num_mesas):
-        print("La mesa no está disponible")
+    while True: 
+        num_mesas = int(input("Ingrese el número de la mesa: "))
+        if num_mesas<0:
+            break
+        if not validar_mesa(mesas, num_mesas):
+            print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada.")
+        else:
+             break
+    if num_mesas<0:
+            return
+
     nombre_cliente = input("Ingrese el nombre del cliente: ")
     if nombre_cliente == "":
         nombre_cliente = "Cliente anónimo"
@@ -75,12 +83,13 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
     imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
-    mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
+    folio+=1
+    mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total,folio)
 
     continuar = input("Desea registrar esta comanda? s/n ").lower()
     if continuar == "s":
         mesas[num_mesas] = "No disponible"
-        folio += 1
+        
         print("Comanda registrada correctamente")
         Comandas[folio] = {
             "mesa": num_mesas,
@@ -88,9 +97,12 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
             "platillos": lista_platillos,
             "estado": "No disponible"
         }
-        print(Comandas)
-        print(mesas)
+        lista_Temporal_Comandas_Abiertas.append([num_mesas,nombre_cliente,empleado,total])
+        comandas_abiertas(lista_Temporal_Comandas_Abiertas)
+    else:
+        folio-=1
 
+    
 
 def registrar_platillos(lista_platillos, platillos) -> float:
     """
@@ -119,8 +131,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             break
     return total
 
-
-def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, num_mesas: int, total: float):
+def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, num_mesas: int, total: float, folio: int):
     """
     Muestra los detalles de una comanda registrada, incluyendo el cliente, mesa, empleado, platillos y total.
 
@@ -131,15 +142,22 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
     - num_mesas (int): Número de la mesa asignada.
     - total (float): Total acumulado de la comanda.
     """
-
     #formateo
-    print("\n--- Comanda ---")
-    print(f"Cliente: {nombre_cliente}")
+    print(f"\n{"Resumen de la comanda ":->25}{folio}:")
     print(f"Mesa: {num_mesas}")
+    print(f"Cliente: {nombre_cliente}")
     print(f"Empleado: {empleado}")
     print("Platillos:")
     for platillo in lista_platillos:
-        print(f"- Platillo: {platillo[0]}, Cantidad: {platillo[1]}, Subtotal: ${platillo[2]:.2f}")
+        if platillo[0]== 1:
+            mensajePlatillo="Tacos de asada"
+        if platillo[0]== 2:
+            mensajePlatillo="Tacos de pastor"
+        if platillo[0]== 3:
+            mensajePlatillo="Quesadilla"
+        if platillo[0]== 4:
+            mensajePlatillo="Refresco"
+        print(f"    - Platillo: {mensajePlatillo} ({platillo[1]}) - ${platillo[2]:.2f}")
     print(f"Total: ${total:.2f}")
 
 
@@ -163,9 +181,18 @@ def Calculos_Comandas(platillo, cantidad_platillo):
 
 
 
-def comandas_abiertas():
+def comandas_abiertas(lista_temporal):
     #formateo y hacer que se muestre al registrar una comanda
-    print("")
+    contador=0
+    print("Comandas Abiertas:")
+    print(f"{"":-^65}")
+    print(f"{"Mesa":<9}{"Cliente":<16}{"Empleado":<17}Total ($)")
+    print(f"{"":-^65}")
+    for pocision in lista_temporal:
+        print(f"{pocision[0]:<9}{pocision[1]:<16}{pocision[2]:<17}{pocision[3]}")
+        contador+=1
+    print(f"{"":-^65}")
+    print(f"Total de Comandas Abiertas: {contador}")
 
 if __name__ == "__main__":
     # Ejemplo de inicialización de estructuras
