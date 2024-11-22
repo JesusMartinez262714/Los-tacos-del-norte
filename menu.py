@@ -19,19 +19,24 @@ la llave es el folio, el value:
     propina: propina dada por el usuario, se deja como 0 al inicio, o se puede agregar despues
     estado: indica el estado de la comanda (pagada o no pagada)
 """
+
+#Lista para agrupar todas los datos de la comanda en registrar comanda
+lista_Temporal_Comandas_Abiertas=[]
+
 #Comandas
+
 comandas = {
     1:{
-    "mesa": 3,
-    "cliente": "Juan Pérez",
-    "empleado": "María López",
-    "platillos": [
-        ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-        ("Refresco", 2, 30.00)
-    ],
-    "total": 90.00,
-    "propina":0,
-    "estado" : "No pagada" #Pueden ser pagadas o no pagadas
+        "mesa": 3,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "No pagada" #Pueden ser pagadas o no pagadas
 }
 
 }
@@ -45,21 +50,22 @@ El valor indica el estado actual de la mesa, con los posibles valores:
 "no disponible": La mesa está ocupada por una comanda activa.
 """
 mesas = {
-    1: "disponible",
-    2: "disponible",
-    3: "disponible",
-    4: "disponible",
-    5: "disponible",
-    6: "disponible",
-    7: "disponible",
-    8: "disponible",
-    9: "disponible",
-    10: "disponible",
-    11: "disponible",
-    12: "disponible",
-    13: "disponible",
-    14: "disponible",
-    15: "disponible"
+        1:"disponible",
+        2:"disponible",
+        3:"disponible",
+        4:"disponible",
+        5:"disponible",
+        6:"disponible",
+        7:"disponible",
+        8:"disponible",
+        9:"disponible",
+        10:"disponible",
+        11:"disponible",
+        12:"disponible",
+        13:"disponible",
+        14:"disponible",
+        15:"disponible"
+        
 }
 
 """
@@ -123,7 +129,8 @@ propinas_empleados = {
     102: 35.00   # Pedro Martínez
 }
 
-
+#ID
+folio=1
 # Función de menu
 
 def menu_principal():
@@ -154,7 +161,7 @@ def menu_principal():
         
         if opcion == 1:
             # registrar_comanda(comandas, mesas, empleados, platillos)
-            rc.crear_comanda(comandas,mesas,empleados,platillos)
+            rc.crear_comanda(comandas,mesas,empleados,platillos,folio,lista_Temporal_Comandas_Abiertas)
         elif opcion == 2:
             # actualizar_comanda(comandas, platillos)
              print("Opcion 2")

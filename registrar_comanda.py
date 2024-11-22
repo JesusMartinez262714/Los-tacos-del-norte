@@ -4,8 +4,7 @@ Objetivo:
 El objetivo del programa es gestionar comandas en un restaurante. Esto incluye validar la disponibilidad de mesas, 
 registrar los pedidos de clientes, asignar empleados a comandas, calcular costos y mostrar detalles de las comandas.
 """
-lista_Temporal_Comandas_Abiertas=[]
-folio=0
+
 
 def validar_mesa(mesas, num_mesas) -> bool:
     """
@@ -56,7 +55,7 @@ def validar_empleado(empleados) -> int:
             print("Empleado no válido, intente nuevamente")
 
 
-def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict):
+def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, comandas: dict, folio, lista_Temporal_Comandas_Abiertas):
     """
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
@@ -86,7 +85,6 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
     imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
-    folio += 1
     mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total,folio)
 
     continuar = input("Desea registrar esta comanda? s/n ").lower()
@@ -94,7 +92,7 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
         mesas[num_mesas] = "No disponible"
         
         print("Comanda registrada correctamente")
-        Comandas[folio] = {
+        comandas[folio] = {
             "mesa": num_mesas,
             "empleado": empleado,
             "platillos": lista_platillos,
@@ -102,8 +100,9 @@ def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, Comandas: dict
         }
         lista_Temporal_Comandas_Abiertas.append([num_mesas,nombre_cliente,empleado,total])
         comandas_abiertas(lista_Temporal_Comandas_Abiertas)
-    else:
-        folio-=1
+        folio+=1
+    return folio
+   
 
     
 
@@ -196,7 +195,7 @@ def comandas_abiertas(lista_Temporal_Comandas_Abiertas):
         contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")
-
+"""
 if __name__ == "__main__":
     # Ejemplo de inicialización de estructuras
     mesas = {
@@ -249,6 +248,7 @@ if __name__ == "__main__":
     (10, "Flautas (3 piezas)", 30.00)
 )
     crear_comanda(mesas, empleados, Comandas, platillos)
+"""
 """
 if __name__ == "__main__":
     # Ejemplo de inicialización de estructuras
