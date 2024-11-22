@@ -33,8 +33,14 @@ def imprimirPlatillos():
     print(f"{"":-^24}")
     print("1.-Tacos de asada - $20")
     print("2.-Tacos de pastor - $18")
-    print("3.- Quesadillas -  $25")
+    print("3.-Quesadillas -  $25")
     print("4.-Refresco - $15")
+    print("5.-Burrito de Asada - $40")
+    print("6.-Burrito de Pastor - $38")
+    print("7.-Torta de Asada -  $45")
+    print("8.-Torta de Pastor - $43")
+    print("9.-Agua Fresca (1L) -  $20")
+    print("10.-Flautas (3 piezas) - $30")
 
 
 def validar_empleado(empleados) -> int:
@@ -158,6 +164,18 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
             mensajePlatillo="Quesadilla"
         if platillo[0]== 4:
             mensajePlatillo="Refresco"
+        if platillo[0]== 5:
+            mensajePlatillo="Burrito de Asada"
+        if platillo[0]== 6:
+            mensajePlatillo="Burrito de Pastor"
+        if platillo[0]== 7:
+            mensajePlatillo="Torta de Asada"
+        if platillo[0]== 8:
+            mensajePlatillo="Torta de Pastor"
+        if platillo[0]== 9:
+            mensajePlatillo="Agua Fresca (1L)"
+        if platillo[0]== 10:
+            mensajePlatillo="Flautas (3 piezas)"
         print(f"    - Platillo: {mensajePlatillo} ({platillo[1]}) - ${platillo[2]:.2f}")
     print(f"Total: ${total:.2f}")
 
@@ -173,7 +191,7 @@ def Calculos_Comandas(platillo, cantidad_platillo):
     Retorna:
     - tuple: Costo por platillo y subtotal calculado.
     """
-    costo = cantidad_platillo * 20 if platillo == 1 else cantidad_platillo * 18 if platillo == 2 else cantidad_platillo * 25 if platillo == 3 else cantidad_platillo * 15 if platillo == 4 else 0
+    costo = cantidad_platillo * 20 if platillo == 1 else cantidad_platillo * 18 if platillo == 2 else cantidad_platillo * 25 if platillo == 3 else cantidad_platillo * 15 if platillo == 4 else cantidad_platillo * 40 if platillo == 5 else cantidad_platillo * 38 if platillo == 6 else cantidad_platillo * 45 if platillo == 7 else cantidad_platillo * 43 if platillo == 8 else cantidad_platillo * 20 if platillo == 9 else cantidad_platillo * 30 if platillo == 10 else 0
     subtotal = 0
     subtotal += costo
     return costo, subtotal
@@ -194,61 +212,7 @@ def comandas_abiertas(lista_Temporal_Comandas_Abiertas):
         contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")
-"""
-if __name__ == "__main__":
-    # Ejemplo de inicialización de estructuras
-    mesas = {
-    1: "disponible",
-    2: "disponible",
-    3: "disponible",
-    4: "disponible",
-    5: "disponible",
-    6: "disponible",
-    7: "disponible",
-    8: "disponible"
-}
-    Comandas = {
-    1:{
-    "mesa": 3,
-    "cliente": "Juan Pérez",
-    "empleado": "María López",
-    "platillos": [
-        ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-        ("Refresco", 2, 30.00)
-    ],
-    "total": 90.00,
-    "propina":0,
-    "estado" : "No pagada" #Pueden ser pagadas o no pagadas
-}
 
-}
-    empleados = {
-    101: {
-        "nombre": "María López",
-        "telefono": "6441234567",
-        "estado": "activo"
-    },
-    102: {
-        "nombre": "Pedro Martínez",
-        "telefono": "6449876543",
-        "estado": "inactivo"
-    }
-}
-    platillos = (
-    (1, "Tacos de Asada", 20.00),
-    (2, "Tacos de Pastor", 18.00),
-    (3, "Quesadilla", 25.00),
-    (4, "Refresco", 15.00),
-    (5, "Burrito de Asada", 40.00),
-    (6, "Burrito de Pastor", 38.00),
-    (7, "Torta de Asada", 45.00),
-    (8, "Torta de Pastor", 43.00),
-    (9, "Agua Fresca (1L)", 20.00),
-    (10, "Flautas (3 piezas)", 30.00)
-)
-    crear_comanda(mesas, empleados, Comandas, platillos)
-"""
-"""
 if __name__ == "__main__":
     # Ejemplo de inicialización de estructuras
     listaPlatillos = []
@@ -256,8 +220,13 @@ if __name__ == "__main__":
         ("tacos de asada", 20),
         ("tacos de pastor", 18),
         ("quesadillas", 25),
-        ("Refresco", 15)
+        ("Refresco", 15),
+        ("Burrito de Asada", 40),
+        ("Burrito de Pastor", 38),
+        ("Torta de Asada", 45),
+        ("Torta de Pastor", 43),
+        ("Agua Fresca (1L)", 20), 
+        ("Flautas (3 piezas)", 30)
     )
 
     registrar_platillos(listaPlatillos, platillos)
-"""
