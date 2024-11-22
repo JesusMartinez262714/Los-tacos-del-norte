@@ -117,7 +117,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
         if platillo - 1 in range(len(platillos)):
             cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
             if cantidad_platillo >= 1:
-                costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo)
+                costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append([platillo, cantidad_platillo, costo])
                 total += subtotal
         else:
@@ -169,7 +169,7 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
     print(f"Total: ${total:.2f}")
 
 
-def Calculos_Comandas(platillo, cantidad_platillo):
+def Calculos_Comandas(platillo, cantidad_platillo,platillos):
     """
     Calcula el costo y subtotal de un platillo seleccionado.
 
@@ -180,7 +180,7 @@ def Calculos_Comandas(platillo, cantidad_platillo):
     Retorna:
     - tuple: Costo por platillo y subtotal calculado.
     """
-    costo = cantidad_platillo * 20 if platillo == 1 else cantidad_platillo * 18 if platillo == 2 else cantidad_platillo * 25 if platillo == 3 else cantidad_platillo * 15 if platillo == 4 else cantidad_platillo * 40 if platillo == 5 else cantidad_platillo * 38 if platillo == 6 else cantidad_platillo * 45 if platillo == 7 else cantidad_platillo * 43 if platillo == 8 else cantidad_platillo * 20 if platillo == 9 else cantidad_platillo * 30 if platillo == 10 else 0
+    costo = cantidad_platillo * platillos[0][2] if platillo == 1 else cantidad_platillo * platillos[1][2] if platillo == 2 else cantidad_platillo * platillos[2][2] if platillo == 3 else cantidad_platillo * platillos[3][2] if platillo == 4 else cantidad_platillo * platillos[4][2] if platillo == 5 else cantidad_platillo * platillos[5][2] if platillo == 6 else cantidad_platillo * platillos[6][2] if platillo == 7 else cantidad_platillo * platillos[7][2] if platillo == 8 else cantidad_platillo * platillos[8][2] if platillo == 9 else cantidad_platillo * platillos[9][2] if platillo == 10 else 0
     subtotal = 0
     subtotal += costo
     return costo, subtotal
