@@ -20,6 +20,7 @@ def agregar_producto():
     print("Agregar producto")
     u.imprimirPlatillos()
     platillo=u.validar_numerico("Ingrese el producto que desea agregar: ")
+    
 def eliminar_producto():
     print("Eliminar producto")
 
