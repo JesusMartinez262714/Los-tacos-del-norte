@@ -17,19 +17,24 @@ def verificar_comanda(comandas:dict,platillos:tuple):
         print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
         return 
     
-def agregar_producto(platillos,verificar):
+def agregar_producto(platillos, verificar):
     print("Agregar producto")
     u.imprimirPlatillos()
-    platillo=0
-    cantidad=0
+    
     while True:
         platillo = u.validar_numerico("Ingrese el producto que desea agregar: ")
         
         # Verificar que el platillo sea válido
-        if platillo not in platillos:
+        platillo_valido = False
+        for p in platillos:
+            if platillo == p[0]:  # Comparar con el ID del platillo
+                platillo_valido = True
+                break
+        
+        if not platillo_valido:
             print("Opción no válida. Seleccione un platillo del menú.")
             continue  # Sigue con la siguiente iteración del bucle principal
-    
+        
         while True:
             cantidad = u.validar_numerico("Ingrese la cantidad que desea agregar: ")
             
@@ -41,11 +46,24 @@ def agregar_producto(platillos,verificar):
     
         for datos in comandas.values():
             if verificar == datos['mesa']:
-                for comidas in datos["platillos"]:
-                    if platillo == comidas[0]:  # Si el nombre del platillo coincide
-                        comidas = (comidas[0], comidas[1] + cantidad, comidas[2])  # Sumar la cantidad existente
-                        print("producto agregado exitosamente")
+                # Buscar el platillo en la lista de platillos de la comanda
+                platillo_encontrado = False
+                for i in range(len(datos["platillos"])):
+                    if platillo == datos["platillos"][i][0]:  # Si el nombre del platillo coincide
+                        # Crear una nueva tupla con la cantidad actualizada
+                        datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2])
+                        print("Producto agregado exitosamente")
+                        platillo_encontrado = True
                         break  # Terminar el bucle si se actualizó la cantidad
+                
+                if not platillo_encontrado:
+                    # Si no se encontró el platillo, lo agregamos como nuevo
+                    for p in platillos:
+                        if platillo == p[0]:  # Encontrar el platillo en el menú
+                            datos["platillos"].append((p[1], cantidad, p[2]))  # Agregarlo a la lista
+                            print("Nuevo producto agregado exitosamente")
+                            break
+                break  # Terminar el bucle si se ha actualizado o agregado el platillo
 
         u.mostrar_resumen(comandas,verificar)
         return
@@ -120,4 +138,18 @@ if __name__ == "__main__":
         "estado" : "No pagada" #Pueden ser pagadas o no pagadas
     }
     }
-    verificar_comanda(comandas)
+
+    platillos = (
+    (1, "Tacos de Asada", 20.00),
+    (2, "Tacos de Pastor", 18.00),
+    (3, "Quesadilla", 25.00),
+    (4, "Refresco", 15.00),
+    (5, "Burrito de Asada", 40.00),
+    (6, "Burrito de Pastor", 38.00),
+    (7, "Torta de Asada", 45.00),
+    (8, "Torta de Pastor", 43.00),
+    (9, "Agua Fresca (1L)", 20.00),
+    (10, "Flautas (3 piezas)", 30.00)
+)
+
+    agregar_producto(comandas,platillos)
