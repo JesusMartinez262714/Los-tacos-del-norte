@@ -80,10 +80,16 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     if continuar == "s":
         mesas[num_mesas] = "No disponible"
         print("Comanda registrada correctamente")
+        if folio in comandas:
+            folio+=1
+        
         comandas[folio] = {
             "mesa": num_mesas,
+            "cliente":nombre_cliente,
             "empleado": empleado,
             "platillos": lista_platillos,
+            "total":total,
+            "propina":0,
             "estado": "No pagada"
         }
        
@@ -192,7 +198,7 @@ def comandas_abiertas(comandas:dict):
     print(f"{"":-^65}")
     for folio,datos in comandas.items():
         if datos["estado"] == "No pagada":
-            print(f"{datos['mesa']:<9}{datos['clientes']:<16}{datos['empleado']:<17}{datos['total']}")
+            print(f"{datos['mesa']:<9}{datos['cliente']:<16}{datos['empleado']:<17}{datos['total']}")
             contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")

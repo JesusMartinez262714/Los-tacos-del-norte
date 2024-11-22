@@ -4,6 +4,7 @@ Objetivo:
 
 """
 import registrar_comanda as rc
+import utilerias as u
 # Estructuras iniciales
 """
 Descripción de la comanda, es un diccionario de diccionarios, donde:
@@ -151,12 +152,7 @@ def menu_principal():
         print("--------------------------------------")
 
         # Validar que la opción ingresada sea válida
-        opcion = input("Seleccione una opción: ").strip()
-        if not opcion.isdigit():
-            print("Error: Ingrese un número válido.")
-            continue
-
-        opcion = int(opcion)
+        opcion = u.validar_numerico("Seleccione una opción: ")
         
         if opcion == 1:
             # registrar_comanda(comandas, mesas, empleados, platillos)

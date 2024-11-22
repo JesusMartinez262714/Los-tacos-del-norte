@@ -29,7 +29,7 @@ def validar_numerico(mensaje: str) -> int:
     - int: Valor numérico validado.
     """
     while True:
-        entrada = input(mensaje)
+        entrada = input(mensaje).strip()
         if entrada.isdigit():  # Validamos que sea un número
             return int(entrada)  # Retorna el valor numérico como entero
         else:
