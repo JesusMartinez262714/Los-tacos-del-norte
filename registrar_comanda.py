@@ -38,7 +38,7 @@ def validar_empleado(empleados) -> int:
     while True:
         empleado = u.validar_numerico("Ingrese el id del empleado: ")
         if empleado in empleados:
-            return empleado
+            return empleados[empleado]["nombre"]
         else:
             print("Empleado no válido, intente nuevamente")
 
