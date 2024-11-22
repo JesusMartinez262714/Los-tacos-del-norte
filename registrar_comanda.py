@@ -17,6 +17,7 @@ def validar_mesa(mesas, num_mesas) -> bool:
     Retorna:
     - bool: True si la mesa está disponible, False en caso contrario.
     """
+
     if mesas[num_mesas] == "Disponible":
         return True
     else:
@@ -55,7 +56,7 @@ def validar_empleado(empleados) -> int:
             print("Empleado no válido, intente nuevamente")
 
 
-def crear_comanda(mesas: dict, platillos: tuple, empleados: dict, comandas: dict, folio, lista_Temporal_Comandas_Abiertas):
+def crear_comanda(comandas,mesas,empleados,platillos,folio,lista_Temporal_Comandas_Abiertas):
     """
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
