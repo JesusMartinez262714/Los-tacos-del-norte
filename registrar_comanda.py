@@ -4,7 +4,8 @@ Objetivo:
 El objetivo del programa es gestionar comandas en un restaurante. Esto incluye validar la disponibilidad de mesas, 
 registrar los pedidos de clientes, asignar empleados a comandas, calcular costos y mostrar detalles de las comandas.
 """
-
+import utilerias as u
+folio=1
 
 def validar_mesa(mesas, num_mesas) -> bool:
     """
@@ -24,25 +25,6 @@ def validar_mesa(mesas, num_mesas) -> bool:
     
 
 
-def imprimirPlatillos():
-    """
-    Muestra el menú de platillos disponibles, incluyendo sus precios.
-    """
-    #formateo
-    print("Menu platillos: ")
-    print(f"{"":-^24}")
-    print("1.-Tacos de asada - $20")
-    print("2.-Tacos de pastor - $18")
-    print("3.-Quesadillas -  $25")
-    print("4.-Refresco - $15")
-    print("5.-Burrito de Asada - $40")
-    print("6.-Burrito de Pastor - $38")
-    print("7.-Torta de Asada -  $45")
-    print("8.-Torta de Pastor - $43")
-    print("9.-Agua Fresca (1L) -  $20")
-    print("10.-Flautas (3 piezas) - $30")
-
-
 def validar_empleado(empleados) -> int:
     """
     Valida si un empleado se encuentra registrado en el sistema.
@@ -54,14 +36,14 @@ def validar_empleado(empleados) -> int:
     - int: ID del empleado válido.
     """
     while True:
-        empleado = int(input("Ingrese el id del empleado: "))
+        empleado = u.validar_numerico("Ingrese el id del empleado: ")
         if empleado in empleados:
             return empleado
         else:
             print("Empleado no válido, intente nuevamente")
 
 
-def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple,folio:int,lista_Temporal_Comandas_Abiertas:list):
+def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     """
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
@@ -72,8 +54,9 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple,foli
     - Comandas (dict): Diccionario que almacena las comandas registradas.
     - folio (int): Número único que identifica cada comanda.
     """
+    global folio
     while True: 
-        num_mesas = int(input("Ingrese el número de la mesa: "))
+        num_mesas = u.validar_numerico("Ingrese el número de la mesa: ")
         if num_mesas<0:
             break
         if not validar_mesa(mesas, num_mesas):
@@ -88,10 +71,10 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple,foli
         nombre_cliente = "Cliente anónimo"
     
     empleado = validar_empleado(empleados)
-    imprimirPlatillos()
+    u.imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
-    mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total,folio)
+    mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
 
     continuar = input("Desea registrar esta comanda? s/n ").lower()
     if continuar == "s":
@@ -101,10 +84,10 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple,foli
             "mesa": num_mesas,
             "empleado": empleado,
             "platillos": lista_platillos,
-            "estado": "No disponible"
+            "estado": "No pagada"
         }
-        lista_Temporal_Comandas_Abiertas.append([num_mesas,nombre_cliente,empleado,total])
-        comandas_abiertas(lista_Temporal_Comandas_Abiertas)
+       
+        comandas_abiertas(comandas)
         folio+=1
     return folio
    
@@ -124,9 +107,9 @@ def registrar_platillos(lista_platillos, platillos) -> float:
     """
     total = 0.0
     while True:
-        platillo = int(input("Platillo: "))
+        platillo = u.validar_numerico("Platillo: ")
         if platillo - 1 in range(len(platillos)):
-            cantidad_platillo = int(input("Ingrese la cantidad del platillo: "))
+            cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
             if cantidad_platillo >= 1:
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo)
                 lista_platillos.append([platillo, cantidad_platillo, costo])
@@ -138,7 +121,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             break
     return total
 
-def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, num_mesas: int, total: float, folio: int):
+def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, num_mesas: int, total: float):
     """
     Muestra los detalles de una comanda registrada, incluyendo el cliente, mesa, empleado, platillos y total.
 
@@ -200,20 +183,22 @@ def Calculos_Comandas(platillo, cantidad_platillo):
 
 
 
-def comandas_abiertas(lista_Temporal_Comandas_Abiertas):
+def comandas_abiertas(comandas:dict):
     #formateo y hacer que se muestre al registrar una comanda
     contador=0
     print("Comandas Abiertas:")
     print(f"{"":-^65}")
     print(f"{"Mesa":<9}{"Cliente":<16}{"Empleado":<17}Total ($)")
     print(f"{"":-^65}")
-    for pocision in lista_Temporal_Comandas_Abiertas:
-        print(f"{pocision[0]:<9}{pocision[1]:<16}{pocision[2]:<17}{pocision[3]}")
-        contador+=1
+    for folio,datos in comandas.items():
+        if datos["estado"] == "No pagada":
+            print(f"{datos['mesa']:<9}{datos['clientes']:<16}{datos['empleado']:<17}{datos['total']}")
+            contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")
 
 if __name__ == "__main__":
+    """
     # Ejemplo de inicialización de estructuras
     listaPlatillos = []
     platillos = (
@@ -230,3 +215,44 @@ if __name__ == "__main__":
     )
 
     registrar_platillos(listaPlatillos, platillos)
+    """
+    comandas = {
+    1:{
+        "mesa": 3,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "No pagada" #Pueden ser pagadas o no pagadas
+    },
+    2:{
+        "mesa": 3,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "pagada" #Pueden ser pagadas o no pagadas
+    },
+    3:{
+        "mesa": 3,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "pagada" #Pueden ser pagadas o no pagadas
+    }
+    }
+
+    comandas_abiertas(comandas)
