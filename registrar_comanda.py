@@ -80,6 +80,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     if continuar == "s":
         mesas[num_mesas] = "No disponible"
         print("Comanda registrada correctamente")
+        folio+=1
         if folio in comandas:
             folio+=1
         
@@ -94,8 +95,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         }
        
         u.comandas_abiertas(comandas)
-        folio+=1
-    return folio
+        
    
 
     
