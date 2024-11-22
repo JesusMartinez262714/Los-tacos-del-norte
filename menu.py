@@ -4,6 +4,7 @@ Objetivo:
 
 """
 import registrar_comanda as rc
+import actualizar_comanda as ac
 import utilerias as u
 # Estructuras iniciales
 """
@@ -159,7 +160,7 @@ def menu_principal():
             rc.crear_comanda(comandas,mesas,empleados,platillos)
         elif opcion == 2:
             # actualizar_comanda(comandas, platillos)
-             print("Opcion 2")
+            ac.verificar_comanda(comandas,platillos)
         elif opcion == 3:
              print("Opcion 3")
             # consultar_comandas_abiertas(comandas)
