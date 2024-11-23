@@ -45,7 +45,7 @@ def agregar_producto(platillos, verificar,comandas):
     u.imprimirPlatillos()  # Esto parece ser una función que imprime los platillos disponibles
     while True:
         platillo = u.validar_numerico("Ingrese el producto que desea agregar: ")
-        platillo=validar_mismo_platillo(platillo)
+        
         # Verificar que el platillo sea válido
         platillo_valido = False
         for posicion in platillos:  # Itera sobre las tuplas en platillos
