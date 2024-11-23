@@ -28,37 +28,6 @@ def verificar_comanda(comandas: dict, platillos: tuple):
         print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")  # Si no se encuentra la mesa
         return 
 
-# Función para validar el platillo y la cantidad a agregar
-def platillo_valido():
-    """
-    Solicita al usuario la selección de un platillo y su cantidad.
-
-    Retorna:
-    - platillo (int): ID del platillo seleccionado.
-    - cantidad (int): Cantidad del platillo seleccionada.
-    """
-    while True:
-        platillo = u.validar_numerico("Ingrese el producto que desea agregar: ")  # Solicita el ID del platillo
-        platillo_valido = False
-        for posicion in platillos:  # Itera sobre las tuplas de platillos
-            if platillo == posicion[0]:  # Si el ID del platillo coincide
-                platillo_valido = True
-                break
-        
-        if not platillo_valido:  # Si el platillo no es válido
-            print("Opción no válida. Seleccione un platillo del menú.")
-            continue  # Vuelve a solicitar la selección
-
-        while True:
-            cantidad = u.validar_numerico("Ingrese la cantidad que desea agregar: ")  # Solicita la cantidad de platillos
-
-            if cantidad > 0:  # Si la cantidad es válida
-                break
-            else:
-                print("La cantidad debe ser mayor a 0. Intente de nuevo.")  # Si la cantidad no es válida
-
-        return platillo, cantidad  # Devuelve el ID del platillo y la cantidad
-    
 
 
 
@@ -75,47 +44,68 @@ def agregar_producto(platillos, verificar, comandas):
     Realiza la actualización en la comanda, ya sea agregando un producto nuevo o actualizando la cantidad de un platillo existente.
     """
     print("Agregar producto")
-    u.imprimirPlatillos()  # Imprime el menú de platillos
+    u.imprimirPlatillos()
     
-    platillo, cantidad = platillo_valido()  # Obtiene el platillo y la cantidad seleccionada
+    while True:
+        platillo = u.validar_numerico("Ingrese el producto que desea agregar: ")
+        
+        # Verificar que el platillo sea válido
+        platillo_valido = False
+        for posicion in platillos:  # Itera sobre las tuplas en platillos
+            if platillo == posicion[0]:  # Comparar con el ID del platillo
+                platillo_valido = True
+                break
+        
+        if not platillo_valido:
+            print("Opción no válida. Seleccione un platillo del menú.")
+            continue  # Sigue con la siguiente iteración del bucle principal
+        
+        while True:
+            cantidad = u.validar_numerico("Ingrese la cantidad que desea agregar: ")
+            
+            # Verificar que la cantidad sea válida
+            if cantidad > 0:
+                break  # Si la cantidad es válida, salimos del bucle de cantidad
+            else:
+                print("La cantidad debe ser mayor a 0. Intente de nuevo.")
 
-    for datos in comandas.values():  # Itera sobre las comandas abiertas
-        folio = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio de la coma
-        comanda = comandas.get(folio)  # Obtiene la comanda por folio
+        for datos in comandas.values():  # Itera sobre las comandas abiertas
+            folio = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio de la coma
+            comanda = comandas.get(folio)  # Obtiene la comanda por folio
 
-        if comanda:  # Verifica si la comanda existe
-            platillo_encontrado = False
-            # Busca si el platillo ya está en la comanda
-            for i in range(len(datos["platillos"])):
-                # Cálculo del subtotal basado en el platillo seleccionado
-                subtotal = cantidad * platillos[0][2] if platillo == 1 else cantidad * platillos[1][2] if platillo == 2 else cantidad * platillos[2][2] if platillo == 3 else cantidad* platillos[3][2] if platillo == 4 else cantidad * platillos[4][2] if platillo == 5 else cantidad * platillos[5][2] if platillo == 6 else cantidad * platillos[6][2] if platillo == 7 else cantidad * platillos[7][2] if platillo == 8 else cantidad * platillos[8][2] if platillo == 9 else cantidad * platillos[9][2] if platillo == 10 else 0
-                
-                platillo = u.validar_mismo_platillo(platillo)  # Valida si el platillo existe en el sistema
+            if comanda:  # Verifica si la comanda existe
+                platillo_encontrado = False
+                # Busca si el platillo ya está en la comanda
+                for i in range(len(datos["platillos"])):
+                    # Cálculo del subtotal basado en el platillo seleccionado
+                    subtotal = cantidad * platillos[0][2] if platillo == 1 else cantidad * platillos[1][2] if platillo == 2 else cantidad * platillos[2][2] if platillo == 3 else cantidad* platillos[3][2] if platillo == 4 else cantidad * platillos[4][2] if platillo == 5 else cantidad * platillos[5][2] if platillo == 6 else cantidad * platillos[6][2] if platillo == 7 else cantidad * platillos[7][2] if platillo == 8 else cantidad * platillos[8][2] if platillo == 9 else cantidad * platillos[9][2] if platillo == 10 else 0
+                    
+                    platillo = u.validar_mismo_platillo(platillo)  # Valida si el platillo existe en el sistema
 
-                if platillo == datos["platillos"][i][0]:  # Si se encuentra el platillo
-                    # Si el platillo ya existe, se actualiza su cantidad y subtotal
-                    datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2] + subtotal)
-                    for buscar in comandas[folio]['platillos']:
-                        if buscar == platillo:
-                            comandas[folio]['platillos'][buscar] = datos["platillos"][i]  # Actualiza el platillo en la comanda
-                    u.calcular_total(folio, comandas)  # Recalcula el total de la comanda
-                    u.mostrar_resumen(comandas, folio)  # Muestra el resumen actualizado de la comanda
-                    print("Producto agregado exitosamente.")
-                    platillo_encontrado = True
-                    break  # Sale del ciclo si se actualizó el platillo
+                    if platillo == datos["platillos"][i][0]:  # Si se encuentra el platillo
+                        # Si el platillo ya existe, se actualiza su cantidad y subtotal
+                        datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2] + subtotal)
+                        for buscar in comandas[folio]['platillos']:
+                            if buscar == platillo:
+                                comandas[folio]['platillos'][buscar] = datos["platillos"][i]  # Actualiza el platillo en la comanda
+                        u.calcular_total(folio, comandas)  # Recalcula el total de la comanda
+                        u.mostrar_resumen(comandas, folio)  # Muestra el resumen actualizado de la comanda
+                        print("Producto agregado exitosamente.")
+                        platillo_encontrado = True
+                        break  # Sale del ciclo si se actualizó el platillo
 
-            if not platillo_encontrado:  # Si el platillo no fue encontrado
-                # Si el platillo no existe, se agrega como un nuevo producto
-                for posicion in platillos:
-                    if platillo == posicion[0]:  # Busca el platillo en el menú
-                        datos["platillos"].append((posicion[1], cantidad, posicion[2]))  # Agrega el platillo nuevo
-                        print("Nuevo producto agregado exitosamente.")
-                        verificar = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio actualizado
-                        u.mostrar_resumen(comandas, verificar)  # Muestra el resumen actualizado
-                        break
-            break  # Sale del ciclo de las comandas
+                if not platillo_encontrado:  # Si el platillo no fue encontrado
+                    # Si el platillo no existe, se agrega como un nuevo producto
+                    for posicion in platillos:
+                        if platillo == posicion[0]:  # Busca el platillo en el menú
+                            datos["platillos"].append((posicion[1], cantidad, posicion[2]))  # Agrega el platillo nuevo
+                            print("Nuevo producto agregado exitosamente.")
+                            verificar = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio actualizado
+                            u.mostrar_resumen(comandas, verificar)  # Muestra el resumen actualizado
+                            break
+                break  # Sale del ciclo de las comandas
 
-        return  # Finaliza la función de agregar producto
+        verificar_comanda(comandas,platillos)  # Finaliza la función de agregar producto
 
 
 def eliminar_producto():
