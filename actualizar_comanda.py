@@ -72,8 +72,8 @@ def agregar_producto(platillos, verificar,comandas):
                 platillo_encontrado = False
                 # Buscar si el platillo ya existe en la comanda
                 for i in range(len(datos["platillos"])):
-                    platillo=validar_mismo_platillo(platillo)
-                    if platillo == datos["platillos"][i][0]:
+                    nombre_platillo=validar_mismo_platillo(platillo)
+                    if nombre_platillo == datos["platillos"][i][0]:
                         # Comparar por nombre del platillo
                         # Si el platillo existe, actualizar la cantidad
                         datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2])
