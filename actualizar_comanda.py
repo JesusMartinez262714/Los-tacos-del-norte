@@ -25,6 +25,7 @@ def validar_mismo_platillo(platillo):
         platillo="Agua Fresca (1L)"
     if platillo==10:
         platillo="Flautas (3 piezas)"
+    return platillo
 
 def verificar_comanda(comandas: dict, platillos: tuple):
     u.comandas_abiertas(comandas)
@@ -71,10 +72,12 @@ def agregar_producto(platillos, verificar,comandas):
                 platillo_encontrado = False
                 # Buscar si el platillo ya existe en la comanda
                 for i in range(len(datos["platillos"])):
+                    platillo=validar_mismo_platillo(platillo)
                     if platillo == datos["platillos"][i][0]:
-                        print("entro")  # Comparar por nombre del platillo
+                        # Comparar por nombre del platillo
                         # Si el platillo existe, actualizar la cantidad
                         datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2])
+                        print(datos["platillos"][i])
                         print("Producto agregado exitosamente.")
                         platillo_encontrado = True
                         break  # Salir del ciclo, ya que el platillo fue encontrado y actualizado
