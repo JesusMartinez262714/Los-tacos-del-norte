@@ -77,6 +77,7 @@ def agregar_producto(platillos, verificar, comandas):
 
     for datos in comandas.values():  # Itera sobre las comandas abiertas
         folio = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio de la comanda
+        print(folio)
         comanda = comandas.get(folio)  # Obtiene la comanda por folio
 
         if comanda:  # Verifica si la comanda existe
