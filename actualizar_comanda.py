@@ -1,3 +1,8 @@
+"""
+Desarrolladores:Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+
+"""
 import utilerias as u
 
 def verificar_comanda(comandas: dict, platillos: tuple):
