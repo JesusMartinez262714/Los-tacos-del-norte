@@ -18,9 +18,10 @@ def verificar_comanda(comandas: dict, platillos: tuple):
     """
     u.comandas_abiertas(comandas)  # Llama a la función para verificar las comandas abiertas
     verificar = u.validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")  # Solicita el número de mesa
+    folio = u.obtener_folio_por_mesa(comandas, verificar)
     for datos in comandas.values():  # Itera sobre las comandas abiertas
         if verificar == datos['mesa'] and datos['estado'] == "No pagada":  # Verifica que la mesa esté abierta y no pagada
-            u.mostrar_resumen(comandas, verificar)  # Muestra el resumen de la comanda
+            u.mostrar_resumen(comandas, folio)  # Muestra el resumen de la comanda
             menu_actualizaciones(platillos, verificar, comandas)  # Muestra el menú de actualizaciones
             break
     else:
@@ -79,7 +80,10 @@ def agregar_producto(platillos, verificar, comandas):
     platillo, cantidad = platillo_valido()  # Obtiene el platillo y la cantidad seleccionada
 
     for datos in comandas.values():  # Itera sobre las comandas abiertas
-        if verificar == datos['mesa']:  # Verifica si la comanda existe
+        folio = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio de la coma
+        comanda = comandas.get(folio)  # Obtiene la comanda por folio
+
+        if comanda:  # Verifica si la comanda existe
             platillo_encontrado = False
             # Busca si el platillo ya está en la comanda
             for i in range(len(datos["platillos"])):
