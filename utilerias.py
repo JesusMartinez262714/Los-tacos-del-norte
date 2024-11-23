@@ -60,3 +60,9 @@ def mostrar_resumen(comandas,folio):
         print(f"Empleado: {comandas[folio]['empleado']}")
         print(f"Platillos:{comandas[folio]['platillos']}")
         print(f"Total: ${comandas[folio]['total']}")
+
+def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
+    for folio, datos in comandas.items():
+        if datos['mesa'] == numero_mesa:
+            return folio  # Si encuentra la mesa, retorna el folio
+    return None
