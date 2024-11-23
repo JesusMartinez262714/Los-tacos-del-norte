@@ -26,7 +26,7 @@ def verificar_comanda(comandas: dict, platillos: tuple):
             break
     else:
         print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")  # Si no se encuentra la mesa
-        return 
+        return  
 
 
 
