@@ -66,3 +66,40 @@ def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
         if datos['mesa'] == numero_mesa:
             return folio  # Si encuentra la mesa, retorna el folio
     return None
+
+def validar_mismo_platillo(platillo):
+    if platillo==1:
+        platillo="Tacos de Asada"
+    if platillo==2:
+        platillo="Tacos de Pastor"
+    if platillo==3:
+        platillo="Quesadilla"
+    if platillo==4:
+        platillo="Refresco"
+    if platillo==5:
+        platillo="Burrito de Asada"
+    if platillo==6:
+        platillo="Burrito de Pastor"
+    if platillo==7:
+        platillo="Torta de Asada"
+    if platillo==8:
+        platillo="Torta de Pastor"
+    if platillo==9:
+        platillo="Agua Fresca (1L)"
+    if platillo==10:
+        platillo="Flautas (3 piezas)"
+    return platillo
+
+def calcular_total(folio, comandas):
+    comanda = comandas.get(folio)  # Obtener la comanda por su folio
+    if comanda:
+        total = 0
+        # Iterar sobre los platillos de la comanda
+        for platillo in comanda['platillos']:
+            total += platillo[2]  # Sumar el valor en la posición 2 de la tupla (el subtotal)
+        
+        # Actualizar el total de la comanda
+        comanda['total'] = total
+
+    else:
+        print("Comanda no encontrada.")

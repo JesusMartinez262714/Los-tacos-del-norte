@@ -118,7 +118,8 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
             if cantidad_platillo >= 1:
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
-                lista_platillos.append([platillo, cantidad_platillo, costo])
+                nombre_platillo=u.validar_mismo_platillo(platillo)
+                lista_platillos.append([nombre_platillo, cantidad_platillo, costo])
                 total += subtotal
         else:
             print("Ese platillo no existe")
@@ -145,27 +146,7 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
     print(f"Empleado: {empleado}")
     print("Platillos:")
     for platillo in lista_platillos:
-        if platillo[0]== 1:
-            mensajePlatillo="Tacos de asada"
-        if platillo[0]== 2:
-            mensajePlatillo="Tacos de pastor"
-        if platillo[0]== 3:
-            mensajePlatillo="Quesadilla"
-        if platillo[0]== 4:
-            mensajePlatillo="Refresco"
-        if platillo[0]== 5:
-            mensajePlatillo="Burrito de Asada"
-        if platillo[0]== 6:
-            mensajePlatillo="Burrito de Pastor"
-        if platillo[0]== 7:
-            mensajePlatillo="Torta de Asada"
-        if platillo[0]== 8:
-            mensajePlatillo="Torta de Pastor"
-        if platillo[0]== 9:
-            mensajePlatillo="Agua Fresca (1L)"
-        if platillo[0]== 10:
-            mensajePlatillo="Flautas (3 piezas)"
-        print(f"    - Platillo: {mensajePlatillo} ({platillo[1]}) - ${platillo[2]:.2f}")
+        print(f"    - Platillo: {platillo[0]} ({platillo[1]}) - ${platillo[2]:.2f}")
     print(f"Total: ${total:.2f}")
 
 
