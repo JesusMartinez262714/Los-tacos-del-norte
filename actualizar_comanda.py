@@ -57,6 +57,9 @@ def platillo_valido():
                 print("La cantidad debe ser mayor a 0. Intente de nuevo.")  # Si la cantidad no es válida
 
         return platillo, cantidad  # Devuelve el ID del platillo y la cantidad
+    
+
+
 
 # Función para agregar un producto a la comanda
 def agregar_producto(platillos, verificar, comandas):
@@ -76,11 +79,7 @@ def agregar_producto(platillos, verificar, comandas):
     platillo, cantidad = platillo_valido()  # Obtiene el platillo y la cantidad seleccionada
 
     for datos in comandas.values():  # Itera sobre las comandas abiertas
-        folio = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio de la comanda
-        print(folio)
-        comanda = comandas.get(folio)  # Obtiene la comanda por folio
-
-        if comanda:  # Verifica si la comanda existe
+        if verificar == datos['mesa']:  # Verifica si la comanda existe
             platillo_encontrado = False
             # Busca si el platillo ya está en la comanda
             for i in range(len(datos["platillos"])):
