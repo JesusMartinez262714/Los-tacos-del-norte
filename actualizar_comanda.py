@@ -4,6 +4,27 @@ Objetivo:
 
 """
 import utilerias as u
+def validar_mismo_platillo(platillo):
+    if platillo==1:
+        platillo="Tacos de Asada"
+    if platillo==2:
+        platillo="Tacos de Pastor"
+    if platillo==3:
+        platillo="Quesadilla"
+    if platillo==4:
+        platillo="Refresco"
+    if platillo==5:
+        platillo="Burrito de Asada"
+    if platillo==6:
+        platillo="Burrito de Pastor"
+    if platillo==7:
+        platillo="Torta de Asada"
+    if platillo==8:
+        platillo="Torta de Pastor"
+    if platillo==9:
+        platillo="Agua Fresca (1L)"
+    if platillo==10:
+        platillo="Flautas (3 piezas)"
 
 def verificar_comanda(comandas: dict, platillos: tuple):
     u.comandas_abiertas(comandas)
@@ -50,7 +71,8 @@ def agregar_producto(platillos, verificar,comandas):
                 platillo_encontrado = False
                 # Buscar si el platillo ya existe en la comanda
                 for i in range(len(datos["platillos"])):
-                    if platillo == datos["platillos"][i][0]:  # Comparar por nombre del platillo
+                    if platillo == datos["platillos"][i][0]:
+                        print("entro")  # Comparar por nombre del platillo
                         # Si el platillo existe, actualizar la cantidad
                         datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2])
                         print("Producto agregado exitosamente.")
