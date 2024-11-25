@@ -166,8 +166,47 @@ def eliminar_producto(platillos:tuple,verificar):
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
    
-   
+def agregar_producto(platillos,verificar):
+    folio = u.obtener_folio_por_mesa(comandas, verificar)
+    
+    if folio in comandas:
+        print(f"\n{"productos de la comanda ":->25}{folio}:")
+        contador = 1
+        for platillo in comandas[folio]['platillos']:
+            print(f"{contador}. {platillo[0]} ({platillo[1]})")
+            contador += 1
+        
+        while True:
+            producto = u.validar_numerico("Ingrese el número del producto que desea agregar: ")
+            if 1 <= producto <= len(comandas[folio]['platillos']):
+                cant_producto = comandas[folio]['platillos'][producto - 1][1]
+                nombre_producto = comandas[folio]['platillos'][producto - 1][0]
+                id_producto=u.id_por_nombre_platillo(platillos,nombre_producto)
 
+                print(f"Producto: {nombre_producto}")
+                print(f"Cantidad disponible: {cant_producto}")
+
+                cantidad = input(f"Ingrese cuántos {nombre_producto} desea agregar: ")
+                if cantidad.isdigit():
+                    cantidad = int(cantidad)
+                    if cantidad < 0:
+                        print(f"La cantidad debe ser mayor a 0. Intente de nuevo.")
+                    else:
+                            nuevo_cant = cant_producto + cantidad
+                            if nuevo_cant > 0:
+                                comandas[folio]['platillos'][producto - 1] = (nombre_producto, nuevo_cant, nuevo_cant * platillos[id_producto - 1][2])
+                                print(f"{cantidad} de {nombre_producto} ha sido eliminado.")
+                            else:
+                                del comandas[folio]['platillos'][producto - 1]
+                                print(f"{nombre_producto} ha sido completamente eliminado.")
+                else:
+                    print("Entrada no válida. Ingrese un número.")
+                
+                u.calcular_total(folio, comandas)
+                u.mostrar_resumen(comandas, folio)
+                return
+            else:
+                print("Opción no válida. Seleccione un producto de la lista.")
 # Función que muestra el menú de actualizaciones
 def menu_actualizaciones(platillos:tuple, verificar: int, comandas:dict) -> None:
     """
@@ -194,7 +233,7 @@ def menu_actualizaciones(platillos:tuple, verificar: int, comandas:dict) -> None
     elif opcion == 2:
         eliminar_producto(platillos,verificar)
     elif opcion == 3:
-        print("Función no implementada aún.")
+        agregar_producto(platillos,verificar)
 
 # Bloque principal de ejecución
 if __name__ == "__main__":
