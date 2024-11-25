@@ -118,4 +118,26 @@ def calcular_total(folio, comandas):
     else:
         print("Comanda no encontrada.")
 
-        
+def verificar_comanda(comandas:dict, platillos:tuple):
+    """
+    Verifica si una comanda está abierta para la mesa especificada.
+
+    Parámetros:
+    - comandas dict: Diccionario con las comandas abiertas.
+    - platillos Tuple: Tupla que contiene los platillos disponibles.
+
+    Retorna:
+     El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
+    """
+    comandas_abiertas(comandas)
+    verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
+    folio = obtener_folio_por_mesa(comandas, verificar)
+    for datos in comandas.values():
+        if verificar == datos['mesa'] and datos['estado'] == "No pagada":
+            mostrar_resumen(comandas, folio)
+            break
+    else:
+        print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
+        return
+    return folio
+

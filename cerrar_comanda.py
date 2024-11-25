@@ -1,4 +1,6 @@
-
+import utilerias as u
+def cerrar_comanda(comandas:dict,platillos):
+    folio=u.verificar_comanda(comandas,platillos)
 
 def disponibilidad_mesas(estado,mesas,num_mesas):
     if estado=="pagado":

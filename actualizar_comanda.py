@@ -12,10 +12,10 @@ def verificar_comanda(comandas:dict, platillos:tuple):
 
     Parámetros:
     - comandas dict: Diccionario con las comandas abiertas.
-    - platillos (Tuple[Tuple[int, str, float], ...]): Tupla que contiene los platillos disponibles.
+    - platillosTuple : Tupla que contiene los platillos disponibles.
 
     Retorna:
-    - Union[int, None]: El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
+    - El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
     """
     u.comandas_abiertas(comandas)
     verificar = u.validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
