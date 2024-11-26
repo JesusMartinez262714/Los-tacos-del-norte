@@ -5,6 +5,7 @@ El objetivo del programa es gestionar comandas en un restaurante. Esto incluye v
 registrar los pedidos de clientes, asignar empleados a comandas, calcular costos y mostrar detalles de las comandas.
 """
 import utilerias as u
+import comandas_abiertas as ca
 folio=1
 
 def validar_mesa(mesas, num_mesas) -> bool:
@@ -94,7 +95,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
             "estado": "No pagada"
         }
        
-        u.comandas_abiertas(comandas)
+        ca.comandas_abiertas(comandas)
         
    
 
@@ -121,6 +122,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
                 nombre_platillo=u.validar_mismo_platillo(platillo)
                 lista_platillos.append([nombre_platillo, cantidad_platillo, costo])
                 total += subtotal
+                        
         else:
             print("Ese platillo no existe")
         continuar = input("¿Desea pedir otro platillo? (s/n): ").lower()
@@ -168,9 +170,8 @@ def Calculos_Comandas(platillo, cantidad_platillo,platillos):
 
 
 if __name__ == "__main__":
-    """
-    # Ejemplo de inicialización de estructuras
-    listaPlatillos = []
+    
+   
     platillos = (
         ("tacos de asada", 20),
         ("tacos de pastor", 18),
@@ -184,8 +185,7 @@ if __name__ == "__main__":
         ("Flautas (3 piezas)", 30)
     )
 
-    registrar_platillos(listaPlatillos, platillos)
-    """
+    
     comandas = {
     1:{
         "mesa": 3,
@@ -224,5 +224,34 @@ if __name__ == "__main__":
         "estado" : "pagada" #Pueden ser pagadas o no pagadas
     }
     }
+    empleados = {
+    101: {
+        "nombre": "María López",
+        "telefono": "6441234567",
+        "estado": "activo"
+    },
+    102: {
+        "nombre": "Pedro Martínez",
+        "telefono": "6449876543",
+        "estado": "inactivo"
+    }
+}
+    mesas = {
+        1: "disponible",
+        2: "disponible",
+        3: "no disponible",
+        4: "disponible",
+        5: "disponible",
+        6: "disponible",
+        7: "disponible",
+        8: "disponible",
+        9: "disponible",
+        10: "disponible",
+        11: "disponible",
+        12: "disponible",
+        13: "disponible",
+        14: "disponible",
+        15: "disponible"
 
-    u.comandas_abiertas(comandas)
+}
+    crear_comanda(comandas,mesas,empleados,platillos)

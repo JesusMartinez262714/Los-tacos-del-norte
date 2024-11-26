@@ -1,3 +1,5 @@
+import comandas_abiertas as ca
+
 def fecha():
     """
     Se obtiene a fecha del dia.
@@ -51,19 +53,7 @@ def validar_numerico(mensaje: str) -> int:
             print("Entrada no válida. Ingrese un número.")
 
 
-def comandas_abiertas(comandas:dict):
-    #formateo y hacer que se muestre al registrar una comanda
-    contador=0
-    print("Comandas Abiertas:")
-    print(f"{"":-^65}")
-    print(f"{"Mesa":<9}{"Cliente":<16}{"Empleado":<17}Total ($)")
-    print(f"{"":-^65}")
-    for folio,datos in comandas.items():
-        if datos["estado"] == "No pagada":
-            print(f"{datos['mesa']:<9}{datos['cliente']:<16}{datos['empleado']:<17}{datos['total']}")
-            contador+=1
-    print(f"{"":-^65}")
-    print(f"Total de Comandas Abiertas: {contador}")
+
 
 
 
@@ -145,15 +135,15 @@ def verificar_comanda(comandas:dict, platillos:tuple):
     Retorna:
      El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
     """
-    comandas_abiertas(comandas)
+    ca.comandas_abiertas(comandas)
     verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
     folio = obtener_folio_por_mesa(comandas, verificar)
     for datos in comandas.values():
         if verificar == datos['mesa'] and datos['estado'] == "No pagada":
             mostrar_resumen(comandas, folio,imprimir="")
             break
-    else:
-        print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
-        return
+        else:
+            print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
+            return
     return folio
 

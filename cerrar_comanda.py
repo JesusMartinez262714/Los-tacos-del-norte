@@ -1,20 +1,21 @@
 import utilerias as u
 def cerrar_comanda(comandas:dict,platillos,mesas):
-    folio=u.verificar_comanda(comandas,platillos)
-    cerrar=input("Desea cerrar esta comanda? (s/n)").lower()
-    if cerrar == 'n':
-        print('Cierre de comanda cancelado')
-        return
-    else:
-        while True:
-            propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
-            if propina >= 0:
-                generar_ticket(folio,comandas,propina)
-                actualizar_estado_comanda(folio,comandas,mesas)
+    while True:
+        folio=u.verificar_comanda(comandas,platillos)
+        cerrar=input("Desea cerrar esta comanda? (s/n)").lower()
+        if cerrar == 'n':
+            print('Cierre de comanda cancelado')
+            return
+        else:
+            while True:
+                propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
+                if propina >= 0:
+                    generar_ticket(folio,comandas,propina)
+                    actualizar_estado_comanda(folio,comandas,mesas)
 
-            else:
-                print("La propina no puede ser negativa,intente nuevamente")
-                continue
+                else:
+                    print("La propina no puede ser negativa,intente nuevamente")
+                    continue
 
 def generar_ticket(folio,comandas,propina):
     if folio in comandas:

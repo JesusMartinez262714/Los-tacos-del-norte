@@ -6,33 +6,12 @@ import utilerias as u
 imprimir=""
 
 # Función para verificar si existe una comanda abierta para la mesa proporcionada
-def verificar_comanda(comandas:dict, platillos:tuple):
-    """
-    Verifica si una comanda está abierta para la mesa especificada.
 
-    Parámetros:
-    - comandas dict: Diccionario con las comandas abiertas.
-    - platillosTuple : Tupla que contiene los platillos disponibles.
-
-    Retorna:
-    - El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
-    """
-    u.comandas_abiertas(comandas)
-    verificar = u.validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
-    folio = u.obtener_folio_por_mesa(comandas, verificar)
-    for datos in comandas.values():
-        if verificar == datos['mesa'] and datos['estado'] == "No pagada":
-            u.mostrar_resumen(comandas, folio,imprimir="mostrar")
-            menu_actualizaciones(platillos, verificar, comandas)
-            break
-    else:
-        print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
-        return
-    return folio
+    
 
 
 # Función para agregar un producto a la comanda
-def agregar_producto(platillos, verificar, comandas:dict):
+def agregar_producto(platillos, verificar, comandas:dict,folio):
     """
     Agrega un producto a una comanda existente.
 
@@ -75,7 +54,6 @@ def agregar_producto(platillos, verificar, comandas:dict):
 
         for comanda in comandas.values():  # Itera sobre las comandas abiertas
             
-            folio = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio de la coma
             comanda = comandas.get(folio)  # Obtiene la comanda por folio
             datos=comanda
             if comanda:  # Verifica si la comanda existe
@@ -106,11 +84,11 @@ def agregar_producto(platillos, verificar, comandas:dict):
                                 break
                 break  # Sale del ciclo de las comandas
 
-        verificar_comanda(comandas,platillos)  # Finaliza la función de agregar producto
+        u.verificar_comanda(comandas,platillos)  # Finaliza la función de agregar producto
 
 
 # Función para eliminar un producto de la comanda
-def eliminar_producto(platillos:tuple,verificar,comandas):
+def eliminar_producto(platillos:tuple,verificar,comandas,folio):
     """
     Elimina un producto de la comanda seleccionada.
 
@@ -119,7 +97,6 @@ def eliminar_producto(platillos:tuple,verificar,comandas):
 
     Actualiza el contenido de la comanda eliminando productos o cantidades según las indicaciones del usuario.
     """
-    folio = u.obtener_folio_por_mesa(comandas, verificar)
     
     if folio in comandas:
         print(f"\n{"productos de la comanda ":->25}{folio}:")
@@ -165,8 +142,7 @@ def eliminar_producto(platillos:tuple,verificar,comandas):
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
    
-def aumentar_producto(platillos,verificar,comandas):
-    folio = u.obtener_folio_por_mesa(comandas, verificar)
+def aumentar_producto(platillos,verificar,comandas,folio):
     
     if folio in comandas:
         print(f"\n{"productos de la comanda ":->25}{folio}:")
@@ -218,6 +194,7 @@ def menu_actualizaciones(platillos:tuple, verificar: int, comandas:dict) -> None
 
     Permite elegir entre agregar, eliminar o aumentar la cantidad de un producto.
     """
+    folio=u.verificar_comanda(comandas,platillos)
     print("¿Qué actualización desea realizar? ")
     print("1.- Agregar producto")
     print("2.- Eliminar producto")
@@ -228,11 +205,11 @@ def menu_actualizaciones(platillos:tuple, verificar: int, comandas:dict) -> None
     if opcion == 4:
         return
     elif opcion == 1:
-        agregar_producto(platillos, verificar, comandas)
+        agregar_producto(platillos, verificar, comandas,folio)
     elif opcion == 2:
-        eliminar_producto(platillos,verificar,comandas)
+        eliminar_producto(platillos,verificar,comandas,folio)
     elif opcion == 3:
-        aumentar_producto(platillos,verificar,comandas)
+        aumentar_producto(platillos,verificar,comandas,folio)
 
 # Bloque principal de ejecución
 if __name__ == "__main__":
@@ -295,4 +272,4 @@ if __name__ == "__main__":
     )
 
     # Simulamos el proceso de actualización de una comanda
-    verificar_comanda(comandas,platillos)
+    u.verificar_comanda(comandas,platillos)
