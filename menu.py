@@ -166,7 +166,7 @@ def menu_principal():
              u.comandas_abiertas(comandas)
             # consultar_comandas_abiertas(comandas)
         elif opcion == 4:
-             cc.cerrar_comanda(comandas,platillos)
+             cc.cerrar_comanda(comandas,platillos,mesas)
             # cerrar_comanda(comandas, mesas, historial_ventas)
         elif opcion == 5:
              print("Opcion 5")
