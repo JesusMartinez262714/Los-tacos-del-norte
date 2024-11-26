@@ -3,7 +3,7 @@ Desarrolladores: Jesús Manuel Martínez Cortez 262714, Contreras Ávila Ramsés
 Objetivo: Actualización de productos en una comanda en el sistema.
 """
 import utilerias as u
-
+imprimir=""
 
 # Función para verificar si existe una comanda abierta para la mesa proporcionada
 def verificar_comanda(comandas:dict, platillos:tuple):
@@ -22,7 +22,7 @@ def verificar_comanda(comandas:dict, platillos:tuple):
     folio = u.obtener_folio_por_mesa(comandas, verificar)
     for datos in comandas.values():
         if verificar == datos['mesa'] and datos['estado'] == "No pagada":
-            u.mostrar_resumen(comandas, folio)
+            u.mostrar_resumen(comandas, folio,imprimir="mostrar")
             menu_actualizaciones(platillos, verificar, comandas)
             break
     else:
@@ -44,6 +44,7 @@ def agregar_producto(platillos, verificar, comandas:dict):
     Realiza la actualización en la comanda, ya sea agregando un producto nuevo o actualizando la cantidad de un platillo existente.
     """
     print("Agregar producto")
+    imprimir="actualizar"
     u.imprimirPlatillos()
     
     while True:
@@ -80,38 +81,36 @@ def agregar_producto(platillos, verificar, comandas:dict):
             if comanda:  # Verifica si la comanda existe
                 platillo_encontrado = False
                 # Busca si el platillo ya está en la comanda
-                for i in range(len(datos["platillos"])): #
-    
+                for i in range(len(datos['platillos'])): #Itera sobre la cantidad de platillos
                     platillo = u.validar_mismo_platillo(platillo)  # Valida si el platillo existe en el sistema
-                    
-                    if platillo == datos["platillos"][i][0]:  # Si se encuentra el platillo
+                    if platillo == datos['platillos'][i][0]:  # Si se encuentra el platillo
                         # Si el platillo ya existe, se actualiza su cantidad y subtotal
-                        datos["platillos"][i] = (datos["platillos"][i][0], datos["platillos"][i][1] + cantidad, datos["platillos"][i][2] + subtotal)
+                        datos['platillos'][i] = (datos['platillos'][i][0], datos['platillos'][i][1] + cantidad, datos['platillos'][i][2] + subtotal)
                         for buscar in comandas[folio]['platillos']:
                             if buscar == platillo:
-                                comandas[folio]['platillos'][buscar] = datos["platillos"][i]  # Actualiza el platillo en la comanda
+                                comandas[folio]['platillos'][buscar] = datos['platillos'][i]  # Actualiza el platillo en la comanda
                         u.calcular_total(folio, comandas)  # Recalcula el total de la comanda
-                        u.mostrar_resumen(comandas, folio)  # Muestra el resumen actualizado de la comanda
+                        u.mostrar_resumen(comandas,folio,imprimir)  # Muestra el resumen actualizado de la comanda
                         print("Producto agregado exitosamente.")
                         platillo_encontrado = True
                         break  # Sale del ciclo si se actualizó el platillo
 
                 if not platillo_encontrado:  # Si el platillo no fue encontrado
-                    # Si el platillo no existe, se agrega como un nuevo producto
-                    for posicion in platillos:
-                        if platillo == posicion[0]:  # Busca el platillo en el menú
-                            datos["platillos"].append((posicion[1], cantidad, posicion[2]))  # Agrega el platillo nuevo
-                            print("Nuevo producto agregado exitosamente.")
-                            verificar = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio actualizado
-                            u.mostrar_resumen(comandas, verificar)  # Muestra el resumen actualizado
-                            break
+                        # Si el platillo no existe, se agrega como un nuevo producto
+                        for posicion in platillos:
+                            if platillo == posicion[1]:  # Busca el platillo en el menú
+                                datos['platillos'].append((posicion[1], cantidad, cantidad*posicion[2]))  # Agrega el platillo nuevo
+                                print("Nuevo producto agregado exitosamente.")
+                                verificar = u.obtener_folio_por_mesa(comandas, verificar)  # Obtiene el folio actualizado
+                                u.mostrar_resumen(comandas,verificar,imprimir)  # Muestra el resumen actualizado
+                                break
                 break  # Sale del ciclo de las comandas
 
         verificar_comanda(comandas,platillos)  # Finaliza la función de agregar producto
 
 
 # Función para eliminar un producto de la comanda
-def eliminar_producto(platillos:tuple,verificar):
+def eliminar_producto(platillos:tuple,verificar,comandas):
     """
     Elimina un producto de la comanda seleccionada.
 
@@ -161,12 +160,12 @@ def eliminar_producto(platillos:tuple,verificar):
                     print("Entrada no válida. Ingrese un número.")
                 
                 u.calcular_total(folio, comandas)
-                u.mostrar_resumen(comandas, folio)
+                u.mostrar_resumen(comandas, folio,imprimir="actualizar")
                 return
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
    
-def agregar_producto(platillos,verificar):
+def aumentar_producto(platillos,verificar,comandas):
     folio = u.obtener_folio_por_mesa(comandas, verificar)
     
     if folio in comandas:
@@ -203,7 +202,7 @@ def agregar_producto(platillos,verificar):
                     print("Entrada no válida. Ingrese un número.")
                 
                 u.calcular_total(folio, comandas)
-                u.mostrar_resumen(comandas, folio)
+                u.mostrar_resumen(comandas, folio,imprimir="actualizar")
                 return
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
@@ -231,9 +230,9 @@ def menu_actualizaciones(platillos:tuple, verificar: int, comandas:dict) -> None
     elif opcion == 1:
         agregar_producto(platillos, verificar, comandas)
     elif opcion == 2:
-        eliminar_producto(platillos,verificar)
+        eliminar_producto(platillos,verificar,comandas)
     elif opcion == 3:
-        agregar_producto(platillos,verificar)
+        aumentar_producto(platillos,verificar,comandas)
 
 # Bloque principal de ejecución
 if __name__ == "__main__":

@@ -67,14 +67,12 @@ def comandas_abiertas(comandas:dict):
 
 
 
-def mostrar_resumen(comandas,folio):
+def mostrar_resumen(comandas,folio,imprimir):
     if folio in comandas:
-        print(f"{"":=^45}")
-        print(f"{"Los tacos del norte":^45}")
-        print(f"{"":=^45}")
-        print(f"Comanda #{folio:<18}Fecha: {fechaHoy}")
-        print(f"Mesa: {comandas[folio]['mesa']:<21}Cliente: {comandas[folio]['cliente']}")
-        print(f"Empleado: {comandas[folio]['empleado']:<27}")
+        print (f"Comanda {folio} Actualizada:" if imprimir=="actualizar" else "Resumen de la comanda {folio}:")
+        print(f"Mesa {comandas[folio]['mesa']}" )
+        print(f"Cliente: {comandas[folio]['cliente']}")
+        print(f"Empleado: {comandas[folio]['empleado']}")
         print(f"{"":-^45}")
         print(f"{"Platillo":<20}{"Cant.":<9}{"P.Unit":<10}Total")
         print(f"{"":-^45}")
@@ -99,25 +97,25 @@ def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
 
 def validar_mismo_platillo(platillo):
     if platillo==1:
-        platillo="Tacos de Asada"
+        platillo='Tacos de Asada'
     if platillo==2:
-        platillo="Tacos de Pastor"
+        platillo='Tacos de Pastor'
     if platillo==3:
-        platillo="Quesadilla"
+        platillo='Quesadilla'
     if platillo==4:
-        platillo="Refresco"
+        platillo='Refresco'
     if platillo==5:
-        platillo="Burrito de Asada"
+        platillo='Burrito de Asada'
     if platillo==6:
-        platillo="Burrito de Pastor"
+        platillo='Burrito de Pastor'
     if platillo==7:
-        platillo="Torta de Asada"
+        platillo='Torta de Asada'
     if platillo==8:
-        platillo="Torta de Pastor"
+        platillo='Torta de Pastor'
     if platillo==9:
-        platillo="Agua Fresca (1L)"
+        platillo='Agua Fresca (1L)'
     if platillo==10:
-        platillo="Flautas (3 piezas)"
+        platillo='Flautas (3 piezas)'
     return platillo
 
 def calcular_total(folio, comandas):
@@ -152,7 +150,7 @@ def verificar_comanda(comandas:dict, platillos:tuple):
     folio = obtener_folio_por_mesa(comandas, verificar)
     for datos in comandas.values():
         if verificar == datos['mesa'] and datos['estado'] == "No pagada":
-            mostrar_resumen(comandas, folio)
+            mostrar_resumen(comandas, folio,comandas="")
             break
     else:
         print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
