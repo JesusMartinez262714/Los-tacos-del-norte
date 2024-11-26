@@ -150,7 +150,7 @@ def verificar_comanda(comandas:dict, platillos:tuple):
     folio = obtener_folio_por_mesa(comandas, verificar)
     for datos in comandas.values():
         if verificar == datos['mesa'] and datos['estado'] == "No pagada":
-            mostrar_resumen(comandas, folio,comandas="")
+            mostrar_resumen(comandas, folio,imprimir="")
             break
     else:
         print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
