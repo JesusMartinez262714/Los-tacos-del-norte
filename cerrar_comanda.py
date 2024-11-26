@@ -50,7 +50,6 @@ def actualizar_estado_comanda(folio,comandas,mesas):
     if comanda:
         comanda['estado']="pagado"
         disponibilidad_mesas(comandas,mesas,folio)
-        print(comanda)
      
 
 
@@ -61,7 +60,7 @@ def disponibilidad_mesas(comandas,mesas,folio):
         mesas[num_mesas]="Disponible"
     else:
         mesas[num_mesas]="No disponible"
-    print(mesas)
+
 
 if __name__ == "__main__":
     comandas = {
