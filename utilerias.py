@@ -16,7 +16,12 @@ def imprimirPlatillos():
     print("9.-Agua Fresca (1L) -  $20")
     print("10.-Flautas (3 piezas) - $30")
 
-
+def id_por_nombre_platillo(platillos,nombre_producto):
+    id_producto = None  # Inicializamos el ID como None
+    for platillo in platillos:
+        if platillo[1] == nombre_producto:  # Compara el nombre del platillo
+            id_producto = platillo[0]  # Guarda el ID del platillo
+            return id_producto
 
 def validar_numerico(mensaje: str) -> int:
     """
@@ -58,7 +63,14 @@ def mostrar_resumen(comandas,folio):
         print(f"Mesa: {comandas[folio]['mesa']}")
         print(f"Cliente: {comandas[folio]['cliente']}")
         print(f"Empleado: {comandas[folio]['empleado']}")
-        print(f"Platillos:{comandas[folio]['platillos']}")
+        print(f"Platillos:")
+        contador = 1  # Inicializamos el contador manualmente
+        for platillo in comandas[folio]['platillos']:
+            nombre = platillo[0]
+            cantidad = platillo[1]
+            subtotal = platillo[2]
+            print(f"    {nombre} ({cantidad}) ${subtotal}")
+            contador += 1  # Incrementamos el contador en cada iteración
         print(f"Total: ${comandas[folio]['total']}")
 
 def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
@@ -96,10 +108,36 @@ def calcular_total(folio, comandas):
         total = 0
         # Iterar sobre los platillos de la comanda
         for platillo in comanda['platillos']:
-            total += platillo[2]  # Sumar el valor en la posición 2 de la tupla (el subtotal)
+            subtotal = platillo[2]  # El subtotal está en la posición 2 de la tupla
+            if subtotal is None:  # Si el subtotal es None, asignar un valor predeterminado
+                subtotal = 0
+            total += subtotal  # Sumar el subtotal al total
         
         # Actualizar el total de la comanda
         comanda['total'] = total
-
     else:
         print("Comanda no encontrada.")
+
+def verificar_comanda(comandas:dict, platillos:tuple):
+    """
+    Verifica si una comanda está abierta para la mesa especificada.
+
+    Parámetros:
+    - comandas dict: Diccionario con las comandas abiertas.
+    - platillos Tuple: Tupla que contiene los platillos disponibles.
+
+    Retorna:
+     El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
+    """
+    comandas_abiertas(comandas)
+    verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
+    folio = obtener_folio_por_mesa(comandas, verificar)
+    for datos in comandas.values():
+        if verificar == datos['mesa'] and datos['estado'] == "No pagada":
+            mostrar_resumen(comandas, folio)
+            break
+    else:
+        print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
+        return
+    return folio
+
