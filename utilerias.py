@@ -1,3 +1,13 @@
+def fecha():
+    """
+    Se obtiene a fecha del dia.
+    """
+    from datetime import datetime #Usando el modulo datetime
+    fechaActual = datetime.now()
+    fechaFormateada = fechaActual.strftime("%Y-%m-%d")#.strftime nos permite el escribir la fecha en el formato que se desee
+    return fechaFormateada#Regresamos como valor el mensaje formateado
+fechaHoy=fecha()#Se obetiene el valor del mensaje para la variable local
+
 def imprimirPlatillos():
     """
     Muestra el menú de platillos disponibles, incluyendo sus precios.
@@ -59,19 +69,27 @@ def comandas_abiertas(comandas:dict):
 
 def mostrar_resumen(comandas,folio):
     if folio in comandas:
-        print(f"\n{"Resumen de la comanda ":->25}{folio}:")
-        print(f"Mesa: {comandas[folio]['mesa']}")
-        print(f"Cliente: {comandas[folio]['cliente']}")
-        print(f"Empleado: {comandas[folio]['empleado']}")
-        print(f"Platillos:")
+        print(f"{"":=^45}")
+        print(f"{"Los tacos del norte":^45}")
+        print(f"{"":=^45}")
+        print(f"Comanda #{folio:<18}Fecha: {fechaHoy}")
+        print(f"Mesa: {comandas[folio]['mesa']:<21}Cliente: {comandas[folio]['cliente']}")
+        print(f"Empleado: {comandas[folio]['empleado']:<27}")
+        print(f"{"":-^45}")
+        print(f"{"Platillo":<20}{"Cant.":<9}{"P.Unit":<10}Total")
+        print(f"{"":-^45}")
         contador = 1  # Inicializamos el contador manualmente
+        acumulador=0
         for platillo in comandas[folio]['platillos']:
             nombre = platillo[0]
             cantidad = platillo[1]
             subtotal = platillo[2]
-            print(f"    {nombre} ({cantidad}) ${subtotal}")
+            print(f"{nombre:<20}{cantidad:<9}{subtotal/cantidad:<10}{subtotal}")
             contador += 1  # Incrementamos el contador en cada iteración
-        print(f"Total: ${comandas[folio]['total']}")
+            acumulador+=subtotal
+        print(f"{"":-^45}")
+        print(f"{"Total":<39}{acumulador}")
+        print(f"{"":-^45}")
 
 def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
     for folio, datos in comandas.items():

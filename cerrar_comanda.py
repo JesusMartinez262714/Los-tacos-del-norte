@@ -9,15 +9,41 @@ def cerrar_comanda(comandas:dict,platillos,mesas):
         while True:
             propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
             if propina >= 0:
-                generar_ticket()
+                generar_ticket(folio,comandas,propina)
                 actualizar_estado_comanda(folio,comandas,mesas)
 
             else:
                 print("La propina no puede ser negativa,intente nuevamente")
                 continue
 
-def generar_ticket():
-    print('generar ticket')
+def generar_ticket(folio,comandas,propina):
+    if folio in comandas:
+        print(f"{"":=^45}")
+        print(f"{"Los tacos del norte":^45}")
+        print(f"{"":=^45}")
+        print(f"Comanda #{folio:<18}Fecha: {u.fecha()}")
+        print(f"Mesa: {comandas[folio]['mesa']:<21}Cliente: {comandas[folio]['cliente']}")
+        print(f"Empleado: {comandas[folio]['empleado']:<27}")
+        print(f"{"":-^45}")
+        print(f"{"Platillo":<20}{"Cant.":<9}{"P.Unit":<10}Total")
+        print(f"{"":-^45}")
+        contador = 1  # Inicializamos el contador manualmente
+        acumulador=0
+        for platillo in comandas[folio]['platillos']:
+            nombre = platillo[0]
+            cantidad = platillo[1]
+            subtotal = platillo[2]
+            print(f"{nombre:<20}{cantidad:<9}{subtotal/cantidad:<10}{subtotal}")
+            contador += 1  # Incrementamos el contador en cada iteración
+            acumulador+=subtotal
+        print(f"{"":-^45}")
+        print(f"{"Subtotal":<39}{acumulador}")
+        print(f"{"Propina":<39}{acumulador*(propina/100)}")
+        print(f"{"":-^45}")
+        print(f"{"Propina":<39}{acumulador+(acumulador*(propina/100))}")
+        print(f"{"":=^45}")
+        print(f"{"¡Gracias por su preferencia!":^45}")
+        print(f"{"":=^45}")
 
 def actualizar_estado_comanda(folio,comandas,mesas):
     comanda = comandas.get(folio)  # Obtiene la comanda por folio
