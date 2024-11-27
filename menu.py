@@ -154,7 +154,7 @@ def menu_principal():
         print("--------------------------------------")
 
         # Validar que la opción ingresada sea válida
-        opcion = u.validar_numerico("Seleccione una opción: ")
+        opcion = u.validar_numerico("Seleccione una opción:  ")
         
         if opcion == 1:
             # registrar_comanda(comandas, mesas, empleados, platillos)
