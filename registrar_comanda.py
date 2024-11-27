@@ -116,19 +116,33 @@ def registrar_platillos(lista_platillos, platillos) -> float:
     while True:
         platillo = u.validar_numerico("Platillo: ")
         if platillo - 1 in range(len(platillos)):
+            nombre_platillo=u.validar_mismo_platillo(platillo)
             cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
             if cantidad_platillo >= 1:
+                
+                for i in lista_platillos:
+                    print("entra for")
+                    print(i)
+                    if nombre_platillo == i[0]:
+                        print("segundo guardado")
+                        print (i[0])
+                        cantidad_platillo+=i[1]
+                        lista_platillos.remove(i)
+                        print(cantidad_platillo)
+                print("primer guardado")
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
-                nombre_platillo=u.validar_mismo_platillo(platillo)
-                lista_platillos.append([nombre_platillo, cantidad_platillo, costo])
+                lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal
                         
         else:
             print("Ese platillo no existe")
         continuar = input("¿Desea pedir otro platillo? (s/n): ").lower()
         if continuar == "n":
-            break
-    return total
+            return total
+        if continuar == "s":
+            continue
+            
+        
 
 def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, num_mesas: int, total: float):
     """
@@ -173,16 +187,16 @@ if __name__ == "__main__":
     
    
     platillos = (
-        ("tacos de asada", 20),
-        ("tacos de pastor", 18),
-        ("quesadillas", 25),
-        ("Refresco", 15),
-        ("Burrito de Asada", 40),
-        ("Burrito de Pastor", 38),
-        ("Torta de Asada", 45),
-        ("Torta de Pastor", 43),
-        ("Agua Fresca (1L)", 20), 
-        ("Flautas (3 piezas)", 30)
+        (1, "Tacos de Asada", 20.00),
+        (2, "Tacos de Pastor", 18.00),
+        (3, "Quesadilla", 25.00),
+        (4, "Refresco", 15.00),
+        (5, "Burrito de Asada", 40.00),
+        (6, "Burrito de Pastor", 38.00),
+        (7, "Torta de Asada", 45.00),
+        (8, "Torta de Pastor", 43.00),
+        (9, "Agua Fresca (1L)", 20.00),
+        (10, "Flautas (3 piezas)", 30.00)
     )
 
     
