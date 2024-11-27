@@ -11,3 +11,5 @@ def comandas_abiertas(comandas:dict):
             contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")
+
+    print("https://prod.liveshare.vsengsaas.visualstudio.com/join?1CF4344DE9B55A6E601BC5ACF3813FA16833")
