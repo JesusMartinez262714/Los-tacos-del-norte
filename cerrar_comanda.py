@@ -11,7 +11,7 @@ def cerrar_comanda(comandas:dict,platillos,mesas):
                 propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
                 if propina >= 0:
                     generar_ticket(folio,comandas,propina)
-                    actualizar_estado_comanda(folio,comandas,mesas)
+                    actualizar_estado_comanda(folio,comandas,mesas,propina)
 
                 else:
                     print("La propina no puede ser negativa,intente nuevamente")
@@ -46,10 +46,11 @@ def generar_ticket(folio,comandas,propina):
         print(f"{"¡Gracias por su preferencia!":^45}")
         print(f"{"":=^45}")
 
-def actualizar_estado_comanda(folio,comandas,mesas):
+def actualizar_estado_comanda(folio,comandas,mesas,propina):
     comanda = comandas.get(folio)  # Obtiene la comanda por folio
     if comanda:
         comanda['estado']="pagado"
+        comanda['propina']=propina
         disponibilidad_mesas(comandas,mesas,folio)
      
 

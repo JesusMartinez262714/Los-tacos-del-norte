@@ -6,6 +6,7 @@ registrar los pedidos de clientes, asignar empleados a comandas, calcular costos
 """
 import utilerias as u
 import comandas_abiertas as ca
+import imprimir_platillos as ip
 folio=1
 
 def validar_mesa(mesas, num_mesas) -> bool:
@@ -57,7 +58,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         nombre_cliente = "Cliente anónimo"
     
     empleado = u.validar_empleado(empleados)
-    u.imprimirPlatillos()
+    ip.imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
     mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
@@ -106,15 +107,11 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             if cantidad_platillo >= 1:
                 
                 for i in lista_platillos:
-                    print("entra for")
                     print(i)
                     if nombre_platillo == i[0]:
-                        print("segundo guardado")
                         print (i[0])
                         cantidad_platillo+=i[1]
                         lista_platillos.remove(i)
-                        print(cantidad_platillo)
-                print("primer guardado")
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal
