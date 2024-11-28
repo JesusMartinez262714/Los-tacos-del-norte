@@ -106,15 +106,11 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             if cantidad_platillo >= 1:
                 
                 for i in lista_platillos:
-                    print("entra for")
                     print(i)
                     if nombre_platillo == i[0]:
-                        print("segundo guardado")
                         print (i[0])
                         cantidad_platillo+=i[1]
                         lista_platillos.remove(i)
-                        print(cantidad_platillo)
-                print("primer guardado")
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal

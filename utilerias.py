@@ -47,7 +47,7 @@ def validar_numerico(mensaje: str) -> int:
     """
     while True:
         entrada = input(mensaje).strip()
-        if entrada.isdigit():  # Validamos que sea un número
+        if entrada.lstrip("-").isdigit():  # Validamos que sea un número
             return int(entrada)  # Retorna el valor numérico como entero
         else:
             print("Entrada no válida. Ingrese un número.")
@@ -159,8 +159,19 @@ def validar_empleado(empleados):
     """
     while True:
         empleado = validar_numerico("Ingrese el id del empleado: ")
+        if empleado == -1:
+            return
         if empleado in empleados:
-            return empleados[empleado]["nombre"]
+            return empleados[empleado]["nombre"],empleado
+            
         else:
-            print("Empleado no válido, intente nuevamente")
+            print("El empleado no esta registrado,Intente de nuevo.")
+
+def validar_s_n(mensaje):
+    while True:
+        entrada = input(mensaje).strip().lower()  # Obtener la entrada y convertirla a minúsculas
+        if entrada == 's' or entrada == 'n':  # Verificar si la entrada es 's' o 'n'
+            return entrada  # Retorna 's' o 'n' como respuesta válida
+        else:
+            print("Entrada no válida. Por favor ingrese 's' o 'n'.")  # Mensaje si la entrada es incorrecta
 
