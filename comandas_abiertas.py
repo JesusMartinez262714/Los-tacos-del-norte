@@ -13,3 +13,20 @@ def comandas_abiertas(comandas:dict):
     print(f"Total de Comandas Abiertas: {contador}")
 
     
+if __name__ == "__main__":
+    comandas = {
+    1:{
+        "mesa": 3,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "No pagada" #Pueden ser pagadas o no pagadas
+}
+
+}
+    comandas_abiertas(comandas)

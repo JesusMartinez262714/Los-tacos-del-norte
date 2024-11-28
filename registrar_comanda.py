@@ -26,22 +26,7 @@ def validar_mesa(mesas, num_mesas) -> bool:
     
 
 
-def validar_empleado(empleados) -> int:
-    """
-    Valida si un empleado se encuentra registrado en el sistema.
 
-    Parámetros:
-    - empleados (dict): Diccionario con los IDs de los empleados.
-
-    Retorna:
-    - int: ID del empleado válido.
-    """
-    while True:
-        empleado = u.validar_numerico("Ingrese el id del empleado: ")
-        if empleado in empleados:
-            return empleados[empleado]["nombre"]
-        else:
-            print("Empleado no válido, intente nuevamente")
 
 
 def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
@@ -71,7 +56,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     if nombre_cliente == "":
         nombre_cliente = "Cliente anónimo"
     
-    empleado = validar_empleado(empleados)
+    empleado = u.validar_empleado(empleados)
     u.imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)

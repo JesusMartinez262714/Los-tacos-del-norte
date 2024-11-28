@@ -147,3 +147,20 @@ def verificar_comanda(comandas:dict, platillos:tuple):
             return
     return folio
 
+def validar_empleado(empleados):
+    """
+    Valida si un empleado se encuentra registrado en el sistema.
+
+    Parámetros:
+    - empleados (dict): Diccionario con los IDs de los empleados.
+
+    Retorna:
+    - int: ID del empleado válido.
+    """
+    while True:
+        empleado = validar_numerico("Ingrese el id del empleado: ")
+        if empleado in empleados:
+            return empleados[empleado]["nombre"]
+        else:
+            print("Empleado no válido, intente nuevamente")
+

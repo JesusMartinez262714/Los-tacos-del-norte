@@ -7,6 +7,7 @@ import registrar_comanda as rc
 import actualizar_comanda as ac
 import cerrar_comanda as cc
 import consultar_estado_mesas as cem
+import consultar_ventas as cv
 import utilerias as u
 # Estructuras iniciales
 """
@@ -173,7 +174,7 @@ def menu_principal():
              cem.consultar_estado_mesas(mesas)
             # consultar_estado_mesas(mesas)
         elif opcion == 6:
-             print("Opcion 6")
+             cv.consultar_ventas(comandas,empleados)
             # consultar_ventas_dia(historial_ventas)
         elif opcion == 7:
               print("Opcion 7")
