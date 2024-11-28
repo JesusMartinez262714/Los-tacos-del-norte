@@ -49,7 +49,7 @@ def generar_ticket(folio,comandas,propina):
 def actualizar_estado_comanda(folio,comandas,mesas,propina):
     comanda = comandas.get(folio)  # Obtiene la comanda por folio
     if comanda:
-        comanda['estado']="pagado"
+        comanda['estado']="pagada"
         comanda['propina']=propina
         disponibilidad_mesas(comandas,mesas,folio)
      
@@ -58,7 +58,7 @@ def actualizar_estado_comanda(folio,comandas,mesas,propina):
 def disponibilidad_mesas(comandas,mesas,folio):
     comanda = comandas.get(folio)
     num_mesas=comanda['mesa']
-    if comanda['estado']=="pagado":
+    if comanda['estado']=="pagada":
         mesas[num_mesas]="Disponible"
     else:
         mesas[num_mesas]="No disponible"
