@@ -1,6 +1,6 @@
 def consultar_estado_mesas(mesas):
     listaDisponibles=[]
-    listaNodisponibles=[]
+    listaNoDisponibles=[]
     disponibles=0
     noDisponible=0
     while True:
@@ -10,17 +10,26 @@ def consultar_estado_mesas(mesas):
                 listaDisponibles.append(x)                  
             elif y == 'no disponible':
                 noDisponible+=1
-                listaNodisponibles.append(x)
+                listaNoDisponibles.append(x)
 
         if disponibles<=0:
             print("No hay mesas disponibles en este momento")
-        else:
-            print(f"hay {disponibles} mesas disponibles que son: {listaDisponibles}")
-
-        if noDisponible<=0:
+        elif noDisponible<=0:
             print("No hay mesas ocupadas en este momento")
         else:
-            print(f"hay {noDisponible} mesas no disponibles que son: {listaNodisponibles}")
+            print(f"{"Estado de las Mesas":-^25}")
+            print("Mesas opcuadas: ")
+            vueltasFor=0
+            for mesa in listaDisponibles:
+                vueltasFor+=1
+                if vueltasFor < len(listaDisponibles):
+                    print(f"{mesa}", end=", ")
+                else:
+                    print(f"{mesa}")
+            print(f"Total de mesas ocupadas: {noDisponible}")
+            print(f"Total de mesas ocupadas: {disponibles}")
+                
+        
         continuar=input("Desea regresar al menu principal? (s/n)").lower().strip()
         if continuar=='s':
             return
