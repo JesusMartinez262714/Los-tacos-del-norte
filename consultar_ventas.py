@@ -31,8 +31,6 @@ def consultar_ventas(comandas,empleados):
                     print(f"{folio }{datos['mesa']:<9}{datos['cliente']:<16}{datos['empleado']:<17}{datos['total']}")
                 else:
                     print(f"No hay ventas registradas para el empleado {Empleado}")
-        else:
-            print("no hay ventas del dia")
     return
 
 
