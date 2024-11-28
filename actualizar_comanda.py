@@ -3,11 +3,11 @@ Desarrolladores: Jesús Manuel Martínez Cortez 262714, Contreras Ávila Ramsés
 Objetivo: Actualización de productos en una comanda en el sistema.
 """
 import utilerias as u
+import imprimir_platillos as ip
 imprimir=""
 
 # Función para verificar si existe una comanda abierta para la mesa proporcionada
 
-    
 
 
 # Función para agregar un producto a la comanda
@@ -24,7 +24,7 @@ def agregar_producto(platillos, verificar, comandas:dict,folio):
     """
     print("Agregar producto")
     imprimir="actualizar"
-    u.imprimirPlatillos()
+    ip.imprimirPlatillos()
     
     while True:
         platillo = u.validar_numerico("Ingrese el producto que desea agregar: ")

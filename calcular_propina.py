@@ -1,6 +1,6 @@
 import utilerias as u
 
-def calcular_propina(comandas,empleados,propinas):
+def calcular_propina(comandas,empleados):
     while True:
         propinaAcumulada = 0.0  # Inicializar fuera del bucle
         comandaAsociada = 0
