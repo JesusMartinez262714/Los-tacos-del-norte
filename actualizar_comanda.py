@@ -27,6 +27,7 @@ def agregar_producto(platillos, comandas:dict,folio):
     ip.imprimirPlatillos()
     
     while True:
+        
         platillo = u.validar_numerico("Ingrese el producto que desea agregar: ")
         
         # Verificar que el platillo sea válido
@@ -51,8 +52,6 @@ def agregar_producto(platillos, comandas:dict,folio):
 
         # Cálculo del subtotal basado en el platillo seleccionado
         subtotal=cantidad*platillos[platillo-1][2]
-        print(comandas)
-
         for comanda in comandas.values():  # Itera sobre las comandas abiertas
             
             comanda = comandas.get(folio)  # Obtiene la comanda por folio
@@ -84,8 +83,9 @@ def agregar_producto(platillos, comandas:dict,folio):
                                 u.mostrar_resumen(comandas,folio,imprimir)  # Muestra el resumen actualizado
                                 break
                 break  # Sale del ciclo de las comandas
+        menu_actualizaciones(comandas,platillos,es_menu="no")  # Finaliza la función de agregar producto
 
-        u.verificar_comanda(comandas)  # Finaliza la función de agregar producto
+
 
 
 # Función para eliminar un producto de la comanda
@@ -139,7 +139,7 @@ def eliminar_producto(platillos:tuple,comandas,folio):
                 
                 u.calcular_total(folio, comandas)
                 u.mostrar_resumen(comandas, folio,imprimir="actualizar")
-                return
+                menu_actualizaciones(comandas,platillos,es_menu="no")
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
    
@@ -180,11 +180,11 @@ def aumentar_producto(platillos,comandas,folio):
                 
                 u.calcular_total(folio, comandas)
                 u.mostrar_resumen(comandas, folio,imprimir="actualizar")
-                return
+                menu_actualizaciones(comandas,platillos,es_menu="no")
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
 # Función que muestra el menú de actualizaciones
-def menu_actualizaciones(comandas,platillos) -> None:
+def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     """
     Muestra el menú con las opciones para actualizar la comanda.
 
@@ -195,7 +195,8 @@ def menu_actualizaciones(comandas,platillos) -> None:
 
     Permite elegir entre agregar, eliminar o aumentar la cantidad de un producto.
     """
-    folio=u.verificar_comanda(comandas)
+    if es_menu == "si":
+        folio=u.verificar_comanda(comandas)
     print("¿Qué actualización desea realizar? ")
     print("1.- Agregar producto")
     print("2.- Eliminar producto")
@@ -273,4 +274,4 @@ if __name__ == "__main__":
     )
 
     # Simulamos el proceso de actualización de una comanda
-    u.verificar_comanda(comandas)
+    menu_actualizaciones(comandas,platillos)

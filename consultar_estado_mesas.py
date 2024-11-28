@@ -18,14 +18,23 @@ def consultar_estado_mesas(mesas):
             print("No hay mesas ocupadas en este momento")
         else:
             print(f"{"Estado de las Mesas":-^25}")
-            print("Mesas opcuadas: ")
-            vueltasFor=0
+            print("Mesas Disponibles: ")
+            vueltasForDisponible=0
             for mesa in listaDisponibles:
-                vueltasFor+=1
-                if vueltasFor < len(listaDisponibles):
+                vueltasForDisponible+=1
+                if vueltasForDisponible < len(listaDisponibles):
+
                     print(f"{mesa}", end=", ")
                 else:
                     print(f"{mesa}")
+            print("Mesas Ocupadas: ")
+            vueltasForNoDisponible=0
+            for mesaNo in listaNoDisponibles:
+                vueltasForNoDisponible+=1
+                if vueltasForNoDisponible < len(listaNoDisponibles):
+                    print(f"{mesaNo}", end=", ")
+                else:
+                    print(f"{mesaNo}")
             print(f"Total de mesas ocupadas: {noDisponible}")
             print(f"Total de mesas ocupadas: {disponibles}")
                 

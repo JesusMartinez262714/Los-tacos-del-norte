@@ -33,7 +33,7 @@ def consultar_ventas(comandas,empleados):
                 else:
                     print(f"No hay ventas registradas para la mesa {mesa}")  
             elif filtro==2:
-                Empleado=u.validar_empleado(empleados)
+                Empleado,id=u.validar_empleado(empleados)
                 if Empleado == datos['empleado']:
                     print(f"{"":-^73}")
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")

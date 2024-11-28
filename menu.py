@@ -32,21 +32,7 @@ la llave es el folio, el value:
 
 #Comandas
 
-comandas = {
-    1:{
-        "mesa": 3,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "No pagada" #Pueden ser pagadas o no pagadas
-}
-
-}
+comandas = {}
 
 """
 Mesas es un diccionario donde:
@@ -59,7 +45,7 @@ El valor indica el estado actual de la mesa, con los posibles valores:
 mesas = {
         1: "disponible",
         2: "disponible",
-        3: "no disponible",
+        3: "disponible",
         4: "disponible",
         5: "disponible",
         6: "disponible",
@@ -165,7 +151,7 @@ def menu_principal():
             rc.crear_comanda(comandas,mesas,empleados,platillos)
         elif opcion == 2:
             # actualizar_comanda(comandas, platillos)
-            ac.menu_actualizaciones(comandas,platillos)
+            ac.menu_actualizaciones(comandas,platillos,es_menu="si")
         elif opcion == 3:
              ab.comandas_abiertas(comandas)
             # consultar_comandas_abiertas(comandas)
@@ -190,7 +176,7 @@ def menu_principal():
         elif opcion == 10:
               print("Opcion 10")
             # gestionar_empleados(empleados)
-        elif opcion == "11":
+        elif opcion == 11:
             print("Saliendo del sistema. ¡Hasta luego!")
             break
         else:
