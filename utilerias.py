@@ -42,7 +42,7 @@ def validar_numerico(mensaje: str) -> int:
 
 def mostrar_resumen(comandas,folio,imprimir):
     if folio in comandas:
-        print (f"Comanda {folio} Actualizada:" if imprimir=="actualizar" else "Resumen de la comanda {folio}:")
+        print (f"Comanda {folio} Actualizada:") if imprimir=="actualizar" else print(f"Resumen de la comanda {folio}:") if imprimir == "inicio" else print ("")
         print(f"Mesa {comandas[folio]['mesa']}" )
         print(f"Cliente: {comandas[folio]['cliente']}")
         print(f"Empleado: {comandas[folio]['empleado']}")
@@ -107,7 +107,7 @@ def calcular_total(folio, comandas):
     else:
         print("Comanda no encontrada.")
 
-def verificar_comanda(comandas:dict, platillos:tuple):
+def verificar_comanda(comandas:dict):
     """
     Verifica si una comanda está abierta para la mesa especificada.
 
@@ -121,13 +121,17 @@ def verificar_comanda(comandas:dict, platillos:tuple):
     ca.comandas_abiertas(comandas)
     verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
     folio = obtener_folio_por_mesa(comandas, verificar)
+    print(comandas)
+
     for datos in comandas.values():
+        print(datos['estado'])
+        print(verificar)
+        print(datos['mesa'])
         if verificar == datos['mesa'] and datos['estado'] == "No pagada":
-            mostrar_resumen(comandas, folio,imprimir="")
+            mostrar_resumen(comandas,folio,imprimir="inicio")
             break
         else:
             print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
-            return
     return folio
 
 def validar_empleado(empleados):

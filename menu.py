@@ -5,6 +5,7 @@ Objetivo:
 """
 import registrar_comanda as rc
 import actualizar_comanda as ac
+import comandas_abiertas as ab
 import cerrar_comanda as cc
 import consultar_estado_mesas as cem
 import consultar_ventas as cv
@@ -164,9 +165,9 @@ def menu_principal():
             rc.crear_comanda(comandas,mesas,empleados,platillos)
         elif opcion == 2:
             # actualizar_comanda(comandas, platillos)
-            ac.verificar_comanda(comandas,platillos)
+            ac.menu_actualizaciones(comandas,platillos)
         elif opcion == 3:
-             u.comandas_abiertas(comandas)
+             ab.comandas_abiertas(comandas)
             # consultar_comandas_abiertas(comandas)
         elif opcion == 4:
              cc.cerrar_comanda(comandas,platillos,mesas)

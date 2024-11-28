@@ -10,7 +10,7 @@ def comandas_abiertas(comandas:dict):
             #---------------------------
             #AL QUERER MOSTRAR LAS COMANDAS ABIERTAS SE MUESTRA LA PRIMERA SOLAMENTE LA LETRA YA QUE 
             #COMO ESTA NO ES UNA TUPLA SE AGARRA EL PRIMER CARACTER QUE ESTE TIENE COMO NOMBRE OSEA "M DE MARIA LOPEZ"
-            print(f"{datos['mesa']:<9}{datos['cliente']:<16}{datos['empleado'][0]:<17}{datos['total']}")
+            print(f"{datos['mesa']:<9}{datos['cliente']:<16}{datos['empleado']:<17}{datos['total']}")
             contador+=1
     print(f"{"":-^65}")
     print(f"Total de Comandas Abiertas: {contador}")

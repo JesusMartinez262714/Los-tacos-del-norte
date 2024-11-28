@@ -1,7 +1,7 @@
 import utilerias as u
 def cerrar_comanda(comandas:dict,platillos,mesas):
     while True:
-        folio=u.verificar_comanda(comandas,platillos)
+        folio=u.verificar_comanda(comandas)
         cerrar=input("Desea cerrar esta comanda? (s/n)").lower()
         if cerrar == 'n':
             print('Cierre de comanda cancelado')
@@ -12,10 +12,15 @@ def cerrar_comanda(comandas:dict,platillos,mesas):
                 if propina >= 0:
                     generar_ticket(folio,comandas,propina)
                     actualizar_estado_comanda(folio,comandas,mesas,propina)
-
+                    break
                 else:
                     print("La propina no puede ser negativa,intente nuevamente")
                     continue
+            continuar=u.validar_s_n("Desea cerrar otra comamda y generar su cuente? (s/n)")
+            if continuar=='s':
+                continue
+            if continuar == 'n':
+                return
 
 def generar_ticket(folio,comandas,propina):
     if folio in comandas:

@@ -57,7 +57,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     if nombre_cliente == "":
         nombre_cliente = "Cliente anónimo"
     
-    empleado = u.validar_empleado(empleados)
+    empleado,idempleado = u.validar_empleado(empleados)
     ip.imprimirPlatillos()
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
