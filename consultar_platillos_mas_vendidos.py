@@ -49,11 +49,23 @@ def consultar_platillos_mas_vendidos(comandas,platillos):
             print("No se han registrado venta de platillos")
             return
     top=sorted(cantidades,key=lambda x:x[1],reverse=True)[:3]
-    print(top)
+    print(f"{"":^6}{" Platillos Más Vendidos ":-^42}")
+    print("")
+    print(f"{"Platillo":<20}{"Cantidad Vendida":<20}Ingreso Generado")
+    print("")
+    print(f"{"":-^56}")
+    print("")
+    rango=3
+    if len(top)<3:
+        rango=len(top)
+    for dentro in range(rango):
+        print(f"{top[dentro][0]:<20}{top[dentro][1]:<20}{top[dentro][2]}")
+        print("")
+    print(f"{"":-^56}")
     totalIngresos=0
     for x in top:
         totalIngresos+=x[2]
-    print(totalIngresos)
+    print(f"{"Total de Ingresos:":<40}{totalIngresos}")
 
 def agregar_o_actualizar(platillo, cantidad,platillos):
     # Buscar si el platillo ya existe en la lista
