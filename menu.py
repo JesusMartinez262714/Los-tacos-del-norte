@@ -8,6 +8,7 @@ import actualizar_comanda as ac
 import cerrar_comanda as cc
 import consultar_estado_mesas as cem
 import consultar_ventas as cv
+import consultar_platillos_mas_vendidos as cpmv
 import utilerias as u
 # Estructuras iniciales
 """
@@ -177,7 +178,7 @@ def menu_principal():
              cv.consultar_ventas(comandas,empleados)
             # consultar_ventas_dia(historial_ventas)
         elif opcion == 7:
-              print("Opcion 7")
+              cpmv.consultar_platillos_mas_vendidos(comandas,platillos)
             # consultar_platillos_mas_vendidos(historial_ventas, platillos)
         elif opcion == 8:
               print("Opcion 8")
