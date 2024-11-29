@@ -152,20 +152,19 @@ def registrar_platillos(lista_platillos, platillos) -> float:
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal
-<<<<<<< HEAD
+
                         
-        else:
-            print("Ese platillo no existe")
-        continuar = u.validar_s_n("¿Desea pedir otro platillo? (s/n): ")
-=======
+        
+            
         if platillo>10: 
             print("Opcion no valida. Seleccione un platillo del menú.")
             continue
         if platillo<=-1:
             return total
+            
+        continuar = u.validar_s_n("¿Desea pedir otro platillo? (s/n): ")
 
-        continuar = input("¿Desea pedir otro platillo? (s/n): ").lower()
->>>>>>> 964fe109f1f07b6b0ff9e913522b74b02ef65a5f
+       
         if continuar == "n":
             return total
         elif continuar == "s":
