@@ -1,89 +1,28 @@
 import utilerias as u
-from typing import Dict, Tuple
-""""""
-
-def cerrar_comanda(
-    comandas: Dict, 
-    platillos: Tuple, 
-    mesas: Dict
-) -> None:
-    """
-    Permite cerrar una comanda, registrar la propina, generar un ticket y actualizar el estado de la mesa.
-
-    Datos de entrada:
-    - comandas (Dict): Información de las comandas (mesa, cliente, empleado, platillos, total, estado y propina).
-    - platillos (Tuple): Lista de platillos disponibles con su precio.
-    - mesas (Dict): Estado de disponibilidad de las mesas.
-
-    Proceso:
-    1. Verificar el folio de la comanda con la función `verificar_comanda`.
-    2. Preguntar al usuario si desea cerrar la comanda.
-    3. Registrar la propina ingresada, generar el ticket y actualizar el estado de la comanda y la mesa.
-    4. Preguntar si desea cerrar otra comanda y repetir el proceso si es necesario.
-
-    Salida:
-    - Imprime el ticket de la comanda cerrada.
-    - Actualiza el estado de la comanda y la mesa correspondiente.
-
-    Argumentos:
-    - comandas: Diccionario con los datos de las comandas.
-    - platillos: Tupla con los platillos disponibles.
-    - mesas: Diccionario con el estado de las mesas.
-
-    Retorno:
-    - None
-    """
+def cerrar_comanda(comandas:dict,platillos,mesas):
     while True:
-        folio = u.verificar_comanda(comandas)  # Verificar folio de comanda
-        cerrar = input("Desea cerrar esta comanda? (s/n)").lower()
+        folio=u.verificar_comanda(comandas)
+        cerrar=input("Desea cerrar esta comanda? (s/n)").lower()
         if cerrar == 'n':
             print('Cierre de comanda cancelado')
             return
         else:
             while True:
-                propina = u.validar_numerico("Ingrese la propina que desea dejar: ")
+                propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
                 if propina >= 0:
-                    generar_ticket(folio, comandas, propina)
-                    actualizar_estado_comanda(folio, comandas, mesas, propina)
+                    generar_ticket(folio,comandas,propina)
+                    actualizar_estado_comanda(folio,comandas,mesas,propina)
                     break
                 else:
-                    print("La propina no puede ser negativa, intente nuevamente")
+                    print("La propina no puede ser negativa,intente nuevamente")
                     continue
-            continuar = u.validar_s_n("Desea cerrar otra comanda y generar su cuenta? (s/n)").lower()
-            if continuar == 's':
+            continuar=u.validar_s_n("Desea cerrar otra comamda y generar su cuente? (s/n)")
+            if continuar=='s':
                 continue
             if continuar == 'n':
                 return
 
-def generar_ticket(
-    folio: int, 
-    comandas: Dict, 
-    propina: float
-) -> None:
-    """
-    Genera e imprime el ticket de la comanda cerrada.
-
-    Datos de entrada:
-    - folio (int): Folio de la comanda.
-    - comandas (Dict): Información de las comandas.
-    - propina (float): Porcentaje de propina aplicado.
-
-    Proceso:
-    1. Verificar que el folio exista en las comandas.
-    2. Calcular el subtotal, propina y total de la cuenta.
-    3. Imprimir el ticket con el formato establecido.
-
-    Salida:
-    - Imprime el ticket con la información de la comanda.
-
-    Argumentos:
-    - folio: ID único de la comanda.
-    - comandas: Diccionario con los datos de las comandas.
-    - propina: Porcentaje de propina proporcionado.
-
-    Retorno:
-    - None
-    """
+def generar_ticket(folio,comandas,propina):
     if folio in comandas:
         print(f"{"":=^45}")
         print(f"{"Los tacos del norte":^45}")
@@ -94,94 +33,40 @@ def generar_ticket(
         print(f"{"":-^45}")
         print(f"{"Platillo":<20}{"Cant.":<9}{"P.Unit":<10}Total")
         print(f"{"":-^45}")
-        acumulador = 0
+        contador = 1  # Inicializamos el contador manualmente
+        acumulador=0
         for platillo in comandas[folio]['platillos']:
             nombre = platillo[0]
             cantidad = platillo[1]
             subtotal = platillo[2]
             print(f"{nombre:<20}{cantidad:<9}{subtotal/cantidad:<10}{subtotal}")
-            acumulador += subtotal
+            contador += 1  # Incrementamos el contador en cada iteración
+            acumulador+=subtotal
         print(f"{"":-^45}")
         print(f"{"Subtotal":<39}{acumulador}")
-        print(f"{"Propina":<39}{acumulador * (propina / 100)}")
+        print(f"{"Propina":<39}{acumulador*(propina/100)}")
         print(f"{"":-^45}")
-        print(f"{"Total":<39}{acumulador + (acumulador * (propina / 100))}")
+        print(f"{"Propina":<39}{acumulador+(acumulador*(propina/100))}")
         print(f"{"":=^45}")
         print(f"{"¡Gracias por su preferencia!":^45}")
         print(f"{"":=^45}")
 
-def actualizar_estado_comanda(
-    folio: int, 
-    comandas: Dict, 
-    mesas: Dict, 
-    propina: float
-) -> None:
-    """
-    Actualiza el estado de una comanda a "pagada" y asigna la propina.
-
-    Datos de entrada:
-    - folio (int): Folio de la comanda.
-    - comandas (Dict): Información de las comandas.
-    - mesas (Dict): Estado de disponibilidad de las mesas.
-    - propina (float): Porcentaje de propina aplicado.
-
-    Proceso:
-    1. Cambiar el estado de la comanda a "pagada".
-    2. Registrar la propina ingresada.
-    3. Actualizar la disponibilidad de la mesa.
-
-    Salida:
-    - Actualiza los valores de la comanda y la mesa.
-
-    Argumentos:
-    - folio: ID único de la comanda.
-    - comandas: Diccionario con los datos de las comandas.
-    - mesas: Diccionario con el estado de las mesas.
-    - propina: Porcentaje de propina.
-
-    Retorno:
-    - None
-    """
-    comanda = comandas.get(folio)  # Obtener comanda por folio
+def actualizar_estado_comanda(folio,comandas,mesas,propina):
+    comanda = comandas.get(folio)  # Obtiene la comanda por folio
     if comanda:
-        comanda['estado'] = "pagada"
-        comanda['propina'] = propina
-        disponibilidad_mesas(comandas, mesas, folio)
+        comanda['estado']="pagada"
+        comanda['propina']=propina
+        disponibilidad_mesas(comandas,mesas,folio)
+     
 
-def disponibilidad_mesas(
-    comandas: Dict, 
-    mesas: Dict, 
-    folio: int
-) -> None:
-    """
-    Actualiza la disponibilidad de una mesa dependiendo del estado de la comanda.
 
-    Datos de entrada:
-    - comandas (Dict): Información de las comandas.
-    - mesas (Dict): Estado de las mesas.
-    - folio (int): Folio de la comanda.
-
-    Proceso:
-    1. Verificar el estado de la comanda.
-    2. Cambiar la disponibilidad de la mesa según el estado de la comanda.
-
-    Salida:
-    - Actualiza el estado de la mesa en el diccionario.
-
-    Argumentos:
-    - comandas: Diccionario con los datos de las comandas.
-    - mesas: Diccionario con el estado de las mesas.
-    - folio: ID único de la comanda.
-
-    Retorno:
-    - None
-    """
+def disponibilidad_mesas(comandas,mesas,folio):
     comanda = comandas.get(folio)
-    num_mesas = comanda['mesa']
-    if comanda['estado'] == "pagada":
-        mesas[num_mesas] = "Disponible"
+    num_mesas=comanda['mesa']
+    if comanda['estado']=="pagada":
+        mesas[num_mesas]="Disponible"
     else:
-        mesas[num_mesas] = "No disponible"
+        mesas[num_mesas]="No disponible"
 
 
 if __name__ == "__main__":

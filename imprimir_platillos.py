@@ -1,23 +1,7 @@
 import utilerias as u
-"""
-"""
-def imprimirPlatillos(es_menu: bool) -> None:
+def imprimirPlatillos(es_menu=False):
     """
     Muestra el menú de platillos disponibles, incluyendo sus precios.
-
-    Datos de entrada:
-        - es_menu (bool): Indica si se está llamando a esta función desde el módulo de menú.
-
-    Proceso:
-        1. Se imprime una lista de platillos junto con sus precios de forma formateada.
-        2. Si `es_menu` es True, se pregunta al usuario si desea volver al menú principal, validando la respuesta.
-
-    Salida:
-        - Impresión del menú de platillos.
-        - Si `es_menu` es True, permite al usuario regresar al menú principal o continuar.
-
-    Argumentos:
-        - es_menu (bool): Define si se muestra la opción de regresar al menú principal o no.
     """
     #formateo
     print("Menu platillos: ")

@@ -1,32 +1,8 @@
 import utilerias as u
-""""""
 
 fechaHoy=u.fecha()#Obtener la fecha del dia actual
 
-def consultar_ventas(comandas: dict, empleados: dict) -> None:
-    """
-    Función para consultar las ventas realizadas en el día.
-
-    Datos de entrada:
-        - Comandas (Dict): Contiene información sobre las comandas, su estado, mesa, cliente, empleado, total y propina.
-        - Empleados (Dict): Contiene información de los empleados para validar filtros por empleado.
-
-    Proceso:
-        1. Se imprimen las ventas realizadas durante el día, mostrando detalles de cada comanda pagada.
-        2. Se calculan e imprimen los totales acumulados de ventas y propinas.
-        3. Se ofrece la opción de filtrar las ventas por número de mesa o por empleado.
-        4. Si se selecciona un filtro, se valida el criterio y se muestran los registros correspondientes.
-        5. Si no hay ventas registradas que coincidan con el filtro, se muestra un mensaje de advertencia.
-
-    Salida:
-        - Impresión de las ventas del día, totales de ventas y propinas.
-        - Impresión de los registros filtrados por mesa o empleado, en caso de seleccionar un filtro.
-
-    Argumentos:
-        - comandas (Dict): Información de las comandas registradas.
-        - empleados (Dict): Información de los empleados para validación en los filtros.
-
-    """
+def consultar_ventas(comandas,empleados):
       #formateo y hacer que se muestre al registrar una comanda
     totalP=0
     totalT=0
@@ -38,7 +14,7 @@ def consultar_ventas(comandas: dict, empleados: dict) -> None:
 
         if datos['estado'] == 'pagada':
             #agrega la fecha con el daytime
-            print(f"{folio:<9}{datos['mesa']:<7}{datos['cliente']:<19}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
+            print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
             print(f"{"":-^73}")
             totalP+=int(datos['propina'])
             totalT+=int(datos['total'])
@@ -49,7 +25,7 @@ def consultar_ventas(comandas: dict, empleados: dict) -> None:
             if filtro == -1:
                 return
             elif filtro==1:
-                mesa=u.validar_numerico("Ingrese el numero de la mesa: ")
+                mesa=u.validar_numerico("Ingrese el numero de la msea")
                 if mesa == datos['mesa']:
                     print(f"{"":-^73}")
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
