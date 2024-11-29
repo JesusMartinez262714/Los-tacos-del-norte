@@ -14,7 +14,7 @@ def consultar_ventas(comandas,empleados):
 
         if datos['estado'] == 'pagada':
             #agrega la fecha con el daytime
-            print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
+            print(f"{folio:<9}{datos['mesa']:<7}{datos['cliente']:<19}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
             print(f"{"":-^73}")
             totalP+=int(datos['propina'])
             totalT+=int(datos['total'])
@@ -25,7 +25,7 @@ def consultar_ventas(comandas,empleados):
             if filtro == -1:
                 return
             elif filtro==1:
-                mesa=u.validar_numerico("Ingrese el numero de la msea")
+                mesa=u.validar_numerico("Ingrese el numero de la mesa: ")
                 if mesa == datos['mesa']:
                     print(f"{"":-^73}")
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")

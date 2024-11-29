@@ -195,8 +195,9 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
 
     Permite elegir entre agregar, eliminar o aumentar la cantidad de un producto.
     """
-    if es_menu == "si":
-        folio=u.verificar_comanda(comandas)
+
+    folio=u.verificar_comanda(comandas)
+    
     print("¿Qué actualización desea realizar? ")
     print("1.- Agregar producto")
     print("2.- Eliminar producto")

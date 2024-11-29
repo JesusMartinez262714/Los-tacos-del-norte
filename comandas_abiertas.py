@@ -1,6 +1,7 @@
 def comandas_abiertas(comandas:dict):
     #formateo y hacer que se muestre al registrar una comanda
     contador=0
+    print(comandas)
     print("Comandas Abiertas:")
     print(f"{"":-^65}")
     print(f"{"Mesa":<9}{"Cliente":<16}{"Empleado":<17}Total ($)")

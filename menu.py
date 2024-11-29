@@ -43,21 +43,21 @@ El valor indica el estado actual de la mesa, con los posibles valores:
 "no disponible": La mesa está ocupada por una comanda activa.
 """
 mesas = {
-        1: "disponible",
-        2: "disponible",
-        3: "disponible",
-        4: "disponible",
-        5: "disponible",
-        6: "disponible",
-        7: "disponible",
-        8: "disponible",
-        9: "disponible",
-        10: "disponible",
-        11: "disponible",
-        12: "disponible",
-        13: "disponible",
-        14: "disponible",
-        15: "disponible"
+        1: "Disponible",
+        2: "Disponible",
+        3: "Disponible",
+        4: "Disponible",
+        5: "Disponible",
+        6: "Disponible",
+        7: "Disponible",
+        8: "Disponible",
+        9: "Disponible",
+        10: "Disponible",
+        11: "Disponible",
+        12: "Disponible",
+        13: "Disponible",
+        14: "Disponible",
+        15: "Disponible"
 
 }
 

@@ -20,7 +20,7 @@ def validar_mesa(mesas, num_mesas) -> bool:
     Retorna:
     - bool: True si la mesa está disponible, False en caso contrario.
     """
-    if mesas[num_mesas] == "disponible":
+    if mesas[num_mesas] == "Disponible":
         return True
     else:
         return False
@@ -67,7 +67,9 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     if continuar == "s":
         mesas[num_mesas] = "No disponible"
         print("Comanda registrada correctamente")
-        folio+=1
+        
+        if not folio==1:
+            folio+=1
         if folio in comandas:
             folio+=1
         
