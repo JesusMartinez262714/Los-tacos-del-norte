@@ -65,6 +65,9 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         num_mesas = u.validar_numerico("Ingrese el número de la mesa: ")
         if num_mesas<0:
             break
+        if num_mesas>len(mesas):
+            print("Esa mesa no existe,ingrese una mesa valida")
+            continue
         if not validar_mesa(mesas, num_mesas):
             print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada.")
         else:
@@ -88,7 +91,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     folio+=1
     mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
 
-    continuar = input("Desea registrar esta comanda? s/n ").lower()
+    continuar = u.validar_s_n("Desea registrar esta comanda? s/n ")
     if continuar == "s":
         mesas[num_mesas] = "no disponible"
         print("Comanda registrada correctamente")
@@ -152,11 +155,12 @@ def registrar_platillos(lista_platillos, platillos) -> float:
                         
         else:
             print("Ese platillo no existe")
-        continuar = input("¿Desea pedir otro platillo? (s/n): ").lower()
+        continuar = u.validar_s_n("¿Desea pedir otro platillo? (s/n): ")
         if continuar == "n":
             return total
-        if continuar == "s":
+        elif continuar == "s":
             continue
+
             
         
 

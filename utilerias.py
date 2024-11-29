@@ -175,18 +175,22 @@ def verificar_comanda(comandas:dict):
     Retorna:
      El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
     """
-    ca.comandas_abiertas(comandas)
-    verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
-    folio = obtener_folio_por_mesa(comandas, verificar)
-    bandera=False
-    for datos in comandas.values():
-        if verificar == datos['mesa'] and datos['estado'] == "no pagada":
-            mostrar_resumen(comandas,folio,imprimir="inicio")
-            bandera=True
-            break
-    if not bandera:
-        print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
-    return folio
+    valor=ca.comandas_abiertas(comandas)
+    if not valor:
+        return valor
+    while True:
+        verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
+        folio = obtener_folio_por_mesa(comandas, verificar)
+        bandera=False
+        for datos in comandas.values():
+            if verificar == datos['mesa'] and datos['estado'] == "no pagada":
+                mostrar_resumen(comandas,folio,imprimir="inicio")
+                bandera=True
+                break
+        if not bandera:
+            print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
+            continue
+        return folio
 
 def validar_empleado(empleados):
     """

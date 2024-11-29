@@ -20,6 +20,7 @@ def consultar_estado_mesas(mesas):
     - mesas: Un diccionario donde las claves son los números de las mesas y los valores son los estados de las mismas 
       ("disponible" o "no disponible").
     """
+    import utilerias as u
     listaDisponibles=[]
     listaNoDisponibles=[]
     disponibles=0
@@ -60,7 +61,7 @@ def consultar_estado_mesas(mesas):
             print(f"Total de mesas ocupadas: {disponibles}")
                 
         
-        continuar=input("Desea regresar al menu principal? (s/n)").lower().strip()
+        continuar=u.validar_s_n("Desea regresar al menu principal? (s/n)")
         if continuar=='s':
             return
         elif continuar=='n':

@@ -157,7 +157,7 @@ def eliminar_producto(platillos:tuple,comandas,folio):
                     if cantidad > cant_producto:
                         print(f"Solo existen {cant_producto} de este producto.")
                     else:
-                        continuar = input(f"¿Está seguro de que desea eliminar {cantidad} de {nombre_producto}? (s/n): ").lower()
+                        continuar = u.validar_s_n(f"¿Está seguro de que desea eliminar {cantidad} de {nombre_producto}? (s/n): ")
                         if continuar == 's':
                             nuevo_cant = cant_producto - cantidad
                             if nuevo_cant > 0:
@@ -266,6 +266,8 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     global folioNuevo
     if es_menu == "si":
         folio=u.verificar_comanda(comandas)
+        if not folio:
+            return
         folioNuevo=folioGlobal(folio)
     elif es_menu == "no":
         folio=folioNuevo
@@ -305,7 +307,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "No pagada"  # Pueden ser pagadas o no pagadas
+            "estado": "pagada"  # Pueden ser pagadas o no pagadas
         },
         2: {  # Comanda con ID 2
             "mesa": 2,
@@ -318,7 +320,7 @@ if __name__ == "__main__":
             ],
             "total": 270.00,
             "propina": 0,
-            "estado": "No pagada"  # Pueden ser pagadas o no pagadas
+            "estado": "pagada"  # Pueden ser pagadas o no pagadas
         },
         3: {  # Comanda con ID 3
             "mesa": 1,
@@ -330,7 +332,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "No pagada"  # Pueden ser pagadas o no pagadas
+            "estado": "pagada"  # Pueden ser pagadas o no pagadas
         }
     }
 
@@ -349,4 +351,4 @@ if __name__ == "__main__":
     )
 
     # Simulamos el proceso de actualización de una comanda
-    menu_actualizaciones(comandas,platillos)
+    menu_actualizaciones(comandas,platillos,es_menu="si")

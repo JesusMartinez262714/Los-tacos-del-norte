@@ -35,6 +35,7 @@ def comandas_abiertas(comandas:dict):
     # Si no hay comandas abiertas, mostramos solo el mensaje sin ningún formato adicional
     if not comandas_abiertas:
         print("No hay comandas abiertas")
+        return False
     else:
         print(f"{'':-^65}")
         print(f"Total de Comandas Abiertas: {contador}")
