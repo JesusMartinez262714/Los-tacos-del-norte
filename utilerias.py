@@ -210,7 +210,7 @@ def validar_empleado(empleados):
             return empleados[empleado]["nombre"],empleado
             
         else:
-            print("El empleado no esta registrado,Intente de nuevo.")
+            print("El empleado no esta registrado. Proporcione un empleado valido.")
 
 def validar_s_n(mensaje):
     while True:
