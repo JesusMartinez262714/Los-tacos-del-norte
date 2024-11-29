@@ -125,6 +125,11 @@ Valor: Total de propinas acumuladas.
 # Función de menu
 
 def menu_principal():
+    """
+    Muestra el menú principal de la taquería y permite al usuario seleccionar 
+    una opción para realizar diversas acciones relacionadas con las comandas, 
+    mesas, empleados, ventas, y platillos.
+    """
     while True:
         print("")
         print("---- Taqueria Los Tacos del Norte -----")

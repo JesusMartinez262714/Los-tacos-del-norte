@@ -1,5 +1,28 @@
 import utilerias as u
 def cerrar_comanda(comandas:dict,platillos,mesas):
+    """
+    Cierra una comanda registrada, permitiendo al usuario ingresar una propina, generar el ticket y actualizar el estado de la comanda.
+
+    Datos de entrada:
+        comandas (dict): Diccionario con las comandas registradas, donde las claves son los folios y los valores son los detalles de cada comanda.
+        platillos (tuple): Tupla con los platillos disponibles, que no se utilizan directamente en esta función, pero pueden ser parte de la estructura del sistema.
+        mesas (dict): Diccionario con la información sobre las mesas, utilizado para actualizar el estado de las mesas relacionadas con las comandas.
+
+    Proceso:
+        - Solicita al usuario la verificación de una comanda existente.
+        - Pregunta si desea cerrar la comanda seleccionada.
+        - Si el usuario confirma, pide la propina que desea dejar, valida que no sea negativa y luego genera el ticket correspondiente.
+        - Actualiza el estado de la comanda y las mesas asociadas.
+        - Permite continuar con el cierre de otra comanda o finalizar el proceso.
+
+    Salida:
+        None
+
+    Argumentos:
+        comandas: Diccionario que contiene las comandas registradas, se usa para identificar la comanda a cerrar y actualizar su estado.
+        platillos: Tupla con los platillos disponibles, aunque no se utiliza en esta función, es parte de la estructura general del sistema.
+        mesas: Diccionario que contiene la información de las mesas, se utiliza para actualizar su estado una vez que la comanda se cierra.
+    """
     while True:
         folio=u.verificar_comanda(comandas)
         cerrar=u.validar_s_n("Desea cerrar esta comanda? (s/n)")
@@ -23,6 +46,27 @@ def cerrar_comanda(comandas:dict,platillos,mesas):
                 return
 
 def generar_ticket(folio,comandas,propina):
+    """
+    Genera un ticket con los detalles de la comanda, incluyendo la lista de platillos, subtotales, propina y total.
+
+    Datos de entrada:
+        folio (int): El número de folio que identifica la comanda a generar el ticket.
+        comandas (dict): Diccionario con las comandas registradas. Cada clave es un folio, y su valor es un diccionario con los detalles de la comanda.
+        propina (float): La cantidad de propina que el cliente deja en la comanda.
+
+    Proceso:
+        - Busca la comanda asociada al folio.
+        - Muestra los detalles de la comanda, incluyendo el cliente, el empleado, los platillos, cantidades, subtotales, propina y total.
+        - Genera el ticket con una presentación formateada y centrada.
+    
+    Salida:
+        None
+
+    Argumentos:
+        folio: El número de folio de la comanda que se desea generar en el ticket.
+        comandas: Un diccionario que contiene la información de todas las comandas, incluyendo platillos, mesa, cliente, empleado y más.
+        propina: La cantidad de propina que el cliente ha dejado en la comanda, que será sumada al total final.
+    """
     if folio in comandas:
         print(f"{"":=^45}")
         print(f"{"Los tacos del norte":^45}")
@@ -52,6 +96,28 @@ def generar_ticket(folio,comandas,propina):
         print(f"{"":=^45}")
 
 def actualizar_estado_comanda(folio,comandas,mesas,propina):
+    """
+    Actualiza el estado de una comanda a "pagada" y asigna una propina a la misma. 
+
+    Parámetros:
+    - folio (int): El número de folio que identifica la comanda a actualizar.
+    - comandas (dict): Diccionario que contiene las comandas registradas. Cada clave es un folio, y su valor es un diccionario con los detalles de la comanda.
+    - mesas (dict): Diccionario que contiene las mesas disponibles en el restaurante.
+    - propina (float): La cantidad de propina que el cliente deja en la comanda.
+
+    Proceso:
+        - Si la comanda existe, se actualiza su estado a "pagada" y se asigna la propina proporcionada.
+        - Luego se llama a la función `disponibilidad_mesas` para liberar la mesa asociada a la comanda.
+
+    Salida:
+    - None: La función no retorna un valor, pero realiza las actualizaciones en el diccionario de las comandas y mesas.
+
+    Argumentos:
+    - folio: El número de folio de la comanda que se desea actualizar.
+    - comandas: Un diccionario con todas las comandas registradas.
+    - mesas: Un diccionario con las mesas disponibles, que se actualizará según la comanda pagada.
+    - propina: La cantidad de propina que se asigna a la comanda.
+    """
     comanda = comandas.get(folio)  # Obtiene la comanda por folio
     if comanda:
         comanda['estado']="pagada"
@@ -61,6 +127,26 @@ def actualizar_estado_comanda(folio,comandas,mesas,propina):
 
 
 def disponibilidad_mesas(comandas, mesas, folio):
+    """
+    Actualiza la disponibilidad de una mesa en función del estado de la comanda asociada.
+
+    Parámetros:
+    - comandas (dict): Diccionario que contiene las comandas registradas, identificadas por su folio.
+    - mesas (dict): Diccionario que contiene el estado de las mesas, donde la clave es el número de la mesa y el valor es su estado ("disponible" o "no disponible").
+    - folio (int): El número de folio de la comanda que se desea verificar.
+
+    Proceso:
+        - Si la comanda está pagada, la mesa asociada se marca como "disponible".
+        - Si la comanda no está pagada, la mesa se marca como "no disponible".
+
+    Salida:
+    - None: La función no retorna un valor, pero actualiza el estado de la mesa en el diccionario `mesas`.
+
+    Argumentos:
+    - comandas: Diccionario con todas las comandas registradas, identificadas por su folio.
+    - mesas: Diccionario que almacena el estado de cada mesa en el restaurante.
+    - folio: El número de folio que identifica la comanda asociada a la mesa.
+    """
     comanda = comandas.get(folio)
     if comanda:
         num_mesa = comanda['mesa']  # Obtén el número de la mesa

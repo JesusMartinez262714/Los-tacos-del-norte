@@ -3,6 +3,29 @@ import utilerias as u
 fechaHoy = u.fecha()  # Obtener la fecha del día actual
 
 def consultar_ventas(comandas, empleados):
+    """
+    Consulta las ventas del día, mostrando un resumen de las comandas pagadas, propinas y totales.
+    Permite filtrar las ventas por mesa o por empleado.
+
+    Parámetros:
+    - comandas (dict): Diccionario que contiene las comandas, donde cada clave es el folio y cada valor es un diccionario con los detalles de la comanda.
+    - empleados (dict): Diccionario con los empleados, donde cada clave es el ID del empleado y el valor es su nombre.
+
+    Proceso:
+        - Muestra el resumen de todas las comandas pagadas con su total y propina.
+        - Muestra un total del día con la suma de todos los totales y propinas.
+        - Permite al usuario filtrar las ventas por número de mesa o empleado.
+        - Si se selecciona un filtro, muestra las comandas que coincidan con los criterios especificados.
+    
+    Salida:
+    - Imprime en pantalla el resumen de ventas del día, con el total de ventas y propinas.
+    - Si el usuario selecciona un filtro, muestra las comandas correspondientes a la mesa o empleado seleccionado.
+    - Si no hay ventas registradas para la mesa o empleado seleccionado, muestra un mensaje indicativo.
+
+    Argumentos:
+    - comandas: Un diccionario que contiene las comandas pagadas con sus detalles, incluyendo total y propina.
+    - empleados: Un diccionario con los empleados registrados y su información.
+    """
     totalP = 0
     totalT = 0
     print(f"{'':^12}{' Ventas del Día: ':->26}{fechaHoy:-<20}")
@@ -26,6 +49,8 @@ def consultar_ventas(comandas, empleados):
         elif filtro == 1:
             mesa = u.validar_numerico("Ingrese el número de la mesa: ")
             mesa_encontrada = False
+            print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
+            print(f"{'':-^73}")
             for folio, datos in comandas.items():
                 if datos['estado'] == 'pagada' and datos['mesa'] == mesa:
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
@@ -36,8 +61,11 @@ def consultar_ventas(comandas, empleados):
         elif filtro == 2:
             Empleado, id = u.validar_empleado(empleados)
             empleado_encontrado = False
+            print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
+            print(f"{'':-^73}")
             for folio, datos in comandas.items():
                 if datos['estado'] == 'pagada' and datos['empleado'] == Empleado:
+                    
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
                     print(f"{'':-^73}")
                     empleado_encontrado = True

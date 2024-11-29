@@ -1,6 +1,26 @@
 cantidades = []
 
 def consultar_platillos_mas_vendidos(comandas, platillos):
+    """
+    Consulta y muestra los tres platillos más vendidos y los ingresos generados.
+
+    Datos de entrada:
+        comandas (dict): Diccionario que contiene la información de las comandas registradas, donde las claves son los folios y los valores son los detalles de cada comanda (mesa, cliente, platillos, estado, etc.).
+        platillos (list): Lista de tuplas, donde cada tupla contiene información sobre un platillo (ID, nombre y precio unitario).
+
+    Proceso:
+        - Itera sobre las comandas para procesar solo aquellas con estado "pagada".
+        - Extrae y acumula la cantidad vendida de cada platillo.
+        - Ordena los platillos según la cantidad vendida y muestra los tres más vendidos.
+        - Calcula y muestra los ingresos generados por los tres platillos más vendidos.
+
+    Salida:
+        None
+
+    Argumentos:
+        comandas: Diccionario con la información de las comandas, donde cada comanda tiene un estado, platillos y otros datos asociados.
+        platillos: Lista de platillos con su nombre y precio unitario, utilizada para calcular los ingresos generados.
+    """
     for folio, datos in comandas.items():
         if datos["estado"] == "pagada":  # Solo procesar comandas pagadas
             for platillo in datos['platillos']:
@@ -18,6 +38,7 @@ def consultar_platillos_mas_vendidos(comandas, platillos):
 
     rango = min(len(top), 3)  # Ajustar rango si hay menos de 3 platillos
     for dentro in range(rango):
+        
         print(f"{top[dentro][0]:<20}{top[dentro][1]:<20}{top[dentro][2]:.2f}")
     print(f"{'':-^56}")
 
@@ -27,6 +48,27 @@ def consultar_platillos_mas_vendidos(comandas, platillos):
 
 
 def agregar_o_actualizar(platillo, cantidad, platillos):
+    """
+    Agrega o actualiza el registro de un platillo en la lista de cantidades vendidas.
+
+    Datos de entrada:
+        platillo (str): Nombre del platillo a agregar o actualizar en la lista de ventas.
+        cantidad (int): Cantidad del platillo que se ha vendido.
+        platillos (list): Lista de tuplas, donde cada tupla contiene el ID, nombre y precio de un platillo.
+
+    Proceso:
+        - Verifica si el platillo ya existe en la lista de ventas.
+        - Si el platillo ya está en la lista, actualiza la cantidad vendida y el costo total.
+        - Si el platillo no está en la lista, agrega un nuevo registro con la cantidad y el costo calculado.
+        
+    Salida:
+        None
+
+    Argumentos:
+    platillo: El nombre del platillo a agregar o actualizar.
+    cantidad: La cantidad de platillos vendidos en esta comanda.
+    platillos: Lista de platillos disponibles, donde se obtiene el precio unitario para calcular el costo total.
+    """
     # Buscar si el platillo ya está en la lista
     for i in range(len(cantidades)):
         if cantidades[i][0] == platillo:

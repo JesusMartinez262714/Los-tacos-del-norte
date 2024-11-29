@@ -2,7 +2,13 @@ import comandas_abiertas as ca
 
 def fecha():
     """
-    Se obtiene a fecha del dia.
+    Obtiene la fecha actual del día en formato 'YYYY-MM-DD'.
+
+    La función utiliza el módulo `datetime` para obtener la fecha actual y formatearla en el estándar (año-mes-día).
+
+    Retorno:
+    - str: La fecha actual en formato 'YYYY-MM-DD'.
+
     """
     from datetime import datetime #Usando el modulo datetime
     fechaActual = datetime.now()
@@ -12,6 +18,18 @@ fechaHoy=fecha()#Se obetiene el valor del mensaje para la variable local
 
 
 def id_por_nombre_platillo(platillos,nombre_producto):
+    """
+    Busca el ID de un platillo basado en su nombre.
+
+    Parámetros:
+    - platillos (list/tuple): Lista o tupla de platillos, donde cada elemento es una tupla (ID, nombre, precio).
+    - nombre_producto (str): Nombre del producto cuyo ID se desea obtener.
+
+    Retorna:
+    - int: El ID del platillo si se encuentra.
+    - None: Si no se encuentra un platillo con el nombre proporcionado.
+
+    """
     id_producto = None  # Inicializamos el ID como None
     for platillo in platillos:
         if platillo[1] == nombre_producto:  # Compara el nombre del platillo
@@ -41,6 +59,17 @@ def validar_numerico(mensaje: str) -> int:
 
 
 def mostrar_resumen(comandas,folio,imprimir):
+    """
+    Muestra el resumen de una comanda específica, incluyendo mesa, cliente, empleado, platillos y total.
+
+    Parámetros:
+    - comandas (dict): Diccionario que almacena las comandas registradas.
+    - folio (int): Número único que identifica la comanda.
+    - imprimir (str): Indica el tipo de mensaje que se mostrará:
+        - "actualizar" para mostrar que la comanda fue actualizada.
+        - "inicio" para mostrar el inicio de un resumen de comanda.
+        - Otros valores mostrarán solo el resumen sin encabezado adicional.
+    """
     if folio in comandas:
         print (f"Comanda {folio} Actualizada:") if imprimir=="actualizar" else print(f"Resumen de la comanda {folio}:") if imprimir == "inicio" else print ("")
         print(f"Mesa {comandas[folio]['mesa']}" )
@@ -63,12 +92,33 @@ def mostrar_resumen(comandas,folio,imprimir):
         print(f"{"":-^45}")
 
 def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
+    """
+    Obtiene el folio de una comanda asociada a un número de mesa.
+
+    Parámetros:
+    - comandas (dict): Diccionario que almacena las comandas registradas.
+    - numero_mesa (int): Número de la mesa para la cual se busca el folio.
+
+    Retorna:
+    - int: Folio de la comanda asociada a la mesa, si existe.
+    - None: Si no se encuentra ninguna comanda para la mesa especificada.
+
+    """
     for folio, datos in comandas.items():
         if datos['mesa'] == numero_mesa:
             return folio  # Si encuentra la mesa, retorna el folio
     return None
 
 def validar_mismo_platillo(platillo):
+    """
+    Valida y asigna el nombre correspondiente a un número de platillo.
+
+    Parámetros:
+    - platillo (int): Número del platillo seleccionado.
+
+    Retorna:
+    - str: Nombre del platillo correspondiente.
+    """
     if platillo==1:
         platillo='Tacos de Asada'
     if platillo==2:
@@ -92,6 +142,13 @@ def validar_mismo_platillo(platillo):
     return platillo
 
 def calcular_total(folio, comandas):
+    """
+    Calcula y actualiza el total de una comanda basada en los platillos seleccionados.
+
+    Parámetros:
+    - folio (int): Folio de la comanda a calcular.
+    - comandas (dict): Diccionario que contiene las comandas registradas.
+    """
     comanda = comandas.get(folio)  # Obtener la comanda por su folio
     if comanda:
         total = 0

@@ -1,6 +1,29 @@
 import utilerias as u
-
+"""
+Desarrolladores: Jesús Manuel Martínez Cortez 262714, Contreras Ávila Ramsés Norberto 262720
+Objetivo: Calcular las propinas acumuladas de un empleado, basándose en las comandas pagadas en el sistema.
+"""
 def calcular_propina(comandas,empleados):
+    """
+    Calcula las propinas acumuladas de un empleado, basándose en las comandas pagadas.
+
+    Datos de entrada:
+        comandas (dict): Diccionario con las comandas registradas, donde cada clave es un folio y cada valor es un diccionario con los detalles de la comanda.
+        empleados (dict): Diccionario con los empleados registrados, donde cada clave es el ID del empleado y cada valor es el nombre del empleado.
+
+    Proceso:
+        - Solicita al usuario el empleado para calcular las propinas asociadas.
+        - Recorre todas las comandas y, si están pagadas, acumula las propinas correspondientes a las comandas del empleado seleccionado.
+        - Muestra la cantidad de propina acumulada y el número de comandas asociadas al empleado.
+        - Además, muestra la mesa con la mayor cantidad de propinas acumuladas.
+
+    Salida:
+        None
+
+    Argumentos:
+        comandas: Diccionario que contiene las comandas registradas, donde las claves son los folios de las comandas y los valores son los detalles de cada una.
+        empleados: Diccionario con los empleados registrados, que permite validar el empleado a consultar.
+    """
     while True:
         propinaAcumulada = 0.0  # Inicializar fuera del bucle
         comandaAsociada = 0

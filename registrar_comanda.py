@@ -14,12 +14,17 @@ def validar_mesa(mesas, num_mesas) -> bool:
     """
     Valida si una mesa está disponible para registrar una nueva comanda.
 
+    La función verifica el estado de la mesa en el diccionario `mesas` y retorna `True`
+    si la mesa está disponible, o `False` si está ocupada.
+
     Parámetros:
-    - mesas (dict): Diccionario con el estado de las mesas.
-    - num_mesas (int): Número de la mesa a validar.
+    - mesas (dict): Diccionario con el estado actual de las mesas, donde las claves
+      son los números de mesa y los valores son cadenas que indican su estado 
+      ("disponible" o "no disponible").
+    - num_mesas (int): Número de la mesa que se desea validar.
 
     Retorna:
-    - bool: True si la mesa está disponible, False en caso contrario.
+    - bool: `True` si la mesa está disponible, `False` si está ocupada o no disponible.
     """
     if mesas[num_mesas] == "disponible":
         return True
@@ -35,12 +40,25 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     """
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
+    La función valida que la mesa seleccionada esté disponible, registra los platillos 
+    solicitados por el cliente, asigna el pedido a un empleado activo y almacena toda la
+    información en el diccionario de comandas.
+
     Parámetros:
-    - mesas (dict): Diccionario con el estado de las mesas.
-    - platillos (tuple): Tupla con los nombres y precios de los platillos.
-    - empleados (dict): Diccionario con los IDs de empleados.
-    - Comandas (dict): Diccionario que almacena las comandas registradas.
+    - comandas (dict): Diccionario que almacena las comandas registradas. Cada comanda incluye
+      información como el número de mesa, cliente, empleado, lista de platillos, total, propina,
+      y estado ("no pagada" o "pagada").
+    - mesas (dict): Diccionario con el estado actual de las mesas, donde las claves son los números
+      de mesa y los valores indican si están "disponible" o "no disponible".
+    - empleados (dict): Diccionario que almacena la información de los empleados, incluyendo su ID
+      y estado (activo/inactivo).
+    - platillos (tuple): Tupla con los nombres y precios de los platillos disponibles en el menú.
+
+    Variables globales:
     - folio (int): Número único que identifica cada comanda.
+
+    Retorna:
+    - nada
     """
     global folio
     while True: 
@@ -99,12 +117,22 @@ def registrar_platillos(lista_platillos, platillos) -> float:
     """
     Permite al cliente seleccionar platillos, indicando su cantidad, y calcula el total.
 
+    La función interactúa con el usuario para registrar los platillos seleccionados,
+    validando que sean válidos y sumando las cantidades si el mismo platillo se elige 
+    varias veces. Almacena cada selección en una lista junto con su cantidad y costo 
+    individual.
+
     Parámetros:
-    - lista_platillos (list): Lista para almacenar los platillos seleccionados.
-    - platillos (tuple): Tupla con los nombres y precios de los platillos.
+    - lista_platillos (list): Lista que almacena tuplas con la información de los 
+      platillos seleccionados. Cada tupla contiene:
+        (nombre_platillo, cantidad, costo_unitario).
+    - platillos (tuple): Tupla con los nombres y precios de los platillos disponibles 
+      en el menú.
 
     Retorna:
-    - float: Total acumulado de la selección de platillos.
+    - float: El total acumulado de la selección de platillos, calculado con base en 
+      las cantidades y precios.
+
     """
     total = 0.0
     while True:
@@ -136,12 +164,18 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
     """
     Muestra los detalles de una comanda registrada, incluyendo el cliente, mesa, empleado, platillos y total.
 
+    La función imprime de forma estructurada la información de la comanda, como los datos del cliente, el número de la mesa, el empleado que atendió, y una lista de los platillos seleccionados con sus cantidades y costos. También muestra el total acumulado.
+
     Parámetros:
-    - lista_platillos (list): Lista con los platillos seleccionados.
-    - nombre_cliente (str): Nombre del cliente.
-    - empleado (str): ID del empleado que atendió la comanda.
-    - num_mesas (int): Número de la mesa asignada.
-    - total (float): Total acumulado de la comanda.
+    - lista_platillos (list): Lista de tuplas que contiene los platillos seleccionados. Cada tupla incluye:
+    - nombre_cliente (str): Nombre del cliente que realizó la comanda.
+    - empleado (str): Nombre o ID del empleado que atendió la comanda.
+    - num_mesas (int): Número de la mesa asignada a la comanda.
+    - total (float): Total acumulado de la comanda, calculado como la suma de todos los platillos.
+
+    Salida:
+    - Muestra en consola el resumen de la comanda en un formato legible.
+
     """
     #formateo
     print(f"\n{"Resumen de la comanda ":->25}{folio}:")

@@ -1,7 +1,18 @@
 import utilerias as u
 def imprimirPlatillos(es_menu):
     """
-    Muestra el menú de platillos disponibles, incluyendo sus precios.
+    Muestra el menú de platillos disponibles, incluyendo sus precios. Si es llamado desde el menú principal, 
+    pregunta al usuario si desea regresar o seguir en el menú de platillos.
+
+    Parámetros:
+    - es_menu (bool): Indica si la función es llamada desde el menú principal. Si es True, se ofrece la opción
+                      de regresar al menú principal después de mostrar el menú de platillos.
+
+    Salida:
+    - Imprime el menú de platillos disponibles con sus respectivos precios.
+    - Si 'es_menu' es True, después de mostrar el menú de platillos, permite que el usuario decida si quiere regresar
+      al menú principal o continuar viendo los platillos.
+
     """
     #formateo
     print("Menu platillos: ")

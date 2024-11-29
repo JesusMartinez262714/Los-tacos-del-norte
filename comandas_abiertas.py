@@ -1,4 +1,21 @@
 def comandas_abiertas(comandas:dict):
+    """
+    Muestra un listado de las comandas abiertas (no pagadas) en el sistema.
+
+    Parámetros:
+    - comandas (dict): Diccionario que contiene las comandas registradas, identificadas por su folio.
+    
+    Proceso:
+        - La función recorre todas las comandas en el diccionario y muestra aquellas que están "no pagadas".
+        - Muestra información relevante como el número de mesa, cliente, empleado y el total de la comanda.
+
+    Salida:
+    - Imprime en pantalla la lista de comandas abiertas con su información.
+    - Si no hay comandas abiertas, imprime un mensaje indicando que no hay comandas abiertas.
+
+    Argumentos:
+    - comandas: Diccionario que contiene las comandas abiertas y sus respectivos detalles, identificados por el folio.
+    """
     
     contador = 0
     comandas_abiertas = False  # Variable para saber si hay comandas abiertas

@@ -17,12 +17,26 @@ def agregar_producto(platillos, comandas:dict,folio):
     """
     Agrega un producto a una comanda existente.
 
-    Parámetros:
-    - platillos (tuple): Tupla con los platillos disponibles.
-    - verificar (int): Número de la mesa de la comanda a actualizar.
-    - comandas (dict): Diccionario con las comandas abiertas.
+    Datos de entrada:
+        platillos (tuple): Tupla con los platillos disponibles, donde cada platillo es una tupla con su ID, nombre y precio.
+        comandas (dict): Diccionario con las comandas abiertas, donde cada clave es el folio de la comanda y cada valor es un diccionario con los datos de la comanda.
+        folio (int): El folio de la comanda en la que se desea agregar el producto.
 
-    Realiza la actualización en la comanda, ya sea agregando un producto nuevo o actualizando la cantidad de un platillo existente.
+    Proceso:
+        - Muestra un menú para seleccionar un platillo disponible.
+        - Valida si el platillo existe y si la cantidad es válida.
+        - Si el platillo ya está en la comanda, actualiza su cantidad y subtotal.
+        - Si el platillo no está en la comanda, lo agrega como un nuevo producto.
+        - Recalcula el total de la comanda después de agregar el producto.
+
+    Salida:
+        None
+
+    Argumentos:
+        platillos: Tupla que contiene los platillos disponibles en el sistema, cada uno representado como una tupla con ID, nombre y precio.
+        comandas: Diccionario de comandas activas, donde las claves son los folios de las comandas y los valores son diccionarios con los datos de la comanda.
+        folio: El número de folio de la comanda en la que se desea agregar o actualizar el producto.
+
     """
     print("Agregar producto")
     imprimir="actualizar"
@@ -95,10 +109,26 @@ def eliminar_producto(platillos:tuple,comandas,folio):
     """
     Elimina un producto de la comanda seleccionada.
 
-    Parámetros:
-    - platillos (Tuple[Tuple[int, str, float], ...]): Tupla con los platillos disponibles.
+    Datos de entrada:
+        platillos (Tuple[Tuple[int, str, float], ...]): Tupla con los platillos disponibles, donde cada platillo es una tupla con su ID, nombre y precio.
+        comandas (dict): Diccionario de comandas activas, donde cada clave es el folio de la comanda y el valor es un diccionario con los detalles de la comanda.
+        folio (int): El folio de la comanda de la cual se desea eliminar un producto.
 
-    Actualiza el contenido de la comanda eliminando productos o cantidades según las indicaciones del usuario.
+    Proceso:
+        - Muestra los productos de la comanda seleccionada y permite al usuario elegir cuál desea eliminar.
+        - Si el producto existe, se pide la cantidad a eliminar.
+        - Si se desea eliminar todo el producto, este es eliminado completamente de la comanda.
+        - Si se desea eliminar una cantidad parcial, se actualiza la cantidad del producto en la comanda.
+        - Recalcula el total de la comanda después de la eliminación.
+
+    Salida:
+        None
+
+    Argumentos:
+        platillos: Tupla con los platillos disponibles en el sistema, cada uno representado como una tupla con ID, nombre y precio.
+        comandas: Diccionario de comandas activas donde se realiza la modificación.
+        folio: El número de folio de la comanda de la cual se desea eliminar el producto.
+
     """
     
     if folio in comandas:
@@ -146,6 +176,29 @@ def eliminar_producto(platillos:tuple,comandas,folio):
                 print("Opción no válida. Seleccione un producto de la lista.")
    
 def aumentar_producto(platillos,comandas,folio):
+    """
+    Aumenta la cantidad de un producto en una comanda existente.
+
+    Datos de entrada:
+        platillos Tuple: Tupla con los platillos disponibles, donde cada platillo es una tupla con su ID, nombre y precio.
+        comandas (dict): Diccionario que contiene las comandas activas, donde cada clave es el folio de la comanda y el valor es un diccionario con los detalles de la comanda.
+        folio (int): Número de folio de la comanda a actualizar.
+
+    Proceso:
+        - Muestra los productos en la comanda seleccionada y permite al usuario elegir cuál desea aumentar en cantidad.
+        - El usuario puede ingresar la cantidad adicional que desea agregar.
+        - Si la cantidad es válida, se incrementa la cantidad del producto en la comanda.
+        - Recalcula el total de la comanda después de la actualización.
+
+    Salida:
+        None
+
+    Argumentos:
+        platillos: Tupla con los platillos disponibles, cada uno representado por su ID, nombre y precio.
+        comandas: Diccionario con las comandas activas en el sistema.
+        folio: El número de folio de la comanda que se desea actualizar.
+
+    """
     
     if folio in comandas:
         print(f"\n{"productos de la comanda ":->25}{folio}:")
@@ -190,12 +243,25 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     """
     Muestra el menú con las opciones para actualizar la comanda.
 
-    Parámetros:
-    - platillos Tuple: Tupla con los platillos disponibles.
-    - verificar (int): Número de la mesa de la comanda a actualizar.
-    - comandas dict: Diccionario con las comandas abiertas.
+    Datos de entrada:
+        comandas (dict): Diccionario con las comandas abiertas, donde cada clave es el folio de la comanda y el valor es un diccionario con los detalles de la comanda.
+        platillos (tuple): Tupla con los platillos disponibles, donde cada platillo está representado por su ID, nombre y precio.
+        es_menu (str): Indicador de si el menú debe ser mostrado inicialmente ("si" o "no").
 
-    Permite elegir entre agregar, eliminar o aumentar la cantidad de un producto.
+    Proceso:
+        - Si el parámetro 'es_menu' es "si", solicita un nuevo folio de comanda a través de la función 'verificar_comanda'.
+        - Si el parámetro 'es_menu' es "no", utiliza el folio previamente seleccionado.
+        - Muestra un menú con opciones para agregar, eliminar o aumentar la cantidad de un producto en la comanda seleccionada.
+        - Llama a la función correspondiente según la opción seleccionada: 'agregar_producto', 'eliminar_producto' o 'aumentar_producto'.
+        - Permite regresar al menú principal seleccionando la opción 4.
+
+    Salida:
+        None
+
+    Argumentos:
+        comandas: Diccionario que contiene las comandas activas, donde se realiza la actualización.
+        platillos: Tupla que contiene los platillos disponibles con su ID, nombre y precio.
+        es_menu: Un valor que indica si se debe mostrar el menú de opciones inicialmente. Si es "si", se solicita un nuevo folio; si es "no", se utiliza el folio previamente seleccionado.
     """
     global folioNuevo
     if es_menu == "si":
