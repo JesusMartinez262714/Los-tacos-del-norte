@@ -10,6 +10,7 @@ import cerrar_comanda as cc
 import consultar_estado_mesas as cem
 import consultar_ventas as cv
 import consultar_platillos_mas_vendidos as cpmv
+import calcular_propina as cp
 import utilerias as u
 # Estructuras iniciales
 """
@@ -168,7 +169,7 @@ def menu_principal():
               cpmv.consultar_platillos_mas_vendidos(comandas,platillos)
             # consultar_platillos_mas_vendidos(historial_ventas, platillos)
         elif opcion == 8:
-              print("Opcion 8")
+              cp.calcular_propina(comandas,empleados)
             # calcular_propinas(empleados, historial_ventas)
         elif opcion == 9:
               print("Opcion 9")
