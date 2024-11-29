@@ -60,59 +60,67 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     Retorna:
     - nada
     """
-    global folio
-    while True: 
-        num_mesas = u.validar_numerico("Ingrese el número de la mesa: ")
-        if num_mesas<0:
-            break
-        if num_mesas>len(mesas):
-            print("Esa mesa no existe,ingrese una mesa valida")
-            continue
-        if not validar_mesa(mesas, num_mesas):
-            print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada.")
-        else:
-             break
-    if num_mesas<0:
-            return
-
-    nombre_cliente = input("Ingrese el nombre del cliente: ")
-    if nombre_cliente == "":
-        nombre_cliente = "Cliente anónimo"
     while True:
-        empleado,idempleado = u.validar_empleado(empleados)
-        if not empleado and not idempleado:
-            return
-        if empleados[idempleado]['estado'] == 'inactivo':
-            print("Este empleado no esta disponible")
-            continue
-        else:
-            break
-    ip.imprimirPlatillos(es_menu=False)
-    lista_platillos = []
-    total=registrar_platillos(lista_platillos, platillos)
-    folio+=1
-    mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
+        global folio
+        while True: 
+            num_mesas = u.validar_numerico("Ingrese el número de la mesa: ")
+            if num_mesas<0:
+                break
+            if num_mesas>len(mesas):
+                print("Esa mesa no existe,ingrese una mesa valida")
+                continue
+            if not validar_mesa(mesas, num_mesas):
+                print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada.")
+            else:
+                break
+        if num_mesas<0:
+                return
 
-    continuar = u.validar_s_n("Desea registrar esta comanda? s/n ")
-    if continuar == "s":
-        mesas[num_mesas] = "no disponible"
-        print("Comanda registrada correctamente")
-        if folio in comandas:
+        nombre_cliente = input("Ingrese el nombre del cliente: ")
+        if nombre_cliente == "":
+            nombre_cliente = "Cliente anónimo"
+        while True:
+            empleado,idempleado = u.validar_empleado(empleados)
+            if not empleado and not idempleado:
+                return
+            if empleados[idempleado]['estado'] == 'inactivo':
+                print("Este empleado no esta disponible")
+                continue
+            else:
+                break
+        ip.imprimirPlatillos(es_menu=False)
+        lista_platillos = []
+        total=registrar_platillos(lista_platillos, platillos)
+        if total > 0:
             folio+=1
-        comandas[folio] = {
-            "mesa": num_mesas,
-            "cliente":nombre_cliente,
-            "empleado": empleado,
-            "platillos": lista_platillos,
-            "total":total,
-            "propina":0,
-            "estado": "no pagada"
-        }
-       
-        ca.comandas_abiertas(comandas)
-    else:
-        print("Comanda cancelada")
-       
+            mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
+
+
+        continuar = u.validar_s_n("Desea registrar esta comanda? s/n ")
+        if continuar == "s":
+            mesas[num_mesas] = "no disponible"
+            print("Comanda registrada correctamente")
+            if folio in comandas:
+                folio+=1
+            comandas[folio] = {
+                "mesa": num_mesas,
+                "cliente":nombre_cliente,
+                "empleado": empleado,
+                "platillos": lista_platillos,
+                "total":total,
+                "propina":0,
+                "estado": "no pagada"
+            }
+        
+            ca.comandas_abiertas(comandas)
+        else:
+            print("Comanda cancelada")
+        registrarOtra=u.validar_s_n("Desea registrar otra comanda? s/n: ")
+        if registrarOtra == 's':
+            #crear_comanda(comandas,mesas,empleados,platillos)
+            continue
+        elif registrarOtra == 'n':
+            return
         
 
         

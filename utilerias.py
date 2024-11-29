@@ -176,6 +176,8 @@ def verificar_comanda(comandas:dict):
      El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
     """
     valor=ca.comandas_abiertas(comandas)
+    print(f"este valor es de verificar comanda{valor}")
+
     if not valor:
         return valor
     while True:

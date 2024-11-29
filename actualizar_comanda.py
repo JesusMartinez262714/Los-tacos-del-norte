@@ -266,7 +266,10 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     global folioNuevo
     if es_menu == "si":
         folio=u.verificar_comanda(comandas)
+        print(f"este valor es de comandas abiertas {folio}")
+
         if not folio:
+            print("devuelve")
             return
         folioNuevo=folioGlobal(folio)
     elif es_menu == "no":
