@@ -80,6 +80,8 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         nombre_cliente = "Cliente anónimo"
     while True:
         empleado,idempleado = u.validar_empleado(empleados)
+        if not empleado and not idempleado:
+            return
         if empleados[idempleado]['estado'] == 'inactivo':
             print("Este empleado no esta disponible")
             continue
@@ -108,6 +110,8 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         }
        
         ca.comandas_abiertas(comandas)
+    else:
+        print("Comanda cancelada")
        
         
 
@@ -148,10 +152,13 @@ def registrar_platillos(lista_platillos, platillos) -> float:
                 for i in lista_platillos:
                     if nombre_platillo == i[0]:
                         cantidad_platillo+=i[1]
+                        print(cantidad_platillo)
+                        print(i[1])
                         lista_platillos.remove(i)
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal
+                print(total,subtotal)
 
                         
         

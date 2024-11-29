@@ -35,18 +35,15 @@ def cerrar_comanda(comandas:dict,platillos,mesas,propinas_empleados,empleados):
                 if propina >= 0:
                     generar_ticket(folio,comandas,propina)
                     actualizar_estado_comanda(folio,comandas,mesas,propina)
+                    id_empleado=buscar_id_por_nombre(comandas[folio]['empleado'],empleados)
+                    propinas_empleados[id_empleado]=propinas_empleados[id_empleado]+propina
+                    print(propinas_empleados)
                     break
                 else:
                     print("La propina no puede ser negativa,intente nuevamente")
                     continue
-                
-                id_empleado=buscar_id_por_nombre(comandas[folio]['empleado'],empleados)
-                propinas_empleados[id_empleado]=propinas_empleados[id_empleado]+propina
-                print(propinas_empleados)
 
-
-
-            continuar=u.validar_s_n("Desea cerrar otra comamda y generar su cuente? (s/n)")
+            continuar=u.validar_s_n("Desea cerrar otra comanda y generar su cuente? (s/n)")
             if continuar=='s':
                 continue
             if continuar == 'n':

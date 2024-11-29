@@ -205,7 +205,7 @@ def validar_empleado(empleados):
     while True:
         empleado = validar_numerico("Ingrese el id del empleado: ")
         if empleado == -1:
-            return
+            return False,False
         if empleado in empleados:
             return empleados[empleado]["nombre"],empleado
             
