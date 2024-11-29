@@ -2,7 +2,30 @@ import utilerias as u
 
 fechaHoy=u.fecha()#Obtener la fecha del dia actual
 
-def consultar_ventas(comandas,empleados):
+def consultar_ventas(comandas: dict, empleados: dict) -> None:
+    """
+    Función para consultar las ventas realizadas en el día.
+
+    Datos de entrada:
+        - Comandas (Dict): Contiene información sobre las comandas, su estado, mesa, cliente, empleado, total y propina.
+        - Empleados (Dict): Contiene información de los empleados para validar filtros por empleado.
+
+    Proceso:
+        1. Se imprimen las ventas realizadas durante el día, mostrando detalles de cada comanda pagada.
+        2. Se calculan e imprimen los totales acumulados de ventas y propinas.
+        3. Se ofrece la opción de filtrar las ventas por número de mesa o por empleado.
+        4. Si se selecciona un filtro, se valida el criterio y se muestran los registros correspondientes.
+        5. Si no hay ventas registradas que coincidan con el filtro, se muestra un mensaje de advertencia.
+
+    Salida:
+        - Impresión de las ventas del día, totales de ventas y propinas.
+        - Impresión de los registros filtrados por mesa o empleado, en caso de seleccionar un filtro.
+
+    Argumentos:
+        - comandas (Dict): Información de las comandas registradas.
+        - empleados (Dict): Información de los empleados para validación en los filtros.
+
+    """
       #formateo y hacer que se muestre al registrar una comanda
     totalP=0
     totalT=0
