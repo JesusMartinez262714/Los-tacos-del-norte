@@ -119,6 +119,10 @@ Estructura: Diccionario donde:
 Llave: ID del empleado.
 Valor: Total de propinas acumuladas.
 """
+propinas_empleados = {
+    101: 50.00,  # María López
+    102: 35.00   # Pedro Martínez
+}
 
 
 
@@ -160,7 +164,7 @@ def menu_principal():
              ab.comandas_abiertas(comandas)
             # consultar_comandas_abiertas(comandas)
         elif opcion == 4:
-             cc.cerrar_comanda(comandas,platillos,mesas)
+             cc.cerrar_comanda(comandas,platillos,mesas,propinas_empleados,empleados)
             # cerrar_comanda(comandas, mesas, historial_ventas)
         elif opcion == 5:
              cem.consultar_estado_mesas(mesas)

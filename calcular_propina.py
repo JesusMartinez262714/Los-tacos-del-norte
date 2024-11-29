@@ -50,12 +50,12 @@ def calcular_propina(comandas,empleados):
             return  # Sale de la función si no hay comandas pagadas
         mesa=sorted(listaMesasPropina,key=lambda x:x[1],reverse=True)
         masPropina=mesa[0][0]
+        
         # Mostrar resultados después de procesar todas las comandas
         if comandaAsociada > 0:
             print(f"Empleado: {empleado}")
             print(f"Propinas acumuladas: {propinaAcumulada}")
             print(f"Comandas asociadas: {comandaAsociada}")
-            print(mesa)
             print(f'La mesa con mayor cantidad de propinas es la {masPropina}')
         else:
             print(f"Empleado: {empleado}")

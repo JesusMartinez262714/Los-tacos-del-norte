@@ -1,5 +1,5 @@
 import utilerias as u
-def cerrar_comanda(comandas:dict,platillos,mesas):
+def cerrar_comanda(comandas:dict,platillos,mesas,propinas_empleados,empleados):
     """
     Cierra una comanda registrada, permitiendo al usuario ingresar una propina, generar el ticket y actualizar el estado de la comanda.
 
@@ -39,6 +39,13 @@ def cerrar_comanda(comandas:dict,platillos,mesas):
                 else:
                     print("La propina no puede ser negativa,intente nuevamente")
                     continue
+                
+                id_empleado=buscar_id_por_nombre(comandas[folio]['empleado'],empleados)
+                propinas_empleados[id_empleado]=propinas_empleados[id_empleado]+propina
+                print(propinas_empleados)
+
+
+
             continuar=u.validar_s_n("Desea cerrar otra comamda y generar su cuente? (s/n)")
             if continuar=='s':
                 continue
@@ -124,6 +131,12 @@ def actualizar_estado_comanda(folio,comandas,mesas,propina):
         comanda['propina']=propina
         disponibilidad_mesas(comandas,mesas,folio)
      
+def buscar_id_por_nombre(nombre_buscado,empleados):
+    for id_empleado, detalles in empleados.items():
+        if detalles["nombre"] == nombre_buscado:
+            return id_empleado
+    return None
+
 
 
 def disponibilidad_mesas(comandas, mesas, folio):
