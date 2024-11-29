@@ -93,7 +93,7 @@ def mostrar_resumen(comandas,folio,imprimir):
 
 def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
     """
-    Obtiene el folio de una comanda asociada a un número de mesa
+    Obtiene el folio de una comanda asociada a un número de mesa.
 
     Parámetros:
     - comandas (dict): Diccionario que almacena las comandas registradas.
