@@ -121,13 +121,14 @@ def verificar_comanda(comandas:dict):
     ca.comandas_abiertas(comandas)
     verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
     folio = obtener_folio_por_mesa(comandas, verificar)
-
+    bandera=False
     for datos in comandas.values():
-        if verificar == datos['mesa'] and datos['estado'] == "No pagada":
+        if verificar == datos['mesa'] and datos['estado'] == "no pagada":
             mostrar_resumen(comandas,folio,imprimir="inicio")
+            bandera=True
             break
-        else:
-            print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
+    if not bandera:
+        print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
     return folio
 
 def validar_empleado(empleados):

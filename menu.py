@@ -120,10 +120,6 @@ Llave: ID del empleado.
 Valor: Total de propinas acumuladas.
 """
 
-propinas_empleados = {
-    101: 50.00,  # María López
-    102: 35.00   # Pedro Martínez
-}
 
 
 # Función de menu

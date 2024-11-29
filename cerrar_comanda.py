@@ -2,11 +2,11 @@ import utilerias as u
 def cerrar_comanda(comandas:dict,platillos,mesas):
     while True:
         folio=u.verificar_comanda(comandas)
-        cerrar=input("Desea cerrar esta comanda? (s/n)").lower()
+        cerrar=u.validar_s_n("Desea cerrar esta comanda? (s/n)")
         if cerrar == 'n':
             print('Cierre de comanda cancelado')
             return
-        else:
+        elif cerrar == 's':
             while True:
                 propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
                 if propina >= 0:
@@ -44,9 +44,9 @@ def generar_ticket(folio,comandas,propina):
             acumulador+=subtotal
         print(f"{"":-^45}")
         print(f"{"Subtotal":<39}{acumulador}")
-        print(f"{"Propina":<39}{acumulador*(propina/100)}")
+        print(f"{"Propina":<39}{propina}")
         print(f"{"":-^45}")
-        print(f"{"Propina":<39}{acumulador+(acumulador*(propina/100))}")
+        print(f"{"Total":<39}{acumulador+propina}")
         print(f"{"":=^45}")
         print(f"{"¡Gracias por su preferencia!":^45}")
         print(f"{"":=^45}")
@@ -60,13 +60,15 @@ def actualizar_estado_comanda(folio,comandas,mesas,propina):
      
 
 
-def disponibilidad_mesas(comandas,mesas,folio):
+def disponibilidad_mesas(comandas, mesas, folio):
     comanda = comandas.get(folio)
-    num_mesas=comanda['mesa']
-    if comanda['estado']=="pagada":
-        mesas[num_mesas]="Disponible"
-    else:
-        mesas[num_mesas]="No disponible"
+    if comanda:
+        num_mesa = comanda['mesa']  # Obtén el número de la mesa
+        if comanda['estado'] == "pagada":
+            mesas[num_mesa] = "disponible"  # Cambia a "disponible" si la comanda está pagada
+        else:
+            mesas[num_mesa] = "no disponible"  # De lo contrario, marca como "no disponible"
+
 
 
 if __name__ == "__main__":

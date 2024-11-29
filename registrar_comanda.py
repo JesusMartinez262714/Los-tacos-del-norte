@@ -7,7 +7,8 @@ registrar los pedidos de clientes, asignar empleados a comandas, calcular costos
 import utilerias as u
 import comandas_abiertas as ca
 import imprimir_platillos as ip
-folio=1
+import cerrar_comanda as cc
+folio=0
 
 def validar_mesa(mesas, num_mesas) -> bool:
     """
@@ -56,21 +57,25 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     nombre_cliente = input("Ingrese el nombre del cliente: ")
     if nombre_cliente == "":
         nombre_cliente = "Cliente anónimo"
-    
-    empleado,idempleado = u.validar_empleado(empleados)
+    while True:
+        empleado,idempleado = u.validar_empleado(empleados)
+        if empleados[idempleado]['estado'] == 'inactivo':
+            print("Este empleado no esta disponible")
+            continue
+        else:
+            break
     ip.imprimirPlatillos(es_menu=False)
     lista_platillos = []
     total=registrar_platillos(lista_platillos, platillos)
+    folio+=1
     mostrarComanda(lista_platillos, nombre_cliente, empleado, num_mesas,total)
 
     continuar = input("Desea registrar esta comanda? s/n ").lower()
     if continuar == "s":
-        mesas[num_mesas] = "No disponible"
+        mesas[num_mesas] = "no disponible"
         print("Comanda registrada correctamente")
-        folio+=1
         if folio in comandas:
             folio+=1
-        
         comandas[folio] = {
             "mesa": num_mesas,
             "cliente":nombre_cliente,
@@ -78,10 +83,13 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
             "platillos": lista_platillos,
             "total":total,
             "propina":0,
-            "estado": "No pagada"
+            "estado": "no pagada"
         }
        
         ca.comandas_abiertas(comandas)
+       
+        
+
         
    
 

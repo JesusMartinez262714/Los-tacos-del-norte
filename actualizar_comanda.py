@@ -5,7 +5,9 @@ Objetivo: Actualización de productos en una comanda en el sistema.
 import utilerias as u
 import imprimir_platillos as ip
 
-
+def folioGlobal(folio):
+    return folio
+folioNuevo=0
 # Función para verificar si existe una comanda abierta para la mesa proporcionada
 
 
@@ -24,7 +26,7 @@ def agregar_producto(platillos, comandas:dict,folio):
     """
     print("Agregar producto")
     imprimir="actualizar"
-    ip.imprimirPlatillos()
+    ip.imprimirPlatillos(es_menu=False)
     
     while True:
         
@@ -83,7 +85,7 @@ def agregar_producto(platillos, comandas:dict,folio):
                                 u.mostrar_resumen(comandas,folio,imprimir)  # Muestra el resumen actualizado
                                 break
                 break  # Sale del ciclo de las comandas
-        menu_actualizaciones(comandas,platillos,es_menu="no")  # Finaliza la función de agregar producto
+        return  # Finaliza la función de agregar producto
 
 
 
@@ -139,7 +141,7 @@ def eliminar_producto(platillos:tuple,comandas,folio):
                 
                 u.calcular_total(folio, comandas)
                 u.mostrar_resumen(comandas, folio,imprimir="actualizar")
-                menu_actualizaciones(comandas,platillos,es_menu="no")
+                return
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
    
@@ -180,7 +182,7 @@ def aumentar_producto(platillos,comandas,folio):
                 
                 u.calcular_total(folio, comandas)
                 u.mostrar_resumen(comandas, folio,imprimir="actualizar")
-                menu_actualizaciones(comandas,platillos,es_menu="no")
+                return
             else:
                 print("Opción no válida. Seleccione un producto de la lista.")
 # Función que muestra el menú de actualizaciones
@@ -195,23 +197,30 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
 
     Permite elegir entre agregar, eliminar o aumentar la cantidad de un producto.
     """
+    global folioNuevo
     if es_menu == "si":
         folio=u.verificar_comanda(comandas)
-    print("¿Qué actualización desea realizar? ")
-    print("1.- Agregar producto")
-    print("2.- Eliminar producto")
-    print("3.- Aumentar cantidad de producto")
-    print("4.- Regresar al menú principal")
-    opcion = u.validar_numerico('Ingrese una opción: ')
-    
-    if opcion == 4:
-        return
-    elif opcion == 1:
-        agregar_producto(platillos,comandas,folio)
-    elif opcion == 2:
-        eliminar_producto(platillos,comandas,folio)
-    elif opcion == 3:
-        aumentar_producto(platillos,comandas,folio)
+        folioNuevo=folioGlobal(folio)
+    elif es_menu == "no":
+        folio=folioNuevo
+        
+
+    while True:
+        print("¿Qué actualización desea realizar? ")
+        print("1.- Agregar producto")
+        print("2.- Eliminar producto")
+        print("3.- Aumentar cantidad de producto")
+        print("4.- Regresar al menú principal")
+        opcion = u.validar_numerico('Ingrese una opción: ')
+        
+        if opcion == 4:
+            return
+        elif opcion == 1:
+            agregar_producto(platillos,comandas,folio)
+        elif opcion == 2:
+            eliminar_producto(platillos,comandas,folio)
+        elif opcion == 3:
+            aumentar_producto(platillos,comandas,folio)
 
 # Bloque principal de ejecución
 if __name__ == "__main__":

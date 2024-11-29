@@ -21,7 +21,7 @@ def consultar_platillos_mas_vendidos(comandas,platillos):
                 if platillo[0] == "Tacos de Pastor":
                     cantTacosPastor += platillo[1]
                     agregar_o_actualizar(platillo[0],cantTacosPastor,platillos)
-                if platillo[0] == "Quesadillas":
+                if platillo[0] == "Quesadilla":
                     cantQuesadillas += platillo[1]
                     agregar_o_actualizar(platillo[0],cantQuesadillas,platillos)
                 if platillo[0] == "Refresco":
@@ -66,22 +66,29 @@ def consultar_platillos_mas_vendidos(comandas,platillos):
     for x in top:
         totalIngresos+=x[2]
     print(f"{"Total de Ingresos:":<40}{totalIngresos}")
-
-def agregar_o_actualizar(platillo, cantidad,platillos):
-    # Buscar si el platillo ya existe en la lista
+def agregar_o_actualizar(platillo, cantidad, platillos):
+    # Buscar si el platillo ya está en la lista
     for i in range(len(cantidades)):
         if cantidades[i][0] == platillo:
-            # Si existe, actualizar la cantidad
-            cant=cantidades[i][1] + cantidad
-            for x in platillos:
-                cantidades[i] = (platillo,cant,cant*x[2])
+            # Encontrar el precio unitario del platillo
+            precio_unitario = 0
+            for item in platillos:
+                if item[1] == platillo:
+                    precio_unitario = item[2]
+                    break
+            
+            # Actualizar la cantidad y el costo total
+            nueva_cantidad = cantidades[i][1] + cantidad
+            nuevo_costo = nueva_cantidad * precio_unitario
+            cantidades[i] = (platillo, nueva_cantidad, nuevo_costo)
             return
-    # Si no existe, agregar el platillo como una nueva tupla
-    for i in platillos:
-        if platillo == i[1]:
-            cantidades.append((platillo, cantidad,cantidad*i[2]))
 
-
+    # Si no está en la lista, agregar un nuevo registro
+    for item in platillos:
+        if item[1] == platillo:
+            nuevo_costo = cantidad * item[2]
+            cantidades.append((platillo, cantidad, nuevo_costo))
+            return
 
 
 
