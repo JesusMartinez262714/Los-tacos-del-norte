@@ -4,6 +4,8 @@ Objetivo:
 El objetivo del programa es gestionar comandas en un restaurante. Esto incluye validar la disponibilidad de mesas, 
 registrar los pedidos de clientes, asignar empleados a comandas, calcular costos y mostrar detalles de las comandas.
 """
+"""
+"""
 import utilerias as u
 import comandas_abiertas as ca
 import imprimir_platillos as ip

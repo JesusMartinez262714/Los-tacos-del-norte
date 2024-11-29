@@ -4,6 +4,8 @@ Objetivo: Actualización de productos en una comanda en el sistema.
 """
 import utilerias as u
 import imprimir_platillos as ip
+"""
+"""
 
 # Función para agregar un producto a la comanda
 def agregar_producto(platillos: tuple, comandas: dict, folio: int) -> None:

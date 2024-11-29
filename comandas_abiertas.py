@@ -1,4 +1,5 @@
 def comandas_abiertas(comandas: dict) -> None:
+    """"""
     """
     Muestra en formato tabular las comandas que aún no han sido pagadas.
 

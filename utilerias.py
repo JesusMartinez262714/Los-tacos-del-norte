@@ -1,5 +1,6 @@
 import comandas_abiertas as ca
-
+"""
+"""
 def fecha() -> str:
     """
     Se obtiene la fecha del día.

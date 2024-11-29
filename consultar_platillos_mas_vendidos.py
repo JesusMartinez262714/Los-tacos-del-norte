@@ -1,4 +1,5 @@
 cantidades: list = []
+""""""
 
 def consultar_platillos_mas_vendidos(comandas: dict, platillos: list) -> None:
     """

@@ -1,4 +1,5 @@
 import utilerias as u
+""""""
 
 def menu_empleados(empleados: dict):
     """

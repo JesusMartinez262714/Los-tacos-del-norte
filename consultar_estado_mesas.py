@@ -1,4 +1,5 @@
 def consultar_estado_mesas(mesas: dict) -> None:
+    """"""
     """
     Consulta y muestra el estado actual de las mesas, indicando cuáles están disponibles y cuáles están ocupadas.
 

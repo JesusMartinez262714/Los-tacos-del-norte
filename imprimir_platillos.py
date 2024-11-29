@@ -1,4 +1,6 @@
 import utilerias as u
+"""
+"""
 def imprimirPlatillos(es_menu: bool) -> None:
     """
     Muestra el menú de platillos disponibles, incluyendo sus precios.
