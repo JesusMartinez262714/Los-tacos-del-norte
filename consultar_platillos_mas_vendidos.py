@@ -13,8 +13,10 @@ def consultar_platillos_mas_vendidos(comandas,platillos):
     cantFlautas = 0
 
     for folio,datos in comandas.items():
+        print(folio)
+        print(datos)
         if datos["estado"] == "pagada":
-            for platillo in datos['platillos']:
+            for platillo in datos["platillos"]:
                 if platillo[0] == "Tacos de Asada":
                     cantTacosAsada += platillo[1]
                     agregar_o_actualizar(platillo[0],cantTacosAsada,platillos)

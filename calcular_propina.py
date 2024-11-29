@@ -1,6 +1,6 @@
 import utilerias as u
 
-def calcular_propina(comandas,empleados):
+def calcular_propina(comandas,empleados,propinas_empleados):
     while True:
         propinaAcumulada = 0.0  # Inicializar fuera del bucle
         comandaAsociada = 0
@@ -29,13 +29,21 @@ def calcular_propina(comandas,empleados):
         masPropina=mesa[0][0]
         # Mostrar resultados después de procesar todas las comandas
         if comandaAsociada > 0:
+            print(f"{" Calculo de Propinas ":-^27}")
+            print("")
             print(f"Empleado: {empleado}")
-            print(f"Propinas acumuladas: {propinaAcumulada}")
+            print("")
+            print(f"Propinas acumuladas: ${propinaAcumulada}")
+            print("")
             print(f"Comandas asociadas: {comandaAsociada}")
-            print(mesa)
-            print(f'La mesa con mayor cantidad de propinas es la {masPropina}')
+            print("")
+            print(f'La mesa con mayor cantidad de propinas es la {masPropina}.')
+            print("")
         else:
+            print(f"{" Calculo de Propinas ":-^27}")
             print(f"Empleado: {empleado}")
+            print("Propinas acumuladas: $0.00")
+            print("Comandas asociadas: 0")
             print("Nota: Este empleado no tiene comandas pagadas asociadas.")
         continuar=u.validar_s_n("Desea calcular las propinas de otro empleado (s/n)").lower()
         if continuar=='s':

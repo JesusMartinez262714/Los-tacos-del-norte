@@ -1,14 +1,14 @@
 def consultar_estado_mesas(mesas):
-    listaDisponibles=[]
-    listaNoDisponibles=[]
-    disponibles=0
-    noDisponible=0
     while True:
+        listaDisponibles=[]
+        listaNoDisponibles=[]
+        disponibles=0
+        noDisponible=0
         for x,y in mesas.items():
-            if y == 'disponible':
+            if y == 'Disponible':
                 disponibles+=1
                 listaDisponibles.append(x)                  
-            elif y == 'no disponible':
+            elif y == 'No disponible':
                 noDisponible+=1
                 listaNoDisponibles.append(x)
 
