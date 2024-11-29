@@ -1,5 +1,5 @@
 import utilerias as u
-def imprimirPlatillos(es_menu=False):
+def imprimirPlatillos(es_menu):
     """
     Muestra el menú de platillos disponibles, incluyendo sus precios.
     """
