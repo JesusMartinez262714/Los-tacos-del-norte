@@ -266,7 +266,6 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     global folioNuevo
     if es_menu == "si":
         folio=u.verificar_comanda(comandas)
-        print(f"este valor es de comandas abiertas {folio}")
 
         if not folio:
             print("devuelve")
@@ -310,7 +309,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "pagada"  # Pueden ser pagadas o no pagadas
+            "estado": "no pagada"  # Pueden ser pagadas o no pagadas
         },
         2: {  # Comanda con ID 2
             "mesa": 2,
@@ -323,7 +322,7 @@ if __name__ == "__main__":
             ],
             "total": 270.00,
             "propina": 0,
-            "estado": "pagada"  # Pueden ser pagadas o no pagadas
+            "estado": "no pagada"  # Pueden ser pagadas o no pagadas
         },
         3: {  # Comanda con ID 3
             "mesa": 1,
@@ -335,7 +334,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "pagada"  # Pueden ser pagadas o no pagadas
+            "estado": "no pagada"  # Pueden ser pagadas o no pagadas
         }
     }
 

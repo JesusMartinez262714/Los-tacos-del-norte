@@ -154,19 +154,24 @@ def registrar_platillos(lista_platillos, platillos) -> float:
         platillo = u.validar_numerico("Platillo: ")
         if platillo - 1 in range(len(platillos)):
             nombre_platillo=u.validar_mismo_platillo(platillo)
-            cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
+            while True:
+                cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
+                if cantidad_platillo>0:
+                    break
+                else:
+                    print("La cantidad debe ser mayor a 0. Intente de nuevo.")
+            
             if cantidad_platillo >= 1:
                 
                 for i in lista_platillos:
                     if nombre_platillo == i[0]:
                         cantidad_platillo+=i[1]
-                        print(cantidad_platillo)
-                        print(i[1])
+
                         lista_platillos.remove(i)
                 costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal
-                print(total,subtotal)
+        
 
                         
         
