@@ -1,4 +1,14 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:cerrar una comanda
+
+Descripción general:
+Este código gestiona el proceso de cierre de una comanda en una taquería. Permite al usuario verificar, cerrar la comanda, 
+ingresar una propina, generar un ticket con el resumen de la venta y actualizar el estado de la comanda y las mesas asociadas.
+
+"""
 import utilerias as u
+
 def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
     """
     Cierra una comanda registrada, permitiendo al usuario ingresar una propina, generar el ticket y actualizar el estado de la comanda.

@@ -1,10 +1,28 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+Implementar diversas funciones para la gestión de comandas en un sistema de restaurante. 
+Incluye funcionalidades como la obtención de la fecha actual, la validación de platillos, el cálculo de totales, 
+y la verificación de comandas abiertas.
+
+Descripción general:
+Este conjunto de funciones permite gestionar las comandas en un sistema de restaurante. 
+La función 'fecha()' obtiene la fecha actual. 'id_por_nombre_platillo()' busca el ID de un platillo por su nombre,
+mientras que 'validar_numerico()' asegura que la entrada del usuario sea un número entero. La función 'mostrar_resumen()' 
+genera un resumen de los platillos en una comanda específica, mientras que 'obtener_folio_por_mesa()' obtiene el folio de 
+una comanda basado en el número de mesa. Además, 'validar_mismo_platillo()' valida el nombre de un platillo a partir de su número, y 
+'calcular_total()' actualiza el total de una comanda según los platillos seleccionados. 'verificar_comanda()' permite verificar si una 
+comanda está abierta para una mesa específica, y 'validar_empleado()' valida si un empleado está registrado en el sistema. Finalmente, 
+'validar_s_n()' gestiona la entrada de respuestas sí/no.
+"""
+
 import comandas_abiertas as ca
 
 def fecha():
     """
     Obtiene la fecha actual del día en formato 'YYYY-MM-DD'.
 
-    La función utiliza el módulo `datetime` para obtener la fecha actual y formatearla en el estándar (año-mes-día).
+    La función utiliza el módulo 'datetime' para obtener la fecha actual y formatearla en el estándar (año-mes-día).
 
     Retorno:
     - str: La fecha actual en formato 'YYYY-MM-DD'.

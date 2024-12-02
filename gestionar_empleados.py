@@ -1,3 +1,12 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+Consultar las ventas del día, mostrando un resumen de las comandas pagadas, propinas y totales. Permitir al usuario filtrar las ventas por número de mesa o por empleado.
+
+Descripción general:
+Este código permite mostrar un resumen de las ventas realizadas durante el día, destacando las comandas que han sido pagadas, el total de las ventas y las propinas generadas. Además, ofrece al usuario la posibilidad de filtrar las ventas por mesa o empleado, mostrando los detalles de las comandas que coincidan con el filtro. Si no existen ventas para el filtro seleccionado, se muestra un mensaje indicativo. El sistema proporciona una visión clara y organizada de las transacciones del día.
+"""
+
 import utilerias as u
 
 def menu_empleados(empleados: dict):

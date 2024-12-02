@@ -1,3 +1,12 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:Mostrar las comandas abiertas
+
+Descripción general:
+Este código gestiona la visualización de las comandas abiertas (no pagadas) en el sistema. Permite mostrar información relevante 
+como el número de mesa, cliente, empleado y el total de cada comanda, filtrando las comandas abiertas por empleado si es necesario.
+"""
+
 def comandas_abiertas(comandas:dict,nombre_empleado:str):
     """
     Muestra un listado de las comandas abiertas (no pagadas) en el sistema.

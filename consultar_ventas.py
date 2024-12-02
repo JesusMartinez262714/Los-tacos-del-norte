@@ -1,3 +1,12 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+Consultar las ventas del día, mostrando un resumen de las comandas pagadas, propinas y totales. Permitir al usuario filtrar las ventas por número de mesa o por empleado.
+
+Descripción general:
+Este código muestra un resumen de las ventas realizadas durante el día, incluyendo el total de las comandas pagadas y las propinas. Permite al usuario filtrar las ventas por mesa o por empleado. Si no se han registrado ventas para el filtro seleccionado, se muestra un mensaje indicativo. El resumen de ventas también incluye el total acumulado del día.
+"""
+
 import utilerias as u
 
 fechaHoy = u.fecha()  # Obtener la fecha del día actual

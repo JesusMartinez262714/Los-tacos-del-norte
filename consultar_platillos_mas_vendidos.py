@@ -1,5 +1,13 @@
-cantidades = []
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+Consultar y mostrar los tres platillos más vendidos y los ingresos generados, basándose en las comandas registradas como "pagadas".
 
+Descripción general:
+Este código procesa las comandas pagadas, acumula la cantidad de ventas de cada platillo, y muestra los tres platillos más vendidos junto con los ingresos generados por cada uno. Además, calcula y muestra el total de ingresos de estos platillos más vendidos.
+"""
+
+cantidades = []
 def consultar_platillos_mas_vendidos(comandas, platillos):
     """
     Consulta y muestra los tres platillos más vendidos y los ingresos generados.

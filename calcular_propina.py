@@ -1,8 +1,18 @@
 import utilerias as u
 """
 Desarrolladores: Jesús Manuel Martínez Cortez 262714, Contreras Ávila Ramsés Norberto 262720
-Objetivo: Calcular las propinas acumuladas de un empleado, basándose en las comandas pagadas en el sistema.
+
+Objetivo: Implementar una función que calcule las propinas acumuladas 
+de los empleados en un restaurante, basándose en las comandas registradas como pagadas en el sistema.
+
+Este módulo permite realizar las siguientes operaciones principales:
+1. Validar y seleccionar un empleado registrado en el sistema, asegurando que el cálculo se realiza para un usuario existente.
+2. Recorrer todas las comandas registradas y filtrar aquellas asociadas al empleado seleccionado que estén marcadas como "pagadas".
+3. Acumular las propinas de las comandas del empleado y determinar la cantidad total de comandas asociadas.
+4. Identificar la mesa con la mayor cantidad de propinas acumuladas dentro del conjunto de comandas procesadas.
+5. Mostrar de manera interactiva y detallada la información obtenida, permitiendo al usuario realizar cálculos adicionales para otros empleados.
 """
+
 def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
     """
     Calcula las propinas acumuladas de un empleado, basándose en las comandas pagadas.

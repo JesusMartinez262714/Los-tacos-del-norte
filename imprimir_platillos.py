@@ -1,3 +1,12 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+Mostrar el menú de platillos disponibles, incluyendo sus precios. Si la función es llamada desde el menú principal, permite al usuario decidir si regresa al menú principal o sigue viendo los platillos.
+
+Descripción general:
+Esta función imprime un menú de platillos disponibles junto con sus precios. Si la función es llamada desde el menú principal (cuando el parámetro `es_menu` es True), después de mostrar el menú, le da al usuario la opción de regresar al menú principal o continuar viendo más platillos. Si se decide regresar, la función termina, de lo contrario, permite seguir mostrando más platillos. La función utiliza un ciclo `while` para mantener la interacción hasta que el usuario elija regresar.
+"""
+
 import utilerias as u
 def imprimirPlatillos(platillos,es_menu):
     """

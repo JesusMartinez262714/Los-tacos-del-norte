@@ -1,3 +1,14 @@
+"""
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Objetivo:
+Implementar un sistema de gestión para una taquería, que permita realizar tareas como registrar y actualizar comandas, 
+consultar el estado de mesas, gestionar empleados, calcular propinas, y generar reportes de ventas y platillos más vendidos. 
+
+Descripción general:
+Este código permite consultar el estado de las mesas de una taquería, mostrando cuáles están disponibles y cuáles ocupadas. 
+Además, permite al usuario decidir si desea regresar al menú principal o continuar consultando el estado de las mesas.
+"""
+
 import utilerias as u
 def consultar_estado_mesas(mesas):
     """
