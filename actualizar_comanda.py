@@ -76,7 +76,7 @@ def agregar_producto(platillos, comandas:dict,folio):
 
         # Cálculo del subtotal basado en el platillo seleccionado
         cantidadPlatilloTotal=0
-        costoTotal,costo, subtotal=u.Calculos_Comandas(platillo,cantidad,platillos,cantidadPlatilloTotal)
+        costoTotal, subtotal=u.Calculos_Comandas(platillo,cantidad,platillos,cantidadPlatilloTotal)
         for comanda in comandas.values():  # Itera sobre las comandas abiertas
             
             comanda = comandas.get(folio)  # Obtiene la comanda por folio

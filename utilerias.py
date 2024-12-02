@@ -279,5 +279,5 @@ def Calculos_Comandas(platillo, cantidad_platillo,platillos,cantidadPlatilloTota
     costoTotal=cantidadPlatilloTotal * platillos[0][2] if platillo == 1 else cantidadPlatilloTotal * platillos[1][2] if platillo == 2 else cantidadPlatilloTotal * platillos[2][2] if platillo == 3 else cantidadPlatilloTotal * platillos[3][2] if platillo == 4 else cantidadPlatilloTotal * platillos[4][2] if platillo == 5 else cantidadPlatilloTotal * platillos[5][2] if platillo == 6 else cantidadPlatilloTotal * platillos[6][2] if platillo == 7 else cantidadPlatilloTotal * platillos[7][2] if platillo == 8 else cantidadPlatilloTotal * platillos[8][2] if platillo == 9 else cantidadPlatilloTotal * platillos[9][2] if platillo == 10 else 0
     subtotal = 0
     subtotal += costo
-    return costoTotal, costo, subtotal
+    return costoTotal, subtotal
 

@@ -162,6 +162,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             nombre_platillo=u.validar_mismo_platillo(platillo)
             while True:
                 cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
+                #Obtenemos el valor que el usuario quiere agregar 
                 guardar_cantidad=cantidad_platillo
                 if cantidad_platillo>0:
                     break
@@ -171,12 +172,15 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             if cantidad_platillo >= 1:
                 
                 for i in lista_platillos:
+                    #Si llegara a ser el mismo platillo, la cantidad que se guardo antes se usara para calcular
+                    #el total que se le debe agregar al registro de platillo con el que coincide sin añadir 
+                    #el total que ya estaba registrado
                     if nombre_platillo == i[0]:
                         print("Pasa a sumar la cantidad")
                         cantidad_platillo+=i[1]
 
                         lista_platillos.remove(i)
-                costoTotal,costo, subtotal = u.Calculos_Comandas(platillo,guardar_cantidad,platillos,cantidad_platillo)
+                costoTotal,subtotal = u.Calculos_Comandas(platillo,guardar_cantidad,platillos,cantidad_platillo)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costoTotal))
                 total += subtotal
         
