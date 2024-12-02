@@ -27,7 +27,7 @@ def comandas_abiertas(comandas:dict,nombre_empleado:str):
     """
     
     contador = 0
-    comandas_abiertas = True  # Variable para saber si hay comandas abiertas
+    comandas_abiertas = False  # Variable para saber si hay comandas abiertas
     
     # Creamos un diccionario donde se ordena por mesas de menor a mayor
     ordenado_por_mesa = (
@@ -35,21 +35,21 @@ def comandas_abiertas(comandas:dict,nombre_empleado:str):
         if comandas else {}
     )
     for folio, datos in ordenado_por_mesa.items():
-        if datos["estado"] == "no pagada" and nombre_empleado == "" or datos['empleado'] == nombre_empleado:  # Solo mostramos las que no han sido pagadas
+        if (datos["estado"] == "no pagada") and (nombre_empleado == "" or datos['empleado'] == nombre_empleado):
             if contador == 0:
                 print("Comandas Abiertas:")
                 print(f"{'':-^65}")
                 print(f"{'Mesa':<9}{'Cliente':<16}{'Empleado':<17}Total ($)")
                 print(f"{'':-^65}")
-                comandas_abiertas=False
+                comandas_abiertas=True
             print(f"{datos['mesa']:<9}{datos['cliente']:<16}{datos['empleado']:<17}{datos['total']}")
             contador += 1
 
     
     # Si no hay comandas abiertas, mostramos solo el mensaje sin ningún formato adicional
-    if comandas_abiertas:
+    if not comandas_abiertas:
         print("No hay comandas abiertas")
-        return comandas_abiertas
+
     else:
         print(f"{'':-^65}")
         print(f"Total de Comandas Abiertas: {contador}")
@@ -58,68 +58,68 @@ def comandas_abiertas(comandas:dict,nombre_empleado:str):
     
 if __name__ == "__main__":
             
-            comandas = {
-              
-            1:{
-                "mesa": 3,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "pagada" #Pueden ser pagadas o no pagadas
-            },
-            4:{
-                "mesa": 1,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "pagada" #Pueden ser pagadas o no pagadas
-            },
-            5:{
-                "mesa": 5,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "pagada" #Pueden ser pagadas o no pagadas
-            },
-            2:{
-                "mesa": 2,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "pagada" #Pueden ser pagadas o no pagadas
-            },
-            3:{
-                "mesa": 4,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "pagada" #Pueden ser pagadas o no pagadas
-            }
+    comandas = {
+        
+    1:{
+        "mesa": 3,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+    },
+    4:{
+        "mesa": 1,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+    },
+    5:{
+        "mesa": 5,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+    },
+    2:{
+        "mesa": 2,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+    },
+    3:{
+        "mesa": 4,
+        "cliente": "Juan Pérez",
+        "empleado": "María López",
+        "platillos": [
+            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+            ("Refresco", 2, 30.00)
+        ],
+        "total": 90.00,
+        "propina":0,
+        "estado" : "pagada" #Pueden ser pagadas o no pagadas
+    }
 
-        }
-            comandas_abiertas(comandas,nombre_empleado=None)
+}
+    comandas_abiertas(comandas,nombre_empleado="")
