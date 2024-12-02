@@ -131,7 +131,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "no pagada"
+            "estado": "pagada"
         },
         3: {
             "mesa": 5,
