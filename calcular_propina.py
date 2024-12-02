@@ -50,8 +50,8 @@ def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
         else:
             while True:
                 empleado, id = u.validar_empleado(empleados)
-                if not empleado:
-                    print("Valor no valido,Ingrese nuevamente")
+                if not empleado and not id:
+                   return
                 else:
                     break
 
