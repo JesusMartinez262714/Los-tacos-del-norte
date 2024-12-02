@@ -39,7 +39,7 @@ def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
         comandaAsociada = 0
         hay_comandas_pagadas = False  # Variable para saber si hay comandas pagadas
         listaMesasPropina=[]
-        propinaMesa=0
+        propina_mesa=0
         for folio, datos in comandas.items():
             if datos["estado"] == "pagada":  # Validar solo comandas pagadas
                 hay_comandas_pagadas = True  # Hay al menos una comanda pagada
