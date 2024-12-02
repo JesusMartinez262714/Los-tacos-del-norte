@@ -230,8 +230,7 @@ def aumentar_producto(platillos,comandas,folio):
                 print(f"Producto: {nombre_producto}")
                 print(f"Cantidad disponible: {cant_producto}")
                 while True:
-                    cantidad = input(f"Ingrese cuántos {nombre_producto} desea agregar: ")
-                    cantidad = int(cantidad)
+                    cantidad = u.validar_numerico(f"Ingrese cuántos {nombre_producto} desea agregar: ")
                     if cantidad <= 0:
                         print(f"La cantidad debe ser mayor a 0. Intente de nuevo.")
                         continue
