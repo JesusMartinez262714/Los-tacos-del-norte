@@ -134,6 +134,8 @@ propinas_empleados = {
 
 def menu_principal():
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+
     Muestra el menú principal de la taquería y permite al usuario seleccionar 
     una opción para realizar diversas acciones relacionadas con las comandas, 
     mesas, empleados, ventas, y platillos.
