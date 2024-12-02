@@ -26,10 +26,10 @@ def consultar_ventas(comandas, empleados):
     - comandas: Un diccionario que contiene las comandas pagadas con sus detalles, incluyendo total y propina.
     - empleados: Un diccionario con los empleados registrados y su información.
     """
-    for datos in comandas.values():
-        if all(datos["estado"] == "no pagada"):
-            print(f"No hay ventas registradas para el dia {fechaHoy}")
-            return
+    
+    if all(datos["estado"] == "no pagada" for datos in comandas.values()):
+        print(f"No hay ventas registradas para el dia {fechaHoy}")
+        return
     totalP = 0
     totalT = 0
    
@@ -57,10 +57,12 @@ def consultar_ventas(comandas, empleados):
         elif filtro == 1:
             mesa = u.validar_numerico("Ingrese el número de la mesa: ")
             mesa_encontrada = False
-            print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
-            print(f"{'':-^73}")
+           
             for folio, datos in comandas.items():
                 if datos['estado'] == 'pagada' and datos['mesa'] == mesa:
+                    if not mesa_encontrada:
+                        print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
+                        print(f"{'':-^73}")
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
                     print(f"{'':-^73}")
                     mesa_encontrada = True
@@ -69,14 +71,21 @@ def consultar_ventas(comandas, empleados):
         elif filtro == 2:
             Empleado, id = u.validar_empleado(empleados)
             empleado_encontrado = False
-            print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
-            print(f"{'':-^73}")
+
+            # Primero validamos si hay ventas registradas para el empleado
             for folio, datos in comandas.items():
                 if datos['estado'] == 'pagada' and datos['empleado'] == Empleado:
+                    if not empleado_encontrado:
+                        # Solo imprimimos el encabezado si encontramos ventas para el empleado
+                        print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
+                        print(f"{'':-^73}")
                     
+                    # Imprimimos la información de la comanda
                     print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
                     print(f"{'':-^73}")
+                    
                     empleado_encontrado = True
+            # Si no se han encontrado ventas, mostramos el mensaje
             if not empleado_encontrado:
                 print(f"No hay ventas registradas para el empleado {Empleado}.")
         else:
@@ -94,7 +103,19 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "no pagada"
+            "estado": "pagada"
+        },
+        3: {
+            "mesa": 5,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina": 0,
+            "estado": "pagada"
         },
         1: {
             "mesa": 3,
@@ -106,7 +127,19 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "no pagada"
+            "estado": "pagada"
+        },
+        6: {
+            "mesa": 3,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina": 0,
+            "estado": "pagada"
         },
         2: {
             "mesa": 1,
