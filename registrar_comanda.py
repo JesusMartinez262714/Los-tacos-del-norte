@@ -162,6 +162,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
             nombre_platillo=u.validar_mismo_platillo(platillo)
             while True:
                 cantidad_platillo = u.validar_numerico("Ingrese la cantidad del platillo: ")
+                guardar_cantidad=cantidad_platillo
                 if cantidad_platillo>0:
                     break
                 else:
@@ -171,11 +172,12 @@ def registrar_platillos(lista_platillos, platillos) -> float:
                 
                 for i in lista_platillos:
                     if nombre_platillo == i[0]:
+                        print("Pasa a sumar la cantidad")
                         cantidad_platillo+=i[1]
 
                         lista_platillos.remove(i)
-                costo, subtotal = u.Calculos_Comandas(platillo, cantidad_platillo,platillos)
-                lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
+                costoTotal,costo, subtotal = u.Calculos_Comandas(platillo,guardar_cantidad,platillos,cantidad_platillo)
+                lista_platillos.append((nombre_platillo, cantidad_platillo, costoTotal))
                 total += subtotal
         
 
@@ -227,6 +229,7 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
     for platillo in lista_platillos:
         print(f"    - Platillo: {platillo[0]} ({platillo[1]}) - ${platillo[2]:.2f}")
     print(f"Total: ${total:.2f}")
+
 
 
 

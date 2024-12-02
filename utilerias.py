@@ -262,7 +262,7 @@ def validar_s_n(mensaje):
         else:
             print("Entrada no válida. Por favor ingrese 's' o 'n'.")  # Mensaje si la entrada es incorrecta
 
-def Calculos_Comandas(platillo, cantidad_platillo,platillos):
+def Calculos_Comandas(platillo, cantidad_platillo,platillos,cantidadPlatilloTotal):
     """
     Desarrollado por: Jesus Manuel Martinez Cortez 262714
 
@@ -276,7 +276,8 @@ def Calculos_Comandas(platillo, cantidad_platillo,platillos):
     - tuple: Costo por platillo y subtotal calculado.
     """
     costo = cantidad_platillo * platillos[0][2] if platillo == 1 else cantidad_platillo * platillos[1][2] if platillo == 2 else cantidad_platillo * platillos[2][2] if platillo == 3 else cantidad_platillo * platillos[3][2] if platillo == 4 else cantidad_platillo * platillos[4][2] if platillo == 5 else cantidad_platillo * platillos[5][2] if platillo == 6 else cantidad_platillo * platillos[6][2] if platillo == 7 else cantidad_platillo * platillos[7][2] if platillo == 8 else cantidad_platillo * platillos[8][2] if platillo == 9 else cantidad_platillo * platillos[9][2] if platillo == 10 else 0
+    costoTotal=cantidadPlatilloTotal * platillos[0][2] if platillo == 1 else cantidadPlatilloTotal * platillos[1][2] if platillo == 2 else cantidadPlatilloTotal * platillos[2][2] if platillo == 3 else cantidadPlatilloTotal * platillos[3][2] if platillo == 4 else cantidadPlatilloTotal * platillos[4][2] if platillo == 5 else cantidadPlatilloTotal * platillos[5][2] if platillo == 6 else cantidadPlatilloTotal * platillos[6][2] if platillo == 7 else cantidadPlatilloTotal * platillos[7][2] if platillo == 8 else cantidadPlatilloTotal * platillos[8][2] if platillo == 9 else cantidadPlatilloTotal * platillos[9][2] if platillo == 10 else 0
     subtotal = 0
     subtotal += costo
-    return costo, subtotal
+    return costoTotal, costo, subtotal
 
