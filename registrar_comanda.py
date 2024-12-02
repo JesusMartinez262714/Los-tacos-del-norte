@@ -14,8 +14,8 @@ def validar_mesa(mesas, num_mesas) -> bool:
     """
     Valida si una mesa está disponible para registrar una nueva comanda.
 
-    La función verifica el estado de la mesa en el diccionario `mesas` y retorna `True`
-    si la mesa está disponible, o `False` si está ocupada.
+    La función verifica el estado de la mesa en el diccionario 'mesas' y retorna 'True'
+    si la mesa está disponible, o 'False' si está ocupada.
 
     Parámetros:
     - mesas (dict): Diccionario con el estado actual de las mesas, donde las claves
@@ -24,7 +24,7 @@ def validar_mesa(mesas, num_mesas) -> bool:
     - num_mesas (int): Número de la mesa que se desea validar.
 
     Retorna:
-    - bool: `True` si la mesa está disponible, `False` si está ocupada o no disponible.
+    - bool: 'True' si la mesa está disponible, 'False' si está ocupada o no disponible.
     """
     if mesas[num_mesas] == "disponible":
         return True

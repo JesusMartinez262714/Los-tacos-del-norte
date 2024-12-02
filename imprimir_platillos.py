@@ -41,6 +41,7 @@ def imprimirPlatillos(platillos,es_menu):
               return
           elif respuesta=='n':
               continue
+      return
 
 
 if __name__ == "__main__":
