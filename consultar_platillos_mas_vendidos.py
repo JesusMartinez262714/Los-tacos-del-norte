@@ -21,29 +21,39 @@ def consultar_platillos_mas_vendidos(comandas, platillos):
         comandas: Diccionario con la información de las comandas, donde cada comanda tiene un estado, platillos y otros datos asociados.
         platillos: Lista de platillos con su nombre y precio unitario, utilizada para calcular los ingresos generados.
     """
-    for folio, datos in comandas.items():
-        if datos["estado"] == "pagada":  # Solo procesar comandas pagadas
-            for platillo in datos['platillos']:
-                agregar_o_actualizar(platillo[0], platillo[1], platillos)  # Sumar directamente
-        else:
-            print("No se han registrado ventas de platillos en comandas no pagadas.")
+    if not comandas:
+            print("No se han registrado ventas de platillos")
+            return
+    else:
+        venta_encontrada=False
+        for folio, datos in comandas.items():
+            if datos["estado"] == "pagada":  # Solo procesar comandas pagadas
+                venta_encontrada=True
+                for platillo in datos['platillos']:
+                    agregar_o_actualizar(platillo[0], platillo[1], platillos)  # Sumar directamente
+        if not venta_encontrada:
+            print("No se han registrado ventas de platillos")
+            return
 
-    # Ordenar los 3 platillos más vendidos
+            
+
+    # Ordenar los 3 platillos más vendidos                     rebanada
     top = sorted(cantidades, key=lambda x: x[1], reverse=True)[:3]
 
     # Imprimir resultados
     print(f"{'':^6}{' Platillos Más Vendidos ':-^42}")
     print(f"{'Platillo':<20}{'Cantidad Vendida':<20}Ingreso Generado")
     print(f"{'':-^56}")
-
-    rango = min(len(top), 3)  # Ajustar rango si hay menos de 3 platillos
-    for dentro in range(rango):
-        
-        print(f"{top[dentro][0]:<20}{top[dentro][1]:<20}{top[dentro][2]:.2f}")
+    #top=[1,2]
+     # Ajustar rango si hay menos de 3 platillos
+    for dentro in top:
+        print(f"{dentro[0]:<20}{dentro[1]:<20}{dentro[2]:.2f}")
     print(f"{'':-^56}")
 
     # Calcular total de ingresos generados
-    total_ingresos = sum(x[2] for x in top)
+    total_ingresos=0
+    for x in top:
+        total_ingresos +=x[2]
     print(f"{'Total de Ingresos:':<40}{total_ingresos:.2f}")
 
 
@@ -69,29 +79,21 @@ def agregar_o_actualizar(platillo, cantidad, platillos):
     cantidad: La cantidad de platillos vendidos en esta comanda.
     platillos: Lista de platillos disponibles, donde se obtiene el precio unitario para calcular el costo total.
     """
+    # Encontrar el precio unitario del platillo
+    precio_unitario = 0
+    for posicion in platillos:
+        if posicion[1] == platillo:
+            precio_unitario = posicion[2]
+            break
+
     # Buscar si el platillo ya está en la lista
     for i in range(len(cantidades)):
-        if cantidades[i][0] == platillo:
-            # Encontrar el precio unitario del platillo
-            precio_unitario = 0
-            for item in platillos:
-                if item[1] == platillo:
-                    precio_unitario = item[2]
-                    break
-            
+        if cantidades[i][0] == platillo:        
             # Actualizar la cantidad y el costo total
             nueva_cantidad = cantidades[i][1] + cantidad
             nuevo_costo = nueva_cantidad * precio_unitario
             cantidades[i] = (platillo, nueva_cantidad, nuevo_costo)
             return
-
-    # Si no está en la lista, agregar un nuevo registro
-    precio_unitario = 0
-    for item in platillos:
-        if item[1] == platillo:
-            precio_unitario = item[2]
-            break
-
     nuevo_costo = cantidad * precio_unitario
     cantidades.append((platillo, cantidad, nuevo_costo))
 
@@ -109,7 +111,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "pagada"
+            "estado": "no pagada"
         },
         2: {
             "mesa": 4,
@@ -121,7 +123,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "pagada"
+            "estado": "no pagada"
         },
         3: {
             "mesa": 5,

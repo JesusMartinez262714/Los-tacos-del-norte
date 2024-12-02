@@ -1,6 +1,12 @@
 """
 Desarrolladores: Jesús Manuel Martínez Cortez 262714, Contreras Ávila Ramsés Norberto 262720
-Objetivo: Actualización de productos en una comanda en el sistema.
+
+Objetivo: Implementar y gestionar la funcionalidad de actualización de productos en las comandas de un sistema de restaurante. 
+
+Este módulo permite realizar las siguientes operaciones principales:
+1. Agregar productos a comandas existentes, incluyendo la validación del producto y el cálculo automático de subtotales y totales.
+2. Eliminar productos específicos de una comanda, ya sea de manera total o parcial, con ajuste dinámico de cantidades y precios.
+3. Incrementar la cantidad de un producto ya registrado en una comanda, recalculando su impacto en el total de la cuenta.
 """
 import utilerias as u
 import imprimir_platillos as ip
@@ -40,7 +46,7 @@ def agregar_producto(platillos, comandas:dict,folio):
     """
     print("Agregar producto")
     imprimir="actualizar"
-    ip.imprimirPlatillos(es_menu=False)
+    ip.imprimirPlatillos(platillos,es_menu=False)
     
     while True:
         

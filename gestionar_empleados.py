@@ -29,7 +29,8 @@ def menu_empleados(empleados: dict):
         if opcion == 5:
             return
         elif opcion == 1:
-            agregar_empleado(empleados)
+            if agregar_empleado(empleados):
+                return
         elif opcion == 2:
             if actualizar_informacion(empleados):
                 return
@@ -62,7 +63,7 @@ def agregar_empleado(empleados: dict):
         empleados: Diccionario donde se almacena la información de los empleados.
     """
     while True:
-        idEmpleado = u.validar_numerico("Ingrese el id del empleado")
+        idEmpleado = u.validar_numerico("Ingrese el id del empleado: ")
         if idEmpleado in empleados.keys():
             print("El ID del empleado ya esta registrado. Intente con otro ID")
             continue
@@ -70,15 +71,13 @@ def agregar_empleado(empleados: dict):
             nombreEmpleado = input("Ingrese el nombre del empleado: ")
             telefonoEmpleado = input("Ingresa el numero de telefono del empleado: ")
             estado = "activo"
-            print("datos del empleado a agregar")
-            nuevoEmpleado = {
-                "id": idEmpleado,
-                "nombre": nombreEmpleado,
-                "telefono": telefonoEmpleado,
-                "estado": estado
-            }
-            print(nuevoEmpleado)
-            confirmar = u.validar_s_n("Desea confirmar el registro del empleado? (s/n)")
+            #formateo
+            print("Datos del empleado a agregar: ")
+            print(f"ID: {idEmpleado}")
+            print(f"Nombre: {nombreEmpleado}")
+            print(f"Telefono: {telefonoEmpleado}")
+            print(f"Estado: {estado}")
+            confirmar = u.validar_s_n("Desea confirmar el registro del empleado? (s/n): ")
             if confirmar == "s":
                 empleados[idEmpleado] = {
                     "nombre": nombreEmpleado,
@@ -86,10 +85,13 @@ def agregar_empleado(empleados: dict):
                     "estado": estado
                 }
                 print("Empleado registrado exitosamente")
-                return
             elif confirmar == "n":
                 print("proceso cancelado")
-                return
+        realizar = u.validar_s_n("Desea realizar otra operacion de gestion de empleados? (s/n): ")
+        if realizar == 's':
+            return False
+        elif realizar == 'n':
+            return True
 
 
 def actualizar_informacion(empleados: dict):
@@ -114,12 +116,21 @@ def actualizar_informacion(empleados: dict):
         _, idEmpleado = u.validar_empleado(empleados)
         dictEmpleado = empleados.get(idEmpleado)
         if dictEmpleado:
-            nuevoNombre = input("Ingrese el nuevo nombre")
-            dictEmpleado['nombre'] = nuevoNombre
-            nuevoTelefono = input("Ingrese el nuevo numero de telefono")
-            dictEmpleado['telefono'] = nuevoTelefono
+            nuevoNombre = input("Ingrese el nuevo nombre: ")
+            nuevoTelefono = input("Ingrese el nuevo numero de telefono: ")
             print("Informacion actualizada exitosamente")
-            realizar = u.validar_s_n("Desea realizar otra operacion de gestion de empleados? (s/n)")
+            print("Datos del empleado a agregar: ")
+            print(f"ID: {idEmpleado}")
+            print(f"Nombre: {nuevoNombre}")
+            print(f"Telefono: {nuevoTelefono}")
+            print(f"Estado: {dictEmpleado['estado']}")
+            confirmar=u.validar_s_n('Desea confirmar los cambios? s/n: ')
+            if confirmar=='s':
+                dictEmpleado['nombre'] = nuevoNombre
+                dictEmpleado['telefono'] = nuevoTelefono
+            else:
+                print("Cambios Cancelados")
+            realizar = u.validar_s_n("Desea realizar otra operacion de gestion de empleados? (s/n): ")
             if realizar == 's':
                 return False
             elif realizar == 'n':
@@ -147,16 +158,20 @@ def cambiar_estado_empleado(empleados: dict):
         empleados: Diccionario donde se almacena la información de los empleados.
     """
     while True:
-        _, idEmpleado = u.validar_empleado(empleados)
+        nombreEmpleado, idEmpleado = u.validar_empleado(empleados)
         dictEmpleado = empleados.get(idEmpleado)
         if dictEmpleado:
             if dictEmpleado["estado"] == "activo":
                 dictEmpleado["estado"] = "inactivo"
             elif dictEmpleado["estado"] == "inactivo":
                 dictEmpleado["estado"] = "activo"
-            print("el estado del empleado ha sido actualizado")
-            print(f"{dictEmpleado}")
-            realizar = u.validar_s_n("Desea realizar otra operacion de gestion de empleados? (s/n)")
+            #formateo
+            print("El estado del empleado ha sido actualizado: ")
+            print(f"ID: {idEmpleado}")
+            print(f"Nombre: {nombreEmpleado}")
+            print(f"Nuevo estado: {dictEmpleado["estado"]}")
+            print(" ")
+            realizar = u.validar_s_n("Desea realizar otra operacion de gestion de empleados? (s/n):")
             if realizar == 's':
                 return False
             elif realizar == 'n':
@@ -183,8 +198,20 @@ def listado_empleados(empleados: dict):
         empleados: Diccionario donde se almacena la información de los empleados.
     """
     print("Listado de empleados:")
-    for idEmpleado, info in empleados.items():
-        print(f"ID: {idEmpleado}, Nombre: {info['nombre']}, Teléfono: {info['telefono']}, Estado: {info['estado']}")
+    empleados_ordenados = dict(sorted(empleados.items(), key=lambda x: x[0]))
+
+    if empleados_ordenados:  # Verifica si hay empleados registrados
+        print(f"{' Listado de Empleados ':-^52}")
+        print(f"{'ID':<8}{'Nombre':<20}{'Telefono':<15}Estado")
+        print(f"{'':-^52}")
+        for idEmpleado, info in empleados_ordenados.items():
+            print(f"{idEmpleado:<8}{info['nombre']:<20}{info['telefono']:<15}{info['estado']}")
+            print(f"{'':-^52}")
+
+        print(f"Total de empleados: {len(empleados_ordenados)}")
+    else:  # Si no hay empleados
+        print("No hay empleados registrados en el sistema.")
+
     realizar = u.validar_s_n("Desea realizar otra operacion de gestion de empleados? (s/n)")
     if realizar == 's':
         return False

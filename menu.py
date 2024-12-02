@@ -1,7 +1,8 @@
 """
-Desarrolladores:Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
+Desarrolladores: Jesus Manuel Martinez Cortez 262714, Contreras Avila Ramses Norberto 262720
 Objetivo:
-
+Implementar un sistema de gestión para una taquería, que permita realizar tareas como registrar y actualizar comandas, 
+consultar el estado de mesas, gestionar empleados, calcular propinas, y generar reportes de ventas y platillos más vendidos. 
 """
 import registrar_comanda as rc
 import actualizar_comanda as ac
@@ -182,7 +183,7 @@ def menu_principal():
               cp.calcular_propina(comandas,empleados)
             # calcular_propinas(empleados, historial_ventas)
         elif opcion == 9:
-              ip.imprimirPlatillos(es_menu=True)
+              ip.imprimirPlatillos(platillos,es_menu=True)
             # imprimir_platillos(platillos)
         elif opcion == 10:
               ge.menu_empleados(empleados)

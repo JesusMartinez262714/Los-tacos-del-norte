@@ -88,7 +88,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
                 continue
             else:
                 break
-        ip.imprimirPlatillos(es_menu=False)
+        ip.imprimirPlatillos(platillos,es_menu=False)
         lista_platillos = []
         total=registrar_platillos(lista_platillos, platillos)
         if total > 0:
