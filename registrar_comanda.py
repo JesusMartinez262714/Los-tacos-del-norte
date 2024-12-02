@@ -100,7 +100,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         if continuar == "s":
             mesas[num_mesas] = "no disponible"
             print("Comanda registrada correctamente")
-            if folio in comandas:
+            for folio in range(len(comandas)+1):
                 folio+=1
             comandas[folio] = {
                 "mesa": num_mesas,
@@ -268,54 +268,54 @@ if __name__ == "__main__":
             "propina":0,
             "estado" : "no pagada" #Pueden ser pagadas o no pagadas
             },
-            4:{
-                "mesa": 1,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-            },
-            5:{
-                "mesa": 5,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-            },
-            2:{
-                "mesa": 2,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-            },
-            3:{
-                "mesa": 4,
-                "cliente": "Juan Pérez",
-                "empleado": "María López",
-                "platillos": [
-                    ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-                    ("Refresco", 2, 30.00)
-                ],
-                "total": 90.00,
-                "propina":0,
-                "estado" : "pagada" #Pueden ser pagadas o no pagadas
-            }
+        4:{
+            "mesa": 1,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        },
+        5:{
+            "mesa": 5,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        },
+        2:{
+            "mesa": 2,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        },
+        3:{
+            "mesa": 4,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        }
     }
     empleados = {
     101: {
@@ -333,7 +333,7 @@ if __name__ == "__main__":
         1: "no disponible",
         2: "no disponible",
         3: "no disponible",
-        4: "disponible",
+        4: "no disponible",
         5: "no disponible",
         6: "disponible",
         7: "disponible",

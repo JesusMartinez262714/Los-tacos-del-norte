@@ -60,66 +60,66 @@ if __name__ == "__main__":
             
     comandas = {
         
-    1:{
-        "mesa": 3,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-    },
-    4:{
-        "mesa": 1,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-    },
-    5:{
-        "mesa": 5,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-    },
-    2:{
-        "mesa": 2,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
-    },
-    3:{
-        "mesa": 4,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "pagada" #Pueden ser pagadas o no pagadas
-    }
+        1:{
+            "mesa": 3,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+            },
+        4:{
+            "mesa": 1,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        },
+        5:{
+            "mesa": 5,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        },
+        2:{
+            "mesa": 2,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        },
+        3:{
+            "mesa": 4,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina":0,
+            "estado" : "no pagada" #Pueden ser pagadas o no pagadas
+        }
 
 }
     comandas_abiertas(comandas,nombre_empleado="")
