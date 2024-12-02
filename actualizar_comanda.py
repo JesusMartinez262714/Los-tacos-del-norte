@@ -335,7 +335,7 @@ if __name__ == "__main__":
         },
         3: {  # Comanda con ID 3
             "mesa": 1,
-            "cliente": "Juan Pérez",
+            "cliente": "Pablo",
             "empleado": "María López",
             "platillos": [
                 ("Torta de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
