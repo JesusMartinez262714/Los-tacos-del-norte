@@ -12,6 +12,8 @@ folio=0
 
 def validar_mesa(mesas, num_mesas) -> bool:
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Valida si una mesa está disponible para registrar una nueva comanda.
 
     La función verifica el estado de la mesa en el diccionario 'mesas' y retorna 'True'
@@ -38,6 +40,8 @@ def validar_mesa(mesas, num_mesas) -> bool:
 
 def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Registra una nueva comanda asignándola a una mesa, cliente y empleado.
 
     La función valida que la mesa seleccionada esté disponible, registra los platillos 
@@ -130,6 +134,8 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
 
 def registrar_platillos(lista_platillos, platillos) -> float:
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Permite al cliente seleccionar platillos, indicando su cantidad, y calcula el total.
 
     La función interactúa con el usuario para registrar los platillos seleccionados,
@@ -195,6 +201,8 @@ def registrar_platillos(lista_platillos, platillos) -> float:
 
 def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, num_mesas: int, total: float):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Muestra los detalles de una comanda registrada, incluyendo el cliente, mesa, empleado, platillos y total.
 
     La función imprime de forma estructurada la información de la comanda, como los datos del cliente, el número de la mesa, el empleado que atendió, y una lista de los platillos seleccionados con sus cantidades y costos. También muestra el total acumulado.
@@ -223,6 +231,8 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
 
 def Calculos_Comandas(platillo, cantidad_platillo,platillos):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Calcula el costo y subtotal de un platillo seleccionado.
 
     Parámetros:

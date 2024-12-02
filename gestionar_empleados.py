@@ -11,6 +11,8 @@ import utilerias as u
 
 def menu_empleados(empleados: dict):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Menú principal para gestionar empleados.
 
     Datos de entrada:
@@ -55,6 +57,8 @@ def menu_empleados(empleados: dict):
 
 def agregar_empleado(empleados: dict):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Agrega un nuevo empleado al diccionario de empleados.
 
     Datos de entrada:
@@ -108,6 +112,8 @@ def agregar_empleado(empleados: dict):
 
 def actualizar_informacion(empleados: dict):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Actualiza la información de un empleado existente.
 
     Datos de entrada:
@@ -153,6 +159,8 @@ def actualizar_informacion(empleados: dict):
 
 def cambiar_estado_empleado(empleados: dict):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Cambia el estado de un empleado entre activo e inactivo.
 
     Datos de entrada:
@@ -194,6 +202,8 @@ def cambiar_estado_empleado(empleados: dict):
 
 def listado_empleados(empleados: dict):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Muestra el listado de empleados registrados.
 
     Datos de entrada:

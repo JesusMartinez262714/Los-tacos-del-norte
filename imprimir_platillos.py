@@ -10,6 +10,8 @@ Esta función imprime un menú de platillos disponibles junto con sus precios. S
 import utilerias as u
 def imprimirPlatillos(platillos,es_menu):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Muestra el menú de platillos disponibles, incluyendo sus precios. Si es llamado desde el menú principal, 
     pregunta al usuario si desea regresar o seguir en el menú de platillos.
 

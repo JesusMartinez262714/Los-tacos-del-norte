@@ -20,6 +20,8 @@ import comandas_abiertas as ca
 
 def fecha():
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Obtiene la fecha actual del día en formato 'YYYY-MM-DD'.
 
     La función utiliza el módulo 'datetime' para obtener la fecha actual y formatearla en el estándar (año-mes-día).
@@ -37,6 +39,8 @@ fechaHoy=fecha()#Se obetiene el valor del mensaje para la variable local
 
 def id_por_nombre_platillo(platillos,nombre_producto):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Busca el ID de un platillo basado en su nombre.
 
     Parámetros:
@@ -56,6 +60,8 @@ def id_por_nombre_platillo(platillos,nombre_producto):
 
 def validar_numerico(mensaje: str) -> int:
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Solicita al usuario un valor numérico y valida que sea un número entero.
 
     Parámetros:
@@ -78,6 +84,8 @@ def validar_numerico(mensaje: str) -> int:
 
 def mostrar_resumen(comandas,folio,imprimir):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Muestra el resumen de una comanda específica, incluyendo mesa, cliente, empleado, platillos y total.
 
     Parámetros:
@@ -111,6 +119,8 @@ def mostrar_resumen(comandas,folio,imprimir):
 
 def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Obtiene el folio de una comanda asociada a un número de mesa.
 
     Parámetros:
@@ -129,6 +139,8 @@ def obtener_folio_por_mesa(comandas:dict, numero_mesa:int):
 
 def validar_mismo_platillo(platillo):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Valida y asigna el nombre correspondiente a un número de platillo.
 
     Parámetros:
@@ -161,6 +173,8 @@ def validar_mismo_platillo(platillo):
 
 def calcular_total(folio, comandas):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Calcula y actualiza el total de una comanda basada en los platillos seleccionados.
 
     Parámetros:
@@ -184,6 +198,8 @@ def calcular_total(folio, comandas):
 
 def verificar_comanda(comandas:dict,debe_mostrar):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Verifica si una comanda está abierta para la mesa especificada.
 
     Parámetros:
@@ -218,6 +234,8 @@ def verificar_comanda(comandas:dict,debe_mostrar):
 
 def validar_empleado(empleados):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Valida si un empleado se encuentra registrado en el sistema.
 
     Parámetros:

@@ -10,6 +10,8 @@ Este código procesa las comandas pagadas, acumula la cantidad de ventas de cada
 cantidades = []
 def consultar_platillos_mas_vendidos(comandas, platillos):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Consulta y muestra los tres platillos más vendidos y los ingresos generados.
 
     Datos de entrada:
@@ -67,6 +69,8 @@ def consultar_platillos_mas_vendidos(comandas, platillos):
 
 def agregar_o_actualizar(platillo, cantidad, platillos):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Agrega o actualiza el registro de un platillo en la lista de cantidades vendidas.
 
     Datos de entrada:

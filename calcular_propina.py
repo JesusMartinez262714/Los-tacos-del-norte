@@ -15,6 +15,8 @@ Este módulo permite realizar las siguientes operaciones principales:
 
 def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Calcula las propinas acumuladas de un empleado, basándose en las comandas pagadas.
 
     Datos de entrada:

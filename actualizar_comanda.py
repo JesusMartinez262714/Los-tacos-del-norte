@@ -21,6 +21,8 @@ folioNuevo=0
 # Función para agregar un producto a la comanda
 def agregar_producto(platillos, comandas:dict,folio):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Agrega un producto a una comanda existente.
 
     Datos de entrada:
@@ -113,6 +115,8 @@ def agregar_producto(platillos, comandas:dict,folio):
 # Función para eliminar un producto de la comanda
 def eliminar_producto(platillos:tuple,comandas,folio):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Elimina un producto de la comanda seleccionada.
 
     Datos de entrada:
@@ -190,6 +194,8 @@ def eliminar_producto(platillos:tuple,comandas,folio):
    
 def aumentar_producto(platillos,comandas,folio):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Aumenta la cantidad de un producto en una comanda existente.
 
     Datos de entrada:
@@ -249,6 +255,8 @@ def aumentar_producto(platillos,comandas,folio):
 # Función que muestra el menú de actualizaciones
 def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Muestra el menú con las opciones para actualizar la comanda.
 
     Datos de entrada:

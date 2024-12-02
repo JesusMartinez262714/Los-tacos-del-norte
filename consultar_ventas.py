@@ -13,6 +13,8 @@ fechaHoy = u.fecha()  # Obtener la fecha del día actual
 
 def consultar_ventas(comandas, empleados):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Consulta las ventas del día, mostrando un resumen de las comandas pagadas, propinas y totales.
     Permite filtrar las ventas por mesa o por empleado.
 

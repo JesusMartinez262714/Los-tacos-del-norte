@@ -9,6 +9,8 @@ como el número de mesa, cliente, empleado y el total de cada comanda, filtrando
 
 def comandas_abiertas(comandas:dict,nombre_empleado:str):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Muestra un listado de las comandas abiertas (no pagadas) en el sistema.
 
     Parámetros:

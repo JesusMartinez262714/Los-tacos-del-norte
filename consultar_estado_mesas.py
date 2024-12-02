@@ -12,6 +12,8 @@ Además, permite al usuario decidir si desea regresar al menú principal o conti
 import utilerias as u
 def consultar_estado_mesas(mesas):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Consulta el estado de las mesas, mostrando las mesas disponibles y ocupadas.
 
     Parámetros:

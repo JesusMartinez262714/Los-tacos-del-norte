@@ -11,6 +11,8 @@ import utilerias as u
 
 def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Cierra una comanda registrada, permitiendo al usuario ingresar una propina, generar el ticket y actualizar el estado de la comanda.
 
     Datos de entrada:
@@ -87,6 +89,8 @@ def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
 
 def generar_ticket(folio,comandas,propina):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Genera un ticket con los detalles de la comanda, incluyendo la lista de platillos, subtotales, propina y total.
 
     Datos de entrada:
@@ -137,6 +141,8 @@ def generar_ticket(folio,comandas,propina):
 
 def actualizar_estado_comanda(folio,comandas,mesas,propina):
     """
+    Desarrollado por: Contreras Avila Ramses Norberto 262720
+
     Actualiza el estado de una comanda a "pagada" y asigna una propina a la misma. 
 
     Parámetros:
@@ -174,6 +180,8 @@ def buscar_id_por_nombre(nombre_buscado,empleados):
 
 def disponibilidad_mesas(comandas, mesas, folio):
     """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
     Actualiza la disponibilidad de una mesa en función del estado de la comanda asociada.
 
     Parámetros:
