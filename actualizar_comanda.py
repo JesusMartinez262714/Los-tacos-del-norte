@@ -147,27 +147,34 @@ def eliminar_producto(platillos:tuple,comandas,folio):
 
                 print(f"Producto: {nombre_producto}")
                 print(f"Cantidad disponible: {cant_producto}")
-
-                cantidad = input(f"Ingrese cuántos {nombre_producto} desea eliminar (o 'todo'): ")
-                if cantidad == 'todo':
-                    del comandas[folio]['platillos'][producto - 1]
-                    print(f"{nombre_producto} ha sido completamente eliminado.")
-                elif cantidad.isdigit():
-                    cantidad = int(cantidad)
-                    if cantidad > cant_producto:
-                        print(f"Solo existen {cant_producto} de este producto.")
-                    else:
-                        continuar = u.validar_s_n(f"¿Está seguro de que desea eliminar {cantidad} de {nombre_producto}? (s/n): ")
-                        if continuar == 's':
-                            nuevo_cant = cant_producto - cantidad
-                            if nuevo_cant > 0:
-                                comandas[folio]['platillos'][producto - 1] = (nombre_producto, nuevo_cant, nuevo_cant * platillos[id_producto - 1][2])
-                                print(f"{cantidad} de {nombre_producto} ha sido eliminado.")
+                while True:
+                    cantidad = input(f"Ingrese cuántos {nombre_producto} desea eliminar (o 'todo'): ")
+                    if cantidad == 'todo':
+                        del comandas[folio]['platillos'][producto - 1]
+                        print(f"{nombre_producto} ha sido completamente eliminado.")
+                        break
+                    elif cantidad.isdigit():
+                        cantidad = int(cantidad)
+                        if cantidad > cant_producto:
+                            print(f"Solo existen {cant_producto} de este producto.")
+                            continue
+                        else:
+                            continuar = u.validar_s_n(f"¿Está seguro de que desea eliminar {cantidad} de {nombre_producto}? (s/n): ")
+                            if continuar == 's':
+                                nuevo_cant = cant_producto - cantidad
+                                if nuevo_cant==0:
+                                    del comandas[folio]['platillos'][producto - 1]
+                                    print(f"{cantidad} de {nombre_producto} ha sido eliminado.")
+                                    break
+                                elif nuevo_cant > 0:
+                                    comandas[folio]['platillos'][producto - 1] = (nombre_producto, nuevo_cant, nuevo_cant * platillos[id_producto - 1][2])
+                                    print(f"{cantidad} de {nombre_producto} ha sido eliminado.")
+                                    break
                             else:
-                                del comandas[folio]['platillos'][producto - 1]
-                                print(f"{nombre_producto} ha sido completamente eliminado.")
-                else:
-                    print("Entrada no válida. Ingrese un número.")
+                                print("El producto no fue eliminado.")
+                                break
+                    else:
+                        print("Entrada no válida. Ingrese un número.")
                 
                 u.calcular_total(folio, comandas)
                 u.mostrar_resumen(comandas, folio,imprimir="actualizar")
@@ -226,10 +233,9 @@ def aumentar_producto(platillos,comandas,folio):
                             nuevo_cant = cant_producto + cantidad
                             if nuevo_cant > 0:
                                 comandas[folio]['platillos'][producto - 1] = (nombre_producto, nuevo_cant, nuevo_cant * platillos[id_producto - 1][2])
-                                print(f"{cantidad} de {nombre_producto} ha sido eliminado.")
                             else:
                                 del comandas[folio]['platillos'][producto - 1]
-                                print(f"{nombre_producto} ha sido completamente eliminado.")
+                                
                 else:
                     print("Entrada no válida. Ingrese un número.")
                 
@@ -266,9 +272,9 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     global folioNuevo
     if es_menu == "si":
         folio=u.verificar_comanda(comandas)
-
+        if folio==None:
+            return
         if not folio:
-            print("devuelve")
             return
         folioNuevo=folioGlobal(folio)
     elif es_menu == "no":

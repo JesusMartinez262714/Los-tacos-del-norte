@@ -181,6 +181,9 @@ def verificar_comanda(comandas:dict):
         return valor
     while True:
         verificar = validar_numerico("Ingrese el número de la mesa donde se desea hacer la actualización: ")
+        if verificar<0:
+            folio=None
+            return folio
         folio = obtener_folio_por_mesa(comandas, verificar)
         bandera=False
         for datos in comandas.values():
@@ -190,7 +193,8 @@ def verificar_comanda(comandas:dict):
                 break
         if not bandera:
             print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
-            continue
+            folio=None
+            return folio
         return folio
 
 def validar_empleado(empleados):

@@ -25,6 +25,8 @@ def cerrar_comanda(comandas:dict,platillos,mesas,propinas_empleados,empleados):
     """
     while True:
         folio=u.verificar_comanda(comandas)
+        if folio==None:
+            return
         cerrar=u.validar_s_n("Desea cerrar esta comanda? (s/n)")
         if cerrar == 'n':
             print('Cierre de comanda cancelado')
