@@ -174,7 +174,7 @@ def registrar_platillos(lista_platillos, platillos) -> float:
                         cantidad_platillo+=i[1]
 
                         lista_platillos.remove(i)
-                costo, subtotal = Calculos_Comandas(platillo, cantidad_platillo,platillos)
+                costo, subtotal = u.Calculos_Comandas(platillo, cantidad_platillo,platillos)
                 lista_platillos.append((nombre_platillo, cantidad_platillo, costo))
                 total += subtotal
         
@@ -228,24 +228,6 @@ def mostrarComanda(lista_platillos: list, nombre_cliente: str, empleado: str, nu
         print(f"    - Platillo: {platillo[0]} ({platillo[1]}) - ${platillo[2]:.2f}")
     print(f"Total: ${total:.2f}")
 
-
-def Calculos_Comandas(platillo, cantidad_platillo,platillos):
-    """
-    Desarrollado por: Jesus Manuel Martinez Cortez 262714
-
-    Calcula el costo y subtotal de un platillo seleccionado.
-
-    Parámetros:
-    - platillo (int): Número del platillo seleccionado.
-    - cantidad_platillo (int): Cantidad de ese platillo.
-
-    Retorna:
-    - tuple: Costo por platillo y subtotal calculado.
-    """
-    costo = cantidad_platillo * platillos[0][2] if platillo == 1 else cantidad_platillo * platillos[1][2] if platillo == 2 else cantidad_platillo * platillos[2][2] if platillo == 3 else cantidad_platillo * platillos[3][2] if platillo == 4 else cantidad_platillo * platillos[4][2] if platillo == 5 else cantidad_platillo * platillos[5][2] if platillo == 6 else cantidad_platillo * platillos[6][2] if platillo == 7 else cantidad_platillo * platillos[7][2] if platillo == 8 else cantidad_platillo * platillos[8][2] if platillo == 9 else cantidad_platillo * platillos[9][2] if platillo == 10 else 0
-    subtotal = 0
-    subtotal += costo
-    return costo, subtotal
 
 
 if __name__ == "__main__":

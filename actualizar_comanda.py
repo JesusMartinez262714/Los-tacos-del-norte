@@ -75,7 +75,7 @@ def agregar_producto(platillos, comandas:dict,folio):
                 print("La cantidad debe ser mayor a 0. Intente de nuevo.")
 
         # Cálculo del subtotal basado en el platillo seleccionado
-        subtotal=cantidad*platillos[platillo-1][2]
+        costo, subtotal=u.Calculos_Comandas(platillo,cantidad,platillos)
         for comanda in comandas.values():  # Itera sobre las comandas abiertas
             
             comanda = comandas.get(folio)  # Obtiene la comanda por folio

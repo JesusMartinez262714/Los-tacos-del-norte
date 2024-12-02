@@ -262,3 +262,21 @@ def validar_s_n(mensaje):
         else:
             print("Entrada no válida. Por favor ingrese 's' o 'n'.")  # Mensaje si la entrada es incorrecta
 
+def Calculos_Comandas(platillo, cantidad_platillo,platillos):
+    """
+    Desarrollado por: Jesus Manuel Martinez Cortez 262714
+
+    Calcula el costo y subtotal de un platillo seleccionado.
+
+    Parámetros:
+    - platillo (int): Número del platillo seleccionado.
+    - cantidad_platillo (int): Cantidad de ese platillo.
+
+    Retorna:
+    - tuple: Costo por platillo y subtotal calculado.
+    """
+    costo = cantidad_platillo * platillos[0][2] if platillo == 1 else cantidad_platillo * platillos[1][2] if platillo == 2 else cantidad_platillo * platillos[2][2] if platillo == 3 else cantidad_platillo * platillos[3][2] if platillo == 4 else cantidad_platillo * platillos[4][2] if platillo == 5 else cantidad_platillo * platillos[5][2] if platillo == 6 else cantidad_platillo * platillos[6][2] if platillo == 7 else cantidad_platillo * platillos[7][2] if platillo == 8 else cantidad_platillo * platillos[8][2] if platillo == 9 else cantidad_platillo * platillos[9][2] if platillo == 10 else 0
+    subtotal = 0
+    subtotal += costo
+    return costo, subtotal
+
