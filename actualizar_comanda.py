@@ -223,22 +223,19 @@ def aumentar_producto(platillos,comandas,folio):
 
                 print(f"Producto: {nombre_producto}")
                 print(f"Cantidad disponible: {cant_producto}")
-
-                cantidad = input(f"Ingrese cuántos {nombre_producto} desea agregar: ")
-                if cantidad.isdigit():
+                while True:
+                    cantidad = input(f"Ingrese cuántos {nombre_producto} desea agregar: ")
                     cantidad = int(cantidad)
-                    if cantidad < 0:
+                    if cantidad <= 0:
                         print(f"La cantidad debe ser mayor a 0. Intente de nuevo.")
+                        continue
                     else:
                             nuevo_cant = cant_producto + cantidad
                             if nuevo_cant > 0:
                                 comandas[folio]['platillos'][producto - 1] = (nombre_producto, nuevo_cant, nuevo_cant * platillos[id_producto - 1][2])
                             else:
-                                del comandas[folio]['platillos'][producto - 1]
-                                
-                else:
-                    print("Entrada no válida. Ingrese un número.")
-                
+                                del comandas[folio]['platillos'][producto - 1]     
+                            break     
                 u.calcular_total(folio, comandas)
                 u.mostrar_resumen(comandas, folio,imprimir="actualizar")
                 return
@@ -271,7 +268,7 @@ def menu_actualizaciones(comandas,platillos,es_menu) -> None:
     """
     global folioNuevo
     if es_menu == "si":
-        folio=u.verificar_comanda(comandas)
+        folio=u.verificar_comanda(comandas,debe_mostrar=True)
         if folio==None:
             return
         if not folio:

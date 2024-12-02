@@ -1,3 +1,4 @@
+import utilerias as u
 def consultar_estado_mesas(mesas):
     """
     Consulta el estado de las mesas, mostrando las mesas disponibles y ocupadas.
@@ -20,12 +21,13 @@ def consultar_estado_mesas(mesas):
     - mesas: Un diccionario donde las claves son los números de las mesas y los valores son los estados de las mismas 
       ("disponible" o "no disponible").
     """
-    import utilerias as u
-    listaDisponibles=[]
-    listaNoDisponibles=[]
-    disponibles=0
-    noDisponible=0
+  
+    
     while True:
+        listaDisponibles=[]
+        listaNoDisponibles=[]
+        disponibles=0
+        noDisponible=0
         for x,y in mesas.items():
             if y == 'disponible':
                 disponibles+=1
@@ -39,7 +41,15 @@ def consultar_estado_mesas(mesas):
         elif noDisponible<=0:
             print("No hay mesas ocupadas en este momento")
         else:
-            print(f"{"Estado de las Mesas":-^25}")
+            print(f"{" Estado de las Mesas ":-^25}")
+            print("Mesas Ocupadas: ")
+            vueltasForNoDisponible=0
+            for mesaNo in listaNoDisponibles:
+                vueltasForNoDisponible+=1
+                if vueltasForNoDisponible < len(listaNoDisponibles):
+                    print(f"{mesaNo}", end=", ")
+                else:
+                    print(f"{mesaNo}")
             print("Mesas Disponibles: ")
             vueltasForDisponible=0
             for mesa in listaDisponibles:
@@ -49,16 +59,8 @@ def consultar_estado_mesas(mesas):
                     print(f"{mesa}", end=", ")
                 else:
                     print(f"{mesa}")
-            print("Mesas Ocupadas: ")
-            vueltasForNoDisponible=0
-            for mesaNo in listaNoDisponibles:
-                vueltasForNoDisponible+=1
-                if vueltasForNoDisponible < len(listaNoDisponibles):
-                    print(f"{mesaNo}", end=", ")
-                else:
-                    print(f"{mesaNo}")
             print(f"Total de mesas ocupadas: {noDisponible}")
-            print(f"Total de mesas ocupadas: {disponibles}")
+            print(f"Total de mesas disponibles: {disponibles}")
                 
         
         continuar=u.validar_s_n("Desea regresar al menu principal? (s/n)")
@@ -66,19 +68,6 @@ def consultar_estado_mesas(mesas):
             return
         elif continuar=='n':
             continue
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == "__main__":
  mesas = {

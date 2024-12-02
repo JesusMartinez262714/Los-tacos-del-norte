@@ -35,7 +35,10 @@ la llave es el folio, el value:
 
 #Comandas
 
-comandas = {}
+comandas = {
+
+}
+
 
 """
 Mesas es un diccionario donde:
@@ -84,7 +87,7 @@ empleados = {
     102: {
         "nombre": "Pedro Martínez",
         "telefono": "6449876543",
-        "estado": "inactivo"
+        "estado": "activo"
     }
 }
 
@@ -161,10 +164,10 @@ def menu_principal():
             # actualizar_comanda(comandas, platillos)
             ac.menu_actualizaciones(comandas,platillos,es_menu="si")
         elif opcion == 3:
-             ab.comandas_abiertas(comandas)
+             ab.comandas_abiertas(comandas,nombre_empleado="")
             # consultar_comandas_abiertas(comandas)
         elif opcion == 4:
-             cc.cerrar_comanda(comandas,platillos,mesas,propinas_empleados,empleados)
+             cc.cerrar_comanda(comandas,mesas,propinas_empleados,empleados)
             # cerrar_comanda(comandas, mesas, historial_ventas)
         elif opcion == 5:
              cem.consultar_estado_mesas(mesas)

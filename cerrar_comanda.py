@@ -1,5 +1,5 @@
 import utilerias as u
-def cerrar_comanda(comandas:dict,platillos,mesas,propinas_empleados,empleados):
+def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
     """
     Cierra una comanda registrada, permitiendo al usuario ingresar una propina, generar el ticket y actualizar el estado de la comanda.
 
@@ -24,9 +24,30 @@ def cerrar_comanda(comandas:dict,platillos,mesas,propinas_empleados,empleados):
         mesas: Diccionario que contiene la información de las mesas, se utiliza para actualizar su estado una vez que la comanda se cierra.
     """
     while True:
-        folio=u.verificar_comanda(comandas)
+        folio=u.verificar_comanda(comandas,debe_mostrar=False)
         if folio==None:
             return
+        print(f"{"":=^45}")
+        print(f"{"Los tacos del norte":^45}")
+        print(f"{"":=^45}")
+        print(f"Comanda #{folio:<18}Fecha: {u.fecha()}")
+        print(f"Mesa: {comandas[folio]['mesa']:<21}Cliente: {comandas[folio]['cliente']}")
+        print(f"Empleado: {comandas[folio]['empleado']:<27}")
+        print(f"{"":-^45}")
+        print(f"{"Platillo":<20}{"Cant.":<9}{"P.Unit":<10}Total")
+        print(f"{"":-^45}")
+        contador = 1  # Inicializamos el contador manualmente
+        acumulador=0
+        for platillo in comandas[folio]['platillos']:
+            nombre = platillo[0]
+            cantidad = platillo[1]
+            subtotal = platillo[2]
+            print(f"{nombre:<20}{cantidad:<9}{subtotal/cantidad:<10}{subtotal}")
+            contador += 1  # Incrementamos el contador en cada iteración
+            acumulador+=subtotal
+        print(f"{"":-^45}")
+        print(f"{"Total":<39}{acumulador}")
+        print(f"{"":=^45}")
         cerrar=u.validar_s_n("Desea cerrar esta comanda? (s/n)")
         if cerrar == 'n':
             print('Cierre de comanda cancelado')
@@ -34,12 +55,15 @@ def cerrar_comanda(comandas:dict,platillos,mesas,propinas_empleados,empleados):
         elif cerrar == 's':
             while True:
                 propina=u.validar_numerico("Ingrese la propina que desea dejar: ")
-                if propina >= 0:
+                if propina > 0:
                     generar_ticket(folio,comandas,propina)
                     actualizar_estado_comanda(folio,comandas,mesas,propina)
                     id_empleado=buscar_id_por_nombre(comandas[folio]['empleado'],empleados)
                     propinas_empleados[id_empleado]=propinas_empleados[id_empleado]+propina
-                    print(propinas_empleados)
+                    print("")
+                    print(f"La mesa {comandas[folio]['mesa']} ha sido liberada y esta disponible para nuevos clientes")
+                    print("")
+
                     break
                 else:
                     print("La propina no puede ser negativa,intente nuevamente")
@@ -171,20 +195,44 @@ def disponibilidad_mesas(comandas, mesas, folio):
 
 if __name__ == "__main__":
     comandas = {
-    1:{
-        "mesa": 3,
-        "cliente": "Juan Pérez",
-        "empleado": "María López",
-        "platillos": [
-            ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
-            ("Refresco", 2, 30.00)
-        ],
-        "total": 90.00,
-        "propina":0,
-        "estado" : "No pagada" #Pueden ser pagadas o no pagadas
-}
-
-}
+        1: {  # Comanda con ID 1
+            "mesa": 3,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina": 0,
+            "estado": "no pagada"  # Pueden ser pagadas o no pagadas
+        },
+        2: {  # Comanda con ID 2
+            "mesa": 2,
+            "cliente": "Juan Pérezza",
+            "empleado": "María López",
+            "platillos": [
+                ("Tacos de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00),
+                ("Torta de Asada", 4, 180.00)
+            ],
+            "total": 270.00,
+            "propina": 0,
+            "estado": "no pagada"  # Pueden ser pagadas o no pagadas
+        },
+        3: {  # Comanda con ID 3
+            "mesa": 1,
+            "cliente": "Juan Pérez",
+            "empleado": "María López",
+            "platillos": [
+                ("Torta de Asada", 3, 60.00),  # (Nombre del platillo, Cantidad, Subtotal)
+                ("Refresco", 2, 30.00)
+            ],
+            "total": 90.00,
+            "propina": 0,
+            "estado": "no pagada"  # Pueden ser pagadas o no pagadas
+        }
+    }
     mesas = {
         1: "disponible",
         2: "disponible",
@@ -215,4 +263,22 @@ if __name__ == "__main__":
         (9, "Agua Fresca (1L)", 20.00),
         (10, "Flautas (3 piezas)", 30.00)
     )
-    cerrar_comanda(comandas,platillos,mesas)
+    empleados = {
+    101: {
+        "nombre": "María López",
+        "telefono": "6441234567",
+        "estado": "activo"
+    },
+    102: {
+        "nombre": "Pedro Martínez",
+        "telefono": "6449876543",
+        "estado": "inactivo"
+    }
+}
+    propinas_empleados = {
+    101: 50.00,  # María López
+    102: 35.00   # Pedro Martínez
+}
+
+
+    cerrar_comanda(comandas,mesas,propinas_empleados,empleados)

@@ -112,7 +112,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
                 "estado": "no pagada"
             }
         
-            ca.comandas_abiertas(comandas)
+            ca.comandas_abiertas(comandas,empleado)
         else:
             print("Comanda cancelada")
         registrarOtra=u.validar_s_n("Desea registrar otra comanda? s/n: ")

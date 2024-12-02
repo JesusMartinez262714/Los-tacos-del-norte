@@ -26,14 +26,22 @@ def consultar_ventas(comandas, empleados):
     - comandas: Un diccionario que contiene las comandas pagadas con sus detalles, incluyendo total y propina.
     - empleados: Un diccionario con los empleados registrados y su información.
     """
+    for datos in comandas.values():
+        if all(datos["estado"] == "no pagada"):
+            print(f"No hay ventas registradas para el dia {fechaHoy}")
+            return
     totalP = 0
     totalT = 0
+   
     print(f"{'':^12}{' Ventas del Día: ':->26}{fechaHoy:-<20}")
     print("")
     print(f"{'folio':<9}{'Mesa':<7}{'Cliente':<19}{'Empleado':<17}{'Total':<10}Propina")
     print(f"{'':-^73}")
-    
-    for folio, datos in comandas.items():
+    ordenado_por_folio = (
+    dict(sorted(comandas.items(), key=lambda x: x[0]))
+    if comandas else {}
+    )
+    for folio, datos in ordenado_por_folio.items():
         if datos['estado'] == 'pagada':
             print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
             print(f"{'':-^73}")
@@ -76,7 +84,7 @@ def consultar_ventas(comandas, empleados):
 
 if __name__ == "__main__":
     comandas = {
-        1: {
+        5: {
             "mesa": 5,
             "cliente": "Juan Pérez",
             "empleado": "María López",
@@ -86,9 +94,9 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "pagada"
+            "estado": "no pagada"
         },
-        2: {
+        1: {
             "mesa": 3,
             "cliente": "Juan Pérez",
             "empleado": "María López",
@@ -100,7 +108,7 @@ if __name__ == "__main__":
             "propina": 0,
             "estado": "no pagada"
         },
-        3: {
+        2: {
             "mesa": 1,
             "cliente": "Juan Pérez",
             "empleado": "María López",
@@ -110,7 +118,7 @@ if __name__ == "__main__":
             ],
             "total": 90.00,
             "propina": 0,
-            "estado": "pagada"
+            "estado": "no pagada"
         }
     }
 

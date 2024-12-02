@@ -164,7 +164,7 @@ def calcular_total(folio, comandas):
     else:
         print("Comanda no encontrada.")
 
-def verificar_comanda(comandas:dict):
+def verificar_comanda(comandas:dict,debe_mostrar):
     """
     Verifica si una comanda está abierta para la mesa especificada.
 
@@ -175,7 +175,7 @@ def verificar_comanda(comandas:dict):
     Retorna:
      El folio de la comanda si se encuentra, o None si no existe una comanda abierta para la mesa.
     """
-    valor=ca.comandas_abiertas(comandas)
+    valor=ca.comandas_abiertas(comandas,nombre_empleado="")
 
     if not valor:
         return valor
@@ -188,7 +188,8 @@ def verificar_comanda(comandas:dict):
         bandera=False
         for datos in comandas.values():
             if verificar == datos['mesa'] and datos['estado'] == "no pagada":
-                mostrar_resumen(comandas,folio,imprimir="inicio")
+                if debe_mostrar:
+                    mostrar_resumen(comandas,folio,imprimir="inicio")
                 bandera=True
                 break
         if not bandera:
