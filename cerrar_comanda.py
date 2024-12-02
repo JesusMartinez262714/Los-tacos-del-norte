@@ -37,7 +37,7 @@ def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
     """
     while True:
         folio=u.verificar_comanda(comandas,debe_mostrar=False)
-        if folio==None:
+        if folio==False:
             return
         print(f"{"":=^45}")
         print(f"{"Los tacos del norte":^45}")
@@ -83,6 +83,9 @@ def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
 
             continuar=u.validar_s_n("Desea cerrar otra comanda y generar su cuente? (s/n)")
             if continuar=='s':
+                if not comandas:
+                    print(comandas)
+                    return
                 continue
             if continuar == 'n':
                 return

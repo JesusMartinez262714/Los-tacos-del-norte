@@ -66,6 +66,10 @@ def consultar_platillos_mas_vendidos(comandas, platillos):
         total_ingresos +=x[2]
     print(f"{'Total de Ingresos:':<40}{total_ingresos:.2f}")
 
+    for i in cantidades:
+        cantidades.remove(i)
+    
+
 
 def agregar_o_actualizar(platillo, cantidad, platillos):
     """
@@ -105,9 +109,11 @@ def agregar_o_actualizar(platillo, cantidad, platillos):
             nueva_cantidad = cantidades[i][1] + cantidad
             nuevo_costo = nueva_cantidad * precio_unitario
             cantidades[i] = (platillo, nueva_cantidad, nuevo_costo)
+
             return
     nuevo_costo = cantidad * precio_unitario
     cantidades.append((platillo, cantidad, nuevo_costo))
+
 
 
 # Ejecución

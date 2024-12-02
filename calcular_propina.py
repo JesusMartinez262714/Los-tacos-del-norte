@@ -71,7 +71,7 @@ def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
         masPropina=mesa[0][0]
         
         # Mostrar resultados después de procesar todas las comandas
-        if comandaAsociada > 0:
+        if comandaAsociada > 0 or propinaAcumulada>0.0:
             print(f"{" Cálculo de Propinas ":-^27}")
             print("")
             print(f"Empleado: {empleado}")
@@ -86,9 +86,9 @@ def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
             print("")
             print(f"Empleado: {empleado}")
             print("")
-            print("Propinas acumuladas: $0.00")
+            print(f"Propinas acumuladas: ${propinaAcumulada}")
             print("")
-            print("Comandas asociadas: 0")
+            print(f"Comandas asociadas: {comandaAsociada}")
             print("")
             print("Nota: Este empleado no tiene comandas pagadas asociadas.")
         continuar=u.validar_s_n("Desea calcular las propinas de otro empleado (s/n)").lower()

@@ -229,6 +229,7 @@ def verificar_comanda(comandas:dict,debe_mostrar):
         if not bandera:
             print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
             folio=None
+            print(folio)
             return folio
         return folio
 
