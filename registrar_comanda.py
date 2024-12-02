@@ -64,7 +64,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
         global folio
         while True: 
             num_mesas = u.validar_numerico("Ingrese el número de la mesa: ")
-            if num_mesas<0:
+            if num_mesas<=0:
                 break
             if num_mesas>len(mesas):
                 print("Esa mesa no existe,ingrese una mesa valida")
@@ -73,7 +73,7 @@ def crear_comanda(comandas: dict,mesas: dict,empleados:dict,platillos:tuple):
                 print("La mesa seleccionada ya tiene una comanda abierta. No se puede registrar otra comanda hasta que la actual sea cerrada.")
             else:
                 break
-        if num_mesas<0:
+        if num_mesas<=0:
                 return
 
         nombre_cliente = input("Ingrese el nombre del cliente: ")
@@ -266,10 +266,10 @@ if __name__ == "__main__":
         ],
         "total": 90.00,
         "propina":0,
-        "estado" : "No pagada" #Pueden ser pagadas o no pagadas
+        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
     },
     2:{
-        "mesa": 3,
+        "mesa": 8,
         "cliente": "Juan Pérez",
         "empleado": "María López",
         "platillos": [
@@ -278,10 +278,10 @@ if __name__ == "__main__":
         ],
         "total": 90.00,
         "propina":0,
-        "estado" : "pagada" #Pueden ser pagadas o no pagadas
+        "estado" : "no pagada" #Pueden ser pagadas o no pagadas
     },
     3:{
-        "mesa": 3,
+        "mesa": 6,
         "cliente": "Juan Pérez",
         "empleado": "María López",
         "platillos": [
@@ -313,7 +313,7 @@ if __name__ == "__main__":
         5: "disponible",
         6: "disponible",
         7: "disponible",
-        8: "disponible",
+        8: "no disponible",
         9: "disponible",
         10: "disponible",
         11: "disponible",
