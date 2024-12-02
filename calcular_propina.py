@@ -48,7 +48,13 @@ def calcular_propina(comandas:dict,empleados,propinas_empleados:dict):
             print("No hay comandas pagadas registradas en el sistema")
             return  # Sale de la función si no hay comandas pagadas
         else:
-            empleado, id = u.validar_empleado(empleados)
+            while True:
+                empleado, id = u.validar_empleado(empleados)
+                if not empleado:
+                    print("Valor no valido,Ingrese nuevamente")
+                else:
+                    break
+
             for folio, datos in comandas.items():
                 if empleado == datos['empleado']:
                     comandaAsociada+=1
