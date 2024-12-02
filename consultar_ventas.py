@@ -177,4 +177,4 @@ if __name__ == "__main__":
         }
     }
     
-    consultar_ventas(comandas, empleados)
+    consultar_ventas(comandas,empleados)

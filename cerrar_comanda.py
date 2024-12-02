@@ -244,8 +244,8 @@ if __name__ == "__main__":
         }
     }
     mesas = {
-        1: "disponible",
-        2: "disponible",
+        1: "no disponible",
+        2: "no disponible",
         3: "no disponible",
         4: "disponible",
         5: "disponible",

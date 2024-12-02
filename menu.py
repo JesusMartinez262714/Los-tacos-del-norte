@@ -180,7 +180,7 @@ def menu_principal():
               cpmv.consultar_platillos_mas_vendidos(comandas,platillos)
             # consultar_platillos_mas_vendidos(historial_ventas, platillos)
         elif opcion == 8:
-              cp.calcular_propina(comandas,empleados)
+              cp.calcular_propina(comandas,empleados,propinas_empleados)
             # calcular_propinas(empleados, historial_ventas)
         elif opcion == 9:
               ip.imprimirPlatillos(platillos,es_menu=True)
