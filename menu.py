@@ -189,7 +189,7 @@ def menu_principal():
               ge.menu_empleados(empleados)
             # gestionar_empleados(empleados)
         elif opcion == 11:
-            print("Saliendo del sistema. ¡Hasta luego!")
+            print("Saliendo del sistema. ¡Gracias por visitar la Taqueria los Tacos del Norte!")
             break
         else:
             print("Opción no válida. Por favor, seleccione una opción del 1 al 11.")

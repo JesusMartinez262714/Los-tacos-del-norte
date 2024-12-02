@@ -73,6 +73,9 @@ def agregar_empleado(empleados: dict):
     """
     while True:
         idEmpleado = u.validar_numerico("Ingrese el id del empleado: ")
+        if idEmpleado<=0:
+            print("El numero ingresado es invalido, intentelo de nuevo.")
+            continue
         if idEmpleado in empleados.keys():
             print("El ID del empleado ya esta registrado. Intente con otro ID")
             continue
