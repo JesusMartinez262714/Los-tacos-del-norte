@@ -54,7 +54,7 @@ def consultar_ventas(comandas, empleados):
     )
     for folio, datos in ordenado_por_folio.items():
         if datos['estado'] == 'pagada':
-            print(f"{folio:<9}{datos['mesa']:<6}{datos['cliente']:<16}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
+            print(f"{folio:<9}{datos['mesa']:<7}{datos['cliente']:<19}{datos['empleado']:<17}${datos['total']:<10}${datos['propina']}")
             print(f"{'':-^73}")
             totalP += int(datos['propina'])
             totalT += int(datos['total'])

@@ -229,7 +229,6 @@ def verificar_comanda(comandas:dict,debe_mostrar):
         if not bandera:
             print("No hay ninguna comanda abierta para esta mesa. Intente de nuevo.")
             folio=None
-            print(folio)
             return folio
         return folio
 
@@ -247,7 +246,7 @@ def validar_empleado(empleados):
     """
     while True:
         empleado = validar_numerico("Ingrese el id del empleado: ")
-        if empleado == -1:
+        if empleado == 0:
             return False,False
         if empleado in empleados:
             return empleados[empleado]["nombre"],empleado

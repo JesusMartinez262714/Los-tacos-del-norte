@@ -37,7 +37,7 @@ def cerrar_comanda(comandas:dict,mesas,propinas_empleados,empleados):
     """
     while True:
         folio=u.verificar_comanda(comandas,debe_mostrar=False)
-        if folio==False:
+        if folio==False or folio==None:
             return
         print(f"{"":=^45}")
         print(f"{"Los tacos del norte":^45}")
