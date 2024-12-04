@@ -1,0 +1,2 @@
+def consultar_veces_uso_mesas():
+    print(" ")
